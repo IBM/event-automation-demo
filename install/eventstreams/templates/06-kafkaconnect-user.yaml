@@ -1,0 +1,68 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: kafka-connect-credentials
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    # generate username/password for this user
+    type: scram-sha-512
+  authorization:
+    acls:
+      # ---------------------------------------
+      # cluster permissions
+      # ---------------------------------------
+      - operations:
+          # check existing cluster config
+          - DescribeConfigs
+        resource:
+          type: cluster
+      # ---------------------------------------
+      # topic permissions
+      # ---------------------------------------
+      - operations:
+          # check existing topics
+          - DescribeConfigs
+          # create topics (both to produce to, and to use for internal state)
+          - Create
+          # consume from topics (needed to retrieve state from internal topics)
+          - Read
+          # produce to topics (both writing to internal state topics and messages being produced by connectors)
+          - Write
+        resource:
+          name: '*'
+          patternType: literal
+          type: topic
+      # ---------------------------------------
+      # consumer group permissions
+      # ---------------------------------------
+      - operations:
+          - Read
+        resource:
+          name: '*'
+          patternType: literal
+          type: group
+      # ---------------------------------------
+      # schema registry permissions
+      # ---------------------------------------
+      - operations:
+          # retrieve schema from the schema registry
+          - Read
+          # create schema in the schema registry
+          - Alter
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      # ---------------------------------------
+      # transaction permissions
+      # ---------------------------------------
+      # create transactions
+      - operations:
+          - Write
+        resource:
+          name: '*'
+          patternType: literal
+          type: transactionalId
+    type: simple

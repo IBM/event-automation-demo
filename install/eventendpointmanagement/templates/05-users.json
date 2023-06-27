@@ -1,0 +1,12 @@
+{
+    "users": [
+        {
+            "username": "eem-admin",
+            "password": "Th1$ISTh3Adm1nPa$SW0Rd"
+        },
+        {
+            "username": "es-user",
+            "password": "MyU$erPaS$WorD"
+        }
+    ]
+}

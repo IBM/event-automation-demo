@@ -1,0 +1,26 @@
+---
+- name: Install and prepare the IBM Event Automation tutorial environment
+  hosts: localhost
+  connection: local
+
+- name: Install Certificate Manager
+  ansible.builtin.import_playbook: cert-manager/install.yaml
+  when: install_certmgr | default(false) | bool
+
+- name: Install Apache Flink
+  ansible.builtin.import_playbook: flink/install.yaml
+
+- name: Prepare welcome page
+  ansible.builtin.import_playbook: welcome/prepare.yaml
+
+- name: Install Event Streams
+  ansible.builtin.import_playbook: eventstreams/install.yaml
+
+- name: Install Event Endpoint Management
+  ansible.builtin.import_playbook: eventendpointmanagement/install.yaml
+
+- name: Install Event Processing
+  ansible.builtin.import_playbook: eventprocessing/install.yaml
+
+- name: Set up welcome page
+  ansible.builtin.import_playbook: welcome/setup.yaml

@@ -1,0 +1,28 @@
+{
+    "id": "PLACEHOLDERID",
+    "catalogueId": "default",
+    "type": "kafka",
+    "alias": "DOOR.BADGEIN",
+    "contact": "andre@loosehangers.com",
+    "description": "Records an employee using their id badge to go through a door. This includes entry into the building overall, as well as entry through internal office doors.\n\nBuilding exits do not require use of id badge, so a door badge in event does not imply that the employee will still be in the building.\n\nNote that door events can take up to 3 minutes to reach the Kafka topic, so the badgetime value in the message payload should be treated as the canonical timestamp for the event.\n\nThis delay can be inconsistent, so messages on the topic are often out of sequence as a result.",
+    "tags": [
+        "operations"
+    ],
+    "sampleMessages": [
+        "{\n    \"recordid\": \"03c850e7-9a9a-4a7b-b778-e95d5bb693de\",\n    \"door\": \"G-0-26\",\n    \"employee\": \"milford.kling\",\n    \"badgetime\": \"2023-05-21 14:47:20.742\"\n}"
+    ],
+    "hidden": true,
+    "allowSubscriptions": false,
+    "clusterId": "Event Streams",
+    "gatewayGroups": [],
+    "schema": {
+        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"BadgeIn\",\n    \"fields\": [\n        {\n            \"name\": \"recordid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"badge event id\"\n        },\n        {\n            \"name\": \"door\",\n            \"type\": \"string\",\n            \"doc\": \"Code for the door that recorded the event. Door codes are made up of a building name, floor number, and door number, all separated by hyphens (-)\"\n        },\n        {\n            \"name\": \"employee\",\n            \"type\": \"string\",\n            \"doc\": \"userid associated with the name badge\"\n        },\n        {\n            \"name\": \"badgetime\",\n            \"type\": \"string\",\n            \"doc\": \"time that the door entry was recorded\"\n        }\n    ]\n}",
+        "type": "avro",
+        "description": ""
+    },
+    "topic": {
+        "partitions": 3,
+        "replicas": 1,
+        "name": "DOOR.BADGEIN"
+    }
+}

@@ -1,0 +1,39 @@
+---
+
+- name: Create a catalog source
+  kubernetes.core.k8s:
+    validate_certs: false
+    state: present
+    src: "{{ catalogsource_template }}"
+
+- name: Wait for the catalog source to be ready
+  kubernetes.core.k8s_info:
+    validate_certs: false
+    api_version: v1
+    kind: Pod
+    label_selectors:
+      - "olm.catalogSource={{ catalogsource_name }}"
+    namespace: openshift-marketplace
+  register: pod_list
+  until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+  retries: 30
+  delay: 10
+
+- name: Create an operator subscription
+  kubernetes.core.k8s:
+    validate_certs: false
+    state: present
+    src: "{{ subscription_template }}"
+
+- name: Wait for the operator pod to be ready
+  kubernetes.core.k8s_info:
+    validate_certs: false
+    api_version: v1
+    kind: Pod
+    label_selectors:
+      - "app.kubernetes.io/name={{ subscription_name }}"
+    namespace: openshift-operators
+  register: pod_list
+  until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+  retries: 60
+  delay: 20

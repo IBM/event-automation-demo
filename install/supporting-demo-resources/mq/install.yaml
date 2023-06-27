@@ -1,0 +1,100 @@
+---
+- name: Install IBM MQ
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "event-automation"
+    license_accept: "{{ undef(hint='You need to accept the MQ license to continue') }}"
+    ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/prerequisites.yaml"
+
+    - name: Check for required variables
+      ansible.builtin.assert:
+        that:
+          - license_accept is defined
+          - eventautomation_namespace is defined
+          - ibm_entitlement_key is defined
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Setup operator
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-operator.yaml"
+      vars:
+        catalogsource_name: "ibm-operator-catalog"
+        catalogsource_template: "{{ playbook_dir }}/templates/01-catalog-source.yaml"
+        subscription_name: "ibm-mq"
+        subscription_template: "{{ playbook_dir }}/templates/02-operator-subscription.yaml"
+
+    - name: Prepare queue manager setup
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-qmgr-setup.yaml"
+
+    - name: Create queue manager
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/04-qmgr.yaml"
+
+    - name: Wait for the queue manager to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        name: queuemanager-ibm-mq-0
+        namespace: "{{ eventautomation_namespace }}"
+      register: pod_list
+      until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+      retries: 50
+      delay: 30
+
+    - name: Create Kafka Connect destination topic
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/05-kafka-topic.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    - name: Start Connector
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/06-connector.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    # - name: Create database
+    #   kubernetes.core.k8s:
+    #     validate_certs: false
+    #     state: present
+    #     namespace: "{{ eventautomation_namespace }}"
+    #     template: "{{ playbook_dir }}/templates/03-db.yaml"
+
+    # - name: Wait for the database to be ready
+    #   kubernetes.core.k8s_info:
+    #     validate_certs: false
+    #     api_version: v1
+    #     kind: Pod
+    #     label_selectors:
+    #       - "postgres-operator.crunchydata.com/role=master"
+    #     namespace: "{{ eventautomation_namespace }}"
+    #   register: pod_list
+    #   until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+    #   retries: 50
+    #   delay: 20

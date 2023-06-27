@@ -1,0 +1,36 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: queuemanager
+  annotations:
+    com.ibm.mq/write-defaults-spec: 'false'
+spec:
+  version: 9.3.3.0-r1
+  license:
+    accept: {{ license_accept }}
+    license: L-YBXJ-ADJNSM
+    use: NonProduction
+  web:
+    enabled: true
+  queueManager:
+    name: MYQMGR
+    resources:
+      limits:
+        cpu: 500m
+      requests:
+        cpu: 500m
+    storage:
+      queueManager:
+        type: ephemeral
+    mqsc:
+      - configMap:
+          items:
+            - init.mqsc
+          name: queuemanager-setup
+  template:
+    pod:
+      containers:
+        - name: qmgr
+          env:
+            - name: MQSNOAUT
+              value: 'yes'

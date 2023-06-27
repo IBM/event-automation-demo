@@ -1,0 +1,27 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: kafka-demo-apps
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    # permission to consume and produce to any topic
+    acls:
+      - resource:
+          type: topic
+          name: '*'
+          patternType: literal
+        operations:
+          - Write
+          - Read
+          - Create
+      - resource:
+          type: group
+          name: '*'
+          patternType: literal
+        operations:
+          - Read

@@ -1,0 +1,44 @@
+apiVersion: flink.apache.org/v1beta1
+kind: FlinkDeployment
+metadata:
+  name: my-flink
+spec:
+  flinkConfiguration:
+    # license accepts
+    license.license: L-HRZF-DWHH7A
+    license.accept: 'true'
+    license.use: EventAutomationNonProduction
+    # scaling
+    taskmanager.numberOfTaskSlots: '4'
+    # state and persistence
+    state.backend.type: rocksdb
+    state.checkpoints.num-retained: '3'
+    execution.checkpointing.interval: '5000'
+    # behaviour
+    json.ignore-parse-errors: 'true'
+    table.exec.source.idle-timeout: 30 s
+  jobManager:
+    replicas: 1
+    resource:
+      cpu: 1
+      memory: 2048m
+  serviceAccount: flink
+  taskManager:
+    resource:
+      cpu: 4
+      memory: 3048m
+  mode: native
+  podTemplate:
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-template
+    spec:
+      containers:
+        - name: flink-main-container
+          volumeMounts:
+            - mountPath: /opt/flink/log
+              name: flink-logs
+      volumes:
+        - emptyDir: {}
+          name: flink-logs

@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+    name: flink-operator-catalog
+    namespace: openshift-marketplace
+spec:
+    displayName: IBM Operator for Apache Flink
+    image: icr.io/cpopen/ibm-eventautomation-flink-operator-catalog:v1.0.0
+    publisher: IBM
+    sourceType: grpc
+    updateStrategy:
+        registryPoll:
+            interval: 45m

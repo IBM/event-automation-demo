@@ -1,0 +1,14 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: mq-messages
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '302428800'
+  partitions: 1
+  replicas: 1
+  topicName: MQ.COMMANDS
+

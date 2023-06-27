@@ -1,0 +1,18 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: queuemanager-setup
+data:
+  init.mqsc: |+
+    *
+    * setup queues
+    *
+    DEFINE QLOCAL(COMMANDS) REPLACE
+    DEFINE QLOCAL(COMMANDS.COPY) REPLACE
+    ALTER QLOCAL(COMMANDS) STREAMQ('COMMANDS.COPY') STRMQOS(MUSTDUP)
+
+    *
+    * setup channel
+    *
+    DEFINE CHANNEL(KAFKA.SVRCONN) CHLTYPE(SVRCONN) TRPTYPE(TCP) SSLCAUTH(OPTIONAL) REPLACE
+    SET CHLAUTH(KAFKA.SVRCONN) TYPE(BLOCKUSER) USERLIST('nobody') ACTION(ADD)

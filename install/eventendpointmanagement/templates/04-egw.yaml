@@ -1,0 +1,27 @@
+apiVersion: events.ibm.com/v1beta1
+kind: EventGateway
+metadata:
+  name: my-eem-gateway
+spec:
+  managerEndpoint: {{ eem_gateway_route }}
+  gatewayGroupName: gateway-group
+  gatewayID: gateway-1
+  license:
+    accept: {{ license_accept }}
+    license: L-HRZF-DWHH7A
+    metric: VIRTUAL_PROCESSOR_CORE
+    use: EventAutomationNonProduction
+  template:
+    pod:
+      spec:
+        containers:
+          - name: egw
+            resources:
+              requests:
+                cpu: '0.5'
+                memory: 512Mi
+              limits:
+                cpu: '1'
+                memory: 1Gi
+  tls:
+    caSecretName: my-eem-manager-ibm-eem-manager-ca

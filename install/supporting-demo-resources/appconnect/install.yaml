@@ -1,0 +1,44 @@
+---
+- name: Install IBM App Connect
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "event-automation"
+    license_accept: "{{ undef(hint='You need to accept the App Connect license to continue') }}"
+    ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/prerequisites.yaml"
+
+    - name: Check for required variables
+      ansible.builtin.assert:
+        that:
+          - license_accept is defined
+          - eventautomation_namespace is defined
+          - ibm_entitlement_key is defined
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Setup operator
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-operator.yaml"
+      vars:
+        catalogsource_name: "ibm-operator-catalog"
+        catalogsource_template: "{{ playbook_dir }}/templates/01-catalog-source.yaml"
+        subscription_name: "ibm-appconnect"
+        subscription_template: "{{ playbook_dir }}/templates/02-operator-subscription.yaml"
+
+    - name: Create App Connect
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-appconnect.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+        wait_timeout: 3000

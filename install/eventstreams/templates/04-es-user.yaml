@@ -1,0 +1,44 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: es-admin
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - Alter
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Create
+          - Read
+          - Write
+          - Delete
+          - DescribeConfigs
+          - Alter
+          - AlterConfigs
+        resource:
+          name: '*'
+          patternType: literal
+          type: topic
+      - operations:
+          - Alter
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: '*'
+          patternType: literal
+          type: group
+    type: simple

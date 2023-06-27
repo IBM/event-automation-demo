@@ -1,0 +1,29 @@
+{
+    "id": "PLACEHOLDERID",
+    "catalogueId": "default",
+    "type": "kafka",
+    "alias": "STOCK.MOVEMENT",
+    "contact": "andre@loosehangers.com",
+    "description": "This topic tracks movement to, from, and between warehouses.\n\nEach event tracks the bulk movement of multiple instances of a single product type into a main warehouse.\n\nNOTE: The systems that capture stock movement events will occasionally create duplicate events. It is important that any applications created using this topic are able to perform idempotent processing.",
+    "tags": [
+        "operations",
+        "logistics"
+    ],
+    "sampleMessages": [
+        "{\n    \"movementid\": \"6f706008-5777-45ab-b4b7-6adff5e5d1de\",\n    \"warehouse\": \"West\",\n    \"product\": \"XXS Blue Low-rise Jeans\",\n    \"quantity\": 380,\n    \"updatetime\": \"2023-05-21 14:23:24.943\"\n}"
+    ],
+    "hidden": true,
+    "allowSubscriptions": false,
+    "clusterId": "Event Streams",
+    "gatewayGroups": [],
+    "schema": {
+        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"StockMovement\",\n    \"fields\": [\n        {\n            \"name\": \"movementid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"movement record id\"\n        },\n        {\n            \"name\": \"warehouse\",\n            \"type\": \"string\",\n            \"doc\": \"code for the warehouse that is receiving the stock - will be one of North, South, West, East, or Central\"\n        },\n        {\n            \"name\": \"product\",\n            \"type\": \"string\",\n            \"doc\": \"Description of the product that was received\"\n        },\n        {\n            \"name\": \"quantity\",\n            \"type\": \"long\",\n            \"doc\": \"Number of the items that was received\"\n        },\n        {\n            \"name\": \"updatetime\",\n            \"type\": \"string\",\n            \"doc\": \"time that the stock movement was recorded\"\n        }\n    ]\n}",
+        "type": "avro",
+        "description": ""
+    },
+    "topic": {
+        "partitions": 3,
+        "replicas": 1,
+        "name": "STOCK.MOVEMENT"
+    }
+}

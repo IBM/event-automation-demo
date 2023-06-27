@@ -1,0 +1,94 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '1024288000'
+  partitions: 3
+  replicas: 3
+  topicName: ORDERS.NEW
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '1024288000'
+  partitions: 3
+  replicas: 3
+  topicName: CANCELLATIONS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '1024288000'
+  partitions: 3
+  replicas: 1
+  topicName: DOOR.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '1024288000'
+  partitions: 3
+  replicas: 1
+  topicName: STOCK.MOVEMENT
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '1024288000'
+  partitions: 3
+  replicas: 3
+  topicName: CUSTOMERS.NEW
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '1024288000'
+  partitions: 3
+  replicas: 1
+  topicName: SENSOR.READINGS
+

@@ -1,0 +1,47 @@
+{
+    "clusterId": "Event Streams",
+    "entries": [
+        {
+            "type": "kafka",
+            "alias": "CANCELLATIONS",
+            "name": "CANCELLATIONS",
+            "partitions": -1,
+            "replicas": -1
+        },
+        {
+            "type": "kafka",
+            "alias": "CUSTOMERS.NEW",
+            "name": "CUSTOMERS.NEW",
+            "partitions": -1,
+            "replicas": -1
+        },
+        {
+            "type": "kafka",
+            "alias": "DOOR.BADGEIN",
+            "name": "DOOR.BADGEIN",
+            "partitions": -1,
+            "replicas": -1
+        },
+        {
+            "type": "kafka",
+            "alias": "ORDERS.NEW",
+            "name": "ORDERS.NEW",
+            "partitions": -1,
+            "replicas": -1
+        },
+        {
+            "type": "kafka",
+            "alias": "SENSOR.READINGS",
+            "name": "SENSOR.READINGS",
+            "partitions": -1,
+            "replicas": -1
+        },
+        {
+            "type": "kafka",
+            "alias": "STOCK.MOVEMENT",
+            "name": "STOCK.MOVEMENT",
+            "partitions": -1,
+            "replicas": -1
+        }
+    ]
+}

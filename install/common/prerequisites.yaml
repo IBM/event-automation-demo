@@ -1,0 +1,6 @@
+- name: Install pre-requisites
+  ansible.builtin.pip:
+    name:
+      - openshift
+      - pyyaml
+      - kubernetes

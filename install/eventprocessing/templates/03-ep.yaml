@@ -1,0 +1,30 @@
+apiVersion: events.ibm.com/v1beta1
+kind: EventProcessing
+metadata:
+  name: my-event-processing
+spec:
+  authoring:
+    authConfig:
+      authType: LOCAL
+    storage:
+{% if eventprocessing_storage_class is defined and eventprocessing_storage_class | length %}
+      type: persistent-claim
+      size: 100M
+      storageClassName: {{ eventprocessing_storage_class }}
+{% else %}
+      type: ephemeral
+{% endif %}
+    template:
+      pod:
+        spec:
+          containers:
+            - name: ui
+              envFrom:
+                - configMapRef:
+                    name: event-automation-welcome-urls
+  flink:
+    endpoint: 'my-flink-rest:8081'
+  license:
+    accept: true
+    license: L-HRZF-DWHH7A
+    use: EventAutomationNonProduction

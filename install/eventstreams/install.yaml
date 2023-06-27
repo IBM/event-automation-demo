@@ -1,0 +1,111 @@
+---
+- name: Install Event Streams
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "{{ undef(hint='Specify the namespace to deploy into') }}"
+    license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
+    ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+
+    - name: Check for required variables
+      ansible.builtin.assert:
+        that:
+          - license_accept is defined
+          - eventautomation_namespace is defined
+          - ibm_entitlement_key is defined
+
+    - name: Setup operator
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-operator.yaml"
+      vars:
+        catalogsource_name: "es-operator-catalog"
+        catalogsource_template: "{{ playbook_dir }}/templates/01-catalog-source.yaml"
+        subscription_name: "eventstreams-operator"
+        subscription_template: "{{ playbook_dir }}/templates/02-operator-subscription.yaml"
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Create Event Streams cluster
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-es.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+        wait_timeout: 1200
+      vars:
+        welcome_url_eventstreams: placeholder
+        welcome_url_eventendpointmanagement: placeholder
+        welcome_url_eventprocessing: placeholder
+
+    - name: Create Event Streams admin user
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/04-es-user.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    - name: Create Kafka Connect destination topics
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/05-kafkaconnect-topics.yaml"
+
+    - name: Create Kafka Connect credentials
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/06-kafkaconnect-user.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    - name: Start Kafka Connect
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/07-kafkaconnect.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+        wait_timeout: 300
+
+    - name: Start data generator
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/08-datagen.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    - name: Create credentials for use by Event Processing
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/09-apps-user.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready

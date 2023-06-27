@@ -1,0 +1,29 @@
+{
+    "id": "PLACEHOLDERID",
+    "catalogueId": "default",
+    "type": "kafka",
+    "alias": "SENSOR.READINGS",
+    "contact": "jenn@loosehangers.com",
+    "description": "Readings from the logistics team's IoT network, capturing internal temperature and humidity data for areas where product is stored.\n\nNote that sensor events can take up to 5 minutes to reach the Kafka topic, so the sensortime value in the message payload should be treated as the canonical timestamp for the event.\n",
+    "tags": [
+        "operations",
+        "logistics"
+    ],
+    "sampleMessages": [
+        "{\n    \"sensortime\": \"Thu Jun 22 21:34:27 GMT 2023\",\n    \"sensorid\": \"DE-1-19\",\n    \"temperature\": 20.3,\n    \"humidity\": 48\n}"
+    ],
+    "hidden": true,
+    "allowSubscriptions": false,
+    "clusterId": "Event Streams",
+    "gatewayGroups": [],
+    "schema": {
+        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"SensorReading\",\n    \"fields\": [\n        {\n            \"name\": \"sensorid\",\n            \"type\": \"string\",\n            \"doc\": \"unique identifier for the sensor that captured the reading. Sensor ids help to identify the location of the sensor by being made up of a building name, floor number, and sensor number, all separated by hyphens (-)\"\n        },\n        {\n            \"name\": \"sensortime\",\n            \"type\": \"string\",\n            \"doc\": \"datetime the reading was captured, in 'EEE MMM dd HH:mm:ss zzz yyyy' format\"\n        },\n        {\n            \"name\": \"temperature\",\n            \"type\": \"double\",\n            \"doc\": \"temperature reading in degrees celsius\"\n        },\n        {\n            \"name\": \"humidity\",\n            \"type\": \"long\",\n            \"doc\": \"humidity reading in percentage\"\n        }\n    ]\n}",
+        "type": "avro",
+        "description": ""
+    },
+    "topic": {
+        "partitions": 3,
+        "replicas": 1,
+        "name": "SENSOR.READINGS"
+    }
+}

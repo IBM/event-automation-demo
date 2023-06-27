@@ -1,0 +1,76 @@
+---
+- name: Setup the Event Automation welcome page
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "event-automation"
+    eventstreams_storage_class: "rook-ceph-block"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+
+    - name: Get UI route for Event Streams
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: eventstreams.ibm.com/v1beta2
+        kind: EventStreams
+        name: my-kafka-cluster
+        namespace: "{{ eventautomation_namespace }}"
+      register: info_eventstreams
+
+    - name: Get UI route for Event Endpoint Management
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: events.ibm.com/v1beta1
+        kind: EventEndpointManagement
+        name: my-eem-manager
+        namespace: "{{ eventautomation_namespace }}"
+      register: info_eventendpointmanagement
+
+    - name: Get route for Event Processing
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: events.ibm.com/v1beta1
+        kind: EventProcessing
+        name: my-event-processing
+        namespace: "{{ eventautomation_namespace }}"
+      register: info_eventprocessing
+
+    - name: Setup welcome page
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/01-configmap.yaml"
+      vars:
+        welcome_url_eventstreams: "{{ info_eventstreams.resources[0].status.adminUiUrl }}"
+        welcome_url_eventendpointmanagement: "{{ info_eventendpointmanagement.resources[0].status.endpoints[0].uri }}"
+        welcome_url_eventprocessing: "{{ info_eventprocessing.resources[0].status.endpoints[0].uri }}"
+
+    - name: Update Event Streams UI
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/../eventstreams/templates/03-es.yaml"
+      vars:
+        welcome_url_eventstreams: "{{ info_eventstreams.resources[0].status.adminUiUrl }}"
+        welcome_url_eventendpointmanagement: "{{ info_eventendpointmanagement.resources[0].status.endpoints[0].uri }}"
+        welcome_url_eventprocessing: "{{ info_eventprocessing.resources[0].status.endpoints[0].uri }}"
+
+    - name: Restart Event Endpoint Management
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: absent
+        namespace: "{{ eventautomation_namespace }}"
+        kind: Pod
+        name: my-eem-manager-ibm-eem-manager-0
+
+    - name: Restart Event Processing
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: absent
+        namespace: "{{ eventautomation_namespace }}"
+        kind: Pod
+        name: my-event-processing-ibm-ep-sts-0

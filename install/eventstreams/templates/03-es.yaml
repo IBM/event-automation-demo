@@ -1,0 +1,61 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: EventStreams
+metadata:
+  name: my-kafka-cluster
+spec:
+  adminApi: {}
+  adminUI:
+    authentication:
+      - type: scram-sha-512
+    env:
+      - name: WELCOME_URL_EVENT_STREAMS
+        value: {{ welcome_url_eventstreams }}
+      - name: WELCOME_URL_EVENT_ENDPOINT_MANAGEMENT
+        value: {{ welcome_url_eventendpointmanagement }}
+      - name: WELCOME_URL_EVENT_PROCESSING
+        value: {{ welcome_url_eventprocessing }}
+  license:
+    accept: {{ license_accept }}
+    license: L-HRZF-DWHH7A
+    use: EventAutomationNonProduction
+  requestIbmServices:
+    iam: false
+    monitoring: false
+  strimziOverrides:
+    entityOperator:
+      topicOperator: {}
+      userOperator: {}
+    kafka:
+      authorization:
+        authorizerClass: com.ibm.eventstreams.runas.authorizer.RunAsAuthorizer
+        supportsAdminApi: true
+        type: custom
+      config:
+        auto.create.topics.enable: false
+      listeners:
+        - name: authsslsvc
+          authentication:
+            type: scram-sha-512
+          port: 9095
+          tls: true
+          type: internal
+      replicas: 3
+      storage:
+{% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
+        type: persistent-claim
+        size: 50Gi
+        class: {{ eventstreams_storage_class }}
+{% else %}
+        type: ephemeral
+{% endif %}
+    zookeeper:
+      replicas: 3
+      storage:
+{% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
+        type: persistent-claim
+        size: 3Gi
+        class: {{ eventstreams_storage_class }}
+{% else %}
+        type: ephemeral
+{% endif %}
+  version: latest

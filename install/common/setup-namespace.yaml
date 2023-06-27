@@ -1,0 +1,28 @@
+---
+
+- name: Create a namespace
+  kubernetes.core.k8s:
+    name: "{{ namespace }}"
+    api_version: v1
+    kind: Namespace
+    state: present
+    validate_certs: false
+
+- name: Create the Entitled Registry pull secret
+  ansible.builtin.set_fact:
+    entitled_registry_secret: "{{ [ lookup('template', './templates/docker-pull-secret.yaml') | ansible.builtin.from_yaml ] }}"
+  vars:
+    docker_secret_password: "{{ ibm_entitlement_key }}"
+
+- name: Setup Entitled Registry key
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: ibm-entitlement-key
+        namespace: "{{ namespace }}"
+      type: kubernetes.io/dockerconfigjson
+      data:
+        .dockerconfigjson: "{{ entitled_registry_secret[0] | to_json | string | b64encode }}"
+    validate_certs: false

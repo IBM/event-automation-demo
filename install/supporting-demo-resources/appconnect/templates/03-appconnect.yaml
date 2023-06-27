@@ -1,0 +1,17 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: DesignerAuthoring
+metadata:
+  name: designer
+spec:
+  couchdb:
+    replicas: 1
+    storage:
+      type: ephemeral
+  designerFlowsOperationMode: local
+  license:
+    accept: {{ license_accept }}
+    license: L-MJTK-WUU8HE
+    use: AppConnectEnterpriseProduction
+  replicas: 1
+  useCommonServices: false
+  version: '12.0'

@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+    name: event-automation-welcome-urls
+data:
+    WELCOME_URL_EVENT_STREAMS: {{ welcome_url_eventstreams }}
+    WELCOME_URL_EVENT_ENDPOINT_MANAGEMENT: {{ welcome_url_eventendpointmanagement }}
+    WELCOME_URL_EVENT_PROCESSING: {{ welcome_url_eventprocessing }}

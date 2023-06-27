@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/ibm-mq.openshift-operators: ""
+  name: ibm-mq
+  namespace: openshift-operators
+spec:
+  channel: v2.4
+  installPlanApproval: Automatic
+  name: ibm-mq
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace

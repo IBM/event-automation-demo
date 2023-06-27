@@ -1,0 +1,58 @@
+---
+- name: Install Certificate Manager
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Create the Operator namespace
+      kubernetes.core.k8s:
+        name: ibm-cert-manager
+        api_version: v1
+        kind: Namespace
+        state: present
+        validate_certs: false
+
+    - name: Create a catalog source
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        src: "{{ playbook_dir }}/templates/01-catalog-source.yaml"
+
+    - name: Wait for the catalog source to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "olm.catalogSource=ibm-cert-manager-catalog"
+        namespace: openshift-marketplace
+      register: pod_list
+      until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+      retries: 20
+      delay: 10
+
+    - name: Create the Operator group
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: ibm-cert-manager
+        src: "{{ playbook_dir }}/templates/02-operator-group.yaml"
+
+    - name: Create an operator subscription
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        src: "{{ playbook_dir }}/templates/03-operator-subscription.yaml"
+
+    - name: Wait for the operator pod to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "app.kubernetes.io/instance=ibm-cert-manager-operator"
+        namespace: ibm-cert-manager
+      register: pod_list
+      until: pod_list | json_query('resources[*].status.conditions[1].status') | unique == ["True"]
+      retries: 50
+      delay: 20
