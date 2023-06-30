@@ -58,11 +58,11 @@ ansible-playbook \
     -e license_accept=true \
     -e ibm_entitlement_key=YOUR-ENTITLEMENT-KEY \
     -e install_certmgr=true \
-    -e eventstreams_storage_class=ocs-storagecluster-cephfs \
+    -e eventstreams_storage_class=ocs-storagecluster-ceph-rbd \
     -e eventendpointmanagement_storage_class=ocs-storagecluster-cephfs \
     -e eventprocessing_storage_class=ocs-storagecluster-cephfs \
     -e eventautomation_namespace=event-automation \
-    event-automation.yaml
+    install/event-automation.yaml
 ```
 ---
 ## VPC
@@ -76,7 +76,7 @@ ansible-playbook \
     -e eventendpointmanagement_storage_class=ibmc-vpc-block-general-purpose \
     -e eventprocessing_storage_class=ibmc-vpc-block-general-purpose \
     -e eventautomation_namespace=event-automation \
-    event-automation.yaml
+    install/event-automation.yaml
 ```
 ---
 ## Event Streams only
