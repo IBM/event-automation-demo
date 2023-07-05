@@ -4,6 +4,9 @@
   connection: local
 
   tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+
     - name: Create the Operator namespace
       kubernetes.core.k8s:
         name: ibm-cert-manager
