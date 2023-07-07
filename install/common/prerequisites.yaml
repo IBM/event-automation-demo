@@ -4,3 +4,4 @@
       - openshift
       - pyyaml
       - kubernetes
+      - jmespath
