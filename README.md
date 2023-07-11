@@ -28,6 +28,12 @@ This tutorial environment is not intended to demonstrate a production deployment
 
     1. `ansible-playbook`
 
+        with the following collections installed:
+        ```
+        ansible-galaxy collection install kubernetes.core
+        ansible-galaxy collection install community.general
+        ```
+
     2. `oc` - [logged in as a cluster administrator](https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html#cli-logging-in_cli-developer-commands)
 
     3.  Entitlement key from the [IBM Container software library](https://myibm.ibm.com/products-services/containerlibrary).
