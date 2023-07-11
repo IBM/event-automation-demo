@@ -114,7 +114,11 @@ echo "> Clearing existing storage"
 
 oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/eem
 oc delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
-sleep 10
+# waiting for replacement pod to be created
+until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
+    sleep 1
+done
+# waiting for replacement pod to become ready
 oc wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=120s
 
 
