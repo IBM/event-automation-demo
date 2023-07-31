@@ -148,7 +148,7 @@ echo "> Submitting Event Streams cluster information"
 bootstrap_response=$(curl -s -X POST -k -k $(cookieCurlParams ${CURRENT_USER}) \
     -H "$(csrfHeader ${CURRENT_USER})" \
     -H "Content-Type: application/json" \
-    --data '{"bootstrapServers":[{"host":"my-kafka-cluster-kafka-bootstrap.event-automation.svc","port":9095}]}' \
+    --data "{\"bootstrapServers\":[{\"host\":\"my-kafka-cluster-kafka-bootstrap.$NAMESPACE.svc\",\"port\":9095}]}" \
     $EEM_API/api/discovery/validate-bootstrap )
 
 # add the credentials to the cluster definition
