@@ -6,7 +6,7 @@ spec:
   flinkConfiguration:
     # license accepts
     license.license: L-HRZF-DWHH7A
-    license.accept: 'true'
+    license.accept: '{{ license_accept }}'
     license.use: EventAutomationNonProduction
     # scaling
     taskmanager.numberOfTaskSlots: '4'
@@ -20,13 +20,13 @@ spec:
   jobManager:
     replicas: 1
     resource:
-      cpu: 1
+      cpu: 0.25
       memory: 2048m
   serviceAccount: flink
   taskManager:
     resource:
-      cpu: 4
-      memory: 3048m
+      cpu: 1
+      memory: 2048m
   mode: native
   podTemplate:
     apiVersion: v1
