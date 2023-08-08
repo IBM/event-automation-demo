@@ -1,5 +1,5 @@
 {
-    "clusterId": "Event Streams",
+    "clusterId": "eventstreams",
     "entries": [
         {
             "type": "kafka",

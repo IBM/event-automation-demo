@@ -13,7 +13,7 @@
     ],
     "hidden": true,
     "allowSubscriptions": false,
-    "clusterId": "Event Streams",
+    "clusterId": "eventstreams",
     "gatewayGroups": [],
     "schema": {
         "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"BadgeIn\",\n    \"fields\": [\n        {\n            \"name\": \"recordid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"badge event id\"\n        },\n        {\n            \"name\": \"door\",\n            \"type\": \"string\",\n            \"doc\": \"Code for the door that recorded the event. Door codes are made up of a building name, floor number, and door number, all separated by hyphens (-)\"\n        },\n        {\n            \"name\": \"employee\",\n            \"type\": \"string\",\n            \"doc\": \"userid associated with the name badge\"\n        },\n        {\n            \"name\": \"badgetime\",\n            \"type\": \"string\",\n            \"doc\": \"time that the door entry was recorded\"\n        }\n    ]\n}",
