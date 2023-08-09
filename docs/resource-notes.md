@@ -29,7 +29,7 @@ A superscript asterisk <sup>*</sup> in the reference column indicates that the r
 |  flink-kubernetes-operator              |           `200m` |        `1000m` |             `256Mi` |           `512Mi` |
 |  ibm-ep-operator                        |           `200m` |        `1000m` |             `256Mi` |           `256Mi` |
 |  my-event-processing-ibm-ep-sts-0       |          `1000m` |        `2000m` |            `1024Mi` |          `2048Mi` | [ref](https://github.com/IBM/event-automation-demo/blob/af10324efdf4133cfc279335878aa340032d1767/install/eventprocessing/templates/03-ep.yaml#L20) <sup>*</sup> |
-|  my-flink                               |          `1000m` |        `1000m` |            `2048Mi` |          `2048Mi` | [ref](https://github.com/IBM/event-automation-demo/blob/af10324efdf4133cfc279335878aa340032d1767/install/flink/templates/03-flink.yaml#L23-L24) |
-|  my-flink-taskmanager-1-1               |          `4000m` |        `4000m` |            `3048Mi` |          `3048Mi` | [ref](https://github.com/IBM/event-automation-demo/blob/af10324efdf4133cfc279335878aa340032d1767/install/flink/templates/03-flink.yaml#L28-L29) |
+|  my-flink                               |           `250m` |         `250m` |            `2048Mi` |          `2048Mi` | [ref](https://github.com/IBM/event-automation-demo/blob/af10324efdf4133cfc279335878aa340032d1767/install/flink/templates/03-flink.yaml#L23-L24) |
+|  my-flink-taskmanager-1-1               |          `1000m` |        `1000m` |            `2048Mi` |          `2048Mi` | [ref](https://github.com/IBM/event-automation-demo/blob/af10324efdf4133cfc279335878aa340032d1767/install/flink/templates/03-flink.yaml#L28-L29) |
 | --------------------------------------- | ---------------- | -------------- | ------------------- | ----------------- | ------- |
-| **total**                               |             `11` |           `26` |              `15Gi` |            `26Gi` |
+| **total**                               |              `8` |           `22` |              `14Gi` |            `25Gi` |
