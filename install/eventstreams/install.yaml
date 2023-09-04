@@ -18,6 +18,17 @@
           - eventautomation_namespace is defined
           - ibm_entitlement_key is defined
 
+    - name: Check for image-registry needed for building Kafka Connect container
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "docker-registry=default"
+        namespace: openshift-image-registry
+      register: image_registry_
+      failed_when: image_registry_.resources | length == 0
+
     - name: Setup operator
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-operator.yaml"
       vars:
