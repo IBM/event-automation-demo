@@ -20,7 +20,7 @@ set -e
 # allow this script to be run from other locations, despite the
 #  relative file paths used in it
 if [[ $BASH_SOURCE = */* ]]; then
-  cd -- "${BASH_SOURCE%/*}/" || exit
+    cd -- "${BASH_SOURCE%/*}/" || exit
 fi
 
 cookieCurlParams() {
@@ -42,12 +42,30 @@ login() {
     echo "Logging in as ${1}"
     USERNAME="${1}"
     PASSWORD="${2}"
+    # count the number of times we have tried this
+    #  default to "first" attempt if not specified
+    ATTEMPT=${3:-1}
 
     COOKIE_JAR="/tmp/${USERNAME}-cookies.txt"
     HEADERS_FILE="/tmp/login-response-headers.txt"
 
     # Trigger redirect and capture response
-    REDIRECT_RESPONSE=$(curl -k -s ${EEM_API} -c ${COOKIE_JAR})
+    REDIRECT_RESPONSE=$(curl -f -k -s ${EEM_API} -c ${COOKIE_JAR} || true)
+    if [ -z "$REDIRECT_RESPONSE" ]
+    then
+        echo "Login unsuccessful."
+        if [[ $ATTEMPT -lt 5 ]]
+        then
+            echo "Retrying..."
+            sleep 2
+            login $USERNAME $PASSWORD $((ATTEMPT+=1))
+            return
+        else
+            exit 1
+        fi
+    fi
+
+    # Parse the response to identify callback URL
     PARTS=($(echo $REDIRECT_RESPONSE | tr "?" " "))
     QUERY=${PARTS[3]}
     QUERY_PARAMS=($(echo $QUERY | tr "&" " "))
@@ -63,9 +81,8 @@ login() {
     curl -s -k "${CALLBACK}" $(cookieCurlParams ${USERNAME}) -o /dev/null
 
     # Print user and grab CSRF
-    echo "Authenticated user:"
+    echo "Authenticated user"
     curl -k "${EEM_API}/auth/protected/userinfo" $(cookieCurlParams ${USERNAME}) -s -o /dev/null
-    echo ""
 }
 
 # get the namespace from a command line argument
@@ -119,7 +136,7 @@ until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1;
     sleep 1
 done
 # waiting for replacement pod to become ready
-oc wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=120s
+oc wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=180s
 
 
 # --------------------------------------
