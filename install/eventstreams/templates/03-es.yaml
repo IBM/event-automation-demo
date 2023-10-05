@@ -31,7 +31,7 @@ spec:
         supportsAdminApi: true
         type: custom
       config:
-        auto.create.topics.enable: false
+        auto.create.topics.enable: true
       listeners:
         - name: authsslsvc
           authentication:
