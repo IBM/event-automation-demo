@@ -1,0 +1,28 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+    name: pgsqldemo-data-cm
+data:
+    demo_data.sql: |+
+        \c pgsqldemo
+        ALTER DEFAULT PRIVILEGES GRANT ALL ON TABLES TO pgadmin;
+
+        set schema 'public';
+
+        CREATE TABLE buildings (buildingid VARCHAR(5) NOT NULL, streetname VARCHAR(100) NOT NULL, securitycontact VARCHAR(30) NOT NULL, PRIMARY KEY (buildingid) );
+
+        INSERT INTO buildings VALUES ( 'A',  'Warren Spinney',     '+1 202-918-2132');
+        INSERT INTO buildings VALUES ( 'B',  'Aigburth Hall Road', '+1 202-918-3488');
+        INSERT INTO buildings VALUES ( 'DM', 'Hinton Leaze',       '+1 202-918-2248');
+        INSERT INTO buildings VALUES ( 'DE', 'Westgate Mill',      '+1 202-918-6611');
+        INSERT INTO buildings VALUES ( 'G',  'Heartswood Road',    '+1 202-918-7019');
+        INSERT INTO buildings VALUES ( 'H',  'Denbigh Crest',      '+1 202-918-1911');
+
+        CREATE TABLE warehouses (warehouseid VARCHAR(7) NOT NULL, location VARCHAR(20) NOT NULL, sqft INTEGER NOT NULL, managerid VARCHAR(10), status INTEGER, PRIMARY KEY (warehouseid) );
+
+        INSERT INTO warehouses VALUES ('North',   'Beyghworth', 25000,  '86621106601', 0);
+        INSERT INTO warehouses VALUES ('South',   'New Kenroy', 82000,  '13303921130', 0);
+        INSERT INTO warehouses VALUES ('West',    'West Vil',   110000, '11031941444', 0);
+        INSERT INTO warehouses VALUES ('East',    'Tunheb',     33500,  '13910006610', 1);
+        INSERT INTO warehouses VALUES ('Central', 'Leicamport', 41000,  '93111071832', 0);
+

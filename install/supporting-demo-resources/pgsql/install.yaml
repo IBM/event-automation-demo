@@ -1,0 +1,62 @@
+---
+- name: Install PostgreSQL
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "event-automation"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/prerequisites.yaml"
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Install PostgreSQL Operator
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/01-operator-subscription.yaml"
+
+    - name: Wait for the operator pod to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "postgres-operator.crunchydata.com/control-plane=postgres-operator"
+        namespace: openshift-operators
+      register: pod_list
+      until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+      retries: 50
+      delay: 20
+
+    - name: Create data to seed database with
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/02-db-sql-configmap.yaml"
+
+    - name: Create database
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-db.yaml"
+
+    - name: Wait for the database to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "postgres-operator.crunchydata.com/role=master"
+        namespace: "{{ eventautomation_namespace }}"
+      register: pod_list
+      until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+      retries: 50
+      delay: 20
