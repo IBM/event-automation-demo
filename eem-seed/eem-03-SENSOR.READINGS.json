@@ -1,6 +1,5 @@
 {
-    "id": "PLACEHOLDERID",
-    "catalogueId": "default",
+    "id": "demo-event-streams-sensorreadings",
     "type": "kafka",
     "alias": "SENSOR.READINGS",
     "contact": "jenn@loosehangers.com",
@@ -12,18 +11,11 @@
     "sampleMessages": [
         "{\n    \"sensortime\": \"Thu Jun 22 21:34:27 GMT 2023\",\n    \"sensorid\": \"DE-1-19\",\n    \"temperature\": 20.3,\n    \"humidity\": 48\n}"
     ],
-    "hidden": true,
-    "allowSubscriptions": false,
-    "clusterId": "eventstreams",
-    "gatewayGroups": [],
-    "schema": {
-        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"SensorReading\",\n    \"fields\": [\n        {\n            \"name\": \"sensorid\",\n            \"type\": \"string\",\n            \"doc\": \"unique identifier for the sensor that captured the reading. Sensor ids help to identify the location of the sensor by being made up of a building name, floor number, and sensor number, all separated by hyphens (-)\"\n        },\n        {\n            \"name\": \"sensortime\",\n            \"type\": \"string\",\n            \"doc\": \"datetime the reading was captured, in 'EEE MMM dd HH:mm:ss zzz yyyy' format\"\n        },\n        {\n            \"name\": \"temperature\",\n            \"type\": \"double\",\n            \"doc\": \"temperature reading in degrees celsius\"\n        },\n        {\n            \"name\": \"humidity\",\n            \"type\": \"long\",\n            \"doc\": \"humidity reading in percentage\"\n        }\n    ]\n}",
-        "type": "avro",
-        "description": ""
-    },
+    "hidden": false,
+    "allowSubscriptions": true,
+    "clusterId": "demo-event-streams",
+    "gatewayGroups": [ "gateway-group" ],
     "topic": {
-        "partitions": 3,
-        "replicas": 1,
         "name": "SENSOR.READINGS"
     }
 }

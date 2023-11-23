@@ -123,19 +123,17 @@ A helper script is provided to populate the Event Endpoint Management catalog wi
 
 This will allow you to discover the tutorial topics in the catalog.
 
-`./eem-seed/reset-all-data.sh <eventautomation_namespace>`
+You need an access token to be able to run the helper script.
+
+To create an access token, visit the **Profile** page in the Event Endpoint Management catalog by clicking on the user icon in the header. For more detailed instructions, see the [Event Endpoint Management document](https://ibm.github.io/event-automation/eem/security/api-tokens/#creating-a-token).
+
+`./eem-seed/reset-all-data.sh <eventautomation_namespace>  <access_token>`
 
 For example:
 ```sh
-./eem-seed/reset-all-data.sh event-automation
+./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000
 ```
 
-> **Warning**:
->
-> This will delete ALL data stored in Event Endpoint Management (including cluster definitions, topic documentation, subscriptions), and replace it with documentation for the topics included in the tutorial.
->
-> You should not run this script if you have any data in Event Endpoint Management that you want to keep.
->
 
 ---
 

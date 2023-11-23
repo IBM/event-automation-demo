@@ -1,6 +1,5 @@
 {
-    "id": "PLACEHOLDERID",
-    "catalogueId": "default",
+    "id": "demo-event-streams-cancellations",
     "type": "kafka",
     "alias": "CANCELLATIONS",
     "contact": "lynn@loosehangers.com",
@@ -12,18 +11,11 @@
     "sampleMessages": [
         "{\n    \"id\": \"a8651c18-5360-43a3-ae08-98130a845ed4\",\n    \"orderid\": \"839096ce-c16e-41f2-8842-69350c6ca0e2\",\n    \"canceltime\": \"2023-05-20 13:08:17.828\",\n    \"reason\": \"BADFIT\"\n}"
     ],
-    "hidden": true,
-    "allowSubscriptions": false,
-    "clusterId": "eventstreams",
-    "gatewayGroups": [],
-    "schema": {
-        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"Cancellation\",\n    \"fields\": [\n        {\n            \"name\": \"id\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"id for the cancellation request\"\n        },\n        {\n            \"name\": \"orderid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"id of the order that was cancelled\"\n        },\n        {\n            \"name\": \"canceltime\",\n            \"type\": \"string\",\n            \"doc\": \"time that the order was cancelled\"\n        },\n        {\n            \"name\": \"reason\",\n            \"type\": \"string\",\n            \"doc\": \"reason given for the cancellation\"\n        }\n    ]\n}",
-        "description": "",
-        "type": "avro"
-    },
+    "hidden": false,
+    "allowSubscriptions": true,
+    "clusterId": "demo-event-streams",
+    "gatewayGroups": [ "gateway-group" ],
     "topic": {
-        "partitions": 3,
-        "replicas": 3,
         "name": "CANCELLATIONS"
     }
 }
