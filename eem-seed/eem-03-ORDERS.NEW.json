@@ -1,6 +1,5 @@
 {
-    "id": "PLACEHOLDERID",
-    "catalogueId": "default",
+    "id": "demo-event-streams-orders",
     "type": "kafka",
     "alias": "ORDERS.NEW",
     "contact": "kevin@loosehangers.com",
@@ -12,18 +11,11 @@
     "sampleMessages": [
         "{\n    \"id\": \"414a5b7d-1eda-465d-a252-45f97d780132\",\n    \"customer\": \"Ms. Alfredo Walker\",\n    \"customerid\": \"fe9aed20-e873-4a40-b80a-3ef21d18e7d8\",\n    \"description\": \"M Blue Bootcut Jeans\",\n    \"price\": 41.52,\n    \"quantity\": 7,\n    \"region\": \"SA\",\n    \"ordertime\": \"2023-05-21 14:31:24.943\"\n}"
     ],
-    "hidden": true,
-    "allowSubscriptions": false,
-    "clusterId": "eventstreams",
-    "gatewayGroups": [],
-    "schema": {
-        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"Order\",\n    \"fields\": [\n        {\n            \"name\": \"id\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"order id\"\n        },\n        {\n            \"name\": \"customer\",\n            \"type\": \"string\",\n            \"doc\": \"Name of the customer who made the order\"\n        },\n        {\n            \"name\": \"customerid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"unique id for the customer who made the order\"\n        },\n        {\n            \"name\": \"description\",\n            \"type\": \"string\",\n            \"doc\": \"Description of the product that was ordered\"\n        },\n        {\n            \"name\": \"price\",\n            \"type\": \"double\",\n            \"doc\": \"Unit price of an individual item at the time of the order\"\n        },\n        {\n            \"name\": \"quantity\",\n            \"type\": \"long\",\n            \"doc\": \"Number of the items that was purchased in the order\"\n        },\n        {\n            \"name\": \"region\",\n            \"type\": \"string\",\n            \"doc\": \"which region the order was made in - will be one of NA, SA, EMEA, APAC, ANZ\"\n        },\n        {\n            \"name\": \"ordertime\",\n            \"type\": \"string\",\n            \"doc\": \"time that the order was made\"\n        }\n    ]\n}",
-        "type": "avro",
-        "description": ""
-    },
+    "hidden": false,
+    "allowSubscriptions": true,
+    "clusterId": "demo-event-streams",
+    "gatewayGroups": [ "gateway-group" ],
     "topic": {
-        "partitions": 3,
-        "replicas": 3,
         "name": "ORDERS.NEW"
     }
 }

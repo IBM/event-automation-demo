@@ -1,0 +1,24 @@
+{
+    "id": "demo-event-streams",
+    "name": "Event Streams",
+    "bootstrapServers": [
+        {
+            "host": "my-kafka-cluster-kafka-bootstrap.ES_NAMESPACE.svc",
+            "port": 9095,
+            "ssl": true,
+            "certificates": [
+                {
+                    "pem": "ES_CERTIFICATE"
+                }
+            ]
+        }
+    ],
+    "credentials": {
+        "type": "SASL",
+        "data": {
+            "username": "kafka-demo-apps",
+            "password": "ES_PASSWORD",
+            "mechanism": "SCRAM-SHA-512"
+        }
+    }
+}
