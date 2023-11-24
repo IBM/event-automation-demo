@@ -125,7 +125,7 @@ This will allow you to discover the tutorial topics in the catalog.
 
 You need an access token to be able to run the helper script.
 
-To create an access token, visit the **Profile** page in the Event Endpoint Management catalog by clicking on the user icon in the header. For more detailed instructions, see the [Event Endpoint Management document](https://ibm.github.io/event-automation/eem/security/api-tokens/#creating-a-token).
+To create an access token, visit the **Profile** page in the Event Endpoint Management catalog by clicking on the user icon in the header. For more detailed instructions, see the [Event Endpoint Management documentation](https://ibm.github.io/event-automation/eem/security/api-tokens/#creating-a-token).
 
 `./eem-seed/reset-all-data.sh <eventautomation_namespace>  <access_token>`
 
