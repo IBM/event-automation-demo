@@ -53,7 +53,7 @@ echo "========================================================================="
 echo "> (1/3) Getting Event Streams cluster information"
 
 # get the certificates for the Kafka cluster
-ES_CERTIFICATE=$(oc get eventstreams my-kafka-cluster -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
+ES_CERTIFICATE=$(oc get eventstreams my-kafka-cluster -n $NAMESPACE -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
 ES_CERTIFICATE=${ES_CERTIFICATE//$'\n'/\\\\n}
 
 # get the password for the Kafka cluster
