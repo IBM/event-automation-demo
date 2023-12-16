@@ -1,5 +1,4 @@
 {
-    "id": "demo-event-streams",
     "name": "Event Streams",
     "bootstrapServers": [
         {

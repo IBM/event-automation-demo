@@ -1,0 +1,9 @@
+{
+    "eventSourceId": "EVENTSOURCEID",
+    "alias": "CANCELS",
+    "name": "Self service",
+    "controls": [],
+    "hidden": false,
+    "allowSubscriptions": true,
+    "gatewayGroups": [ "gateway-group" ]
+}

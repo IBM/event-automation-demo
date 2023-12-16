@@ -7,6 +7,8 @@
     welcome_url_eventstreams: "placeholder"
     welcome_url_eventendpointmanagement: "placeholder"
     welcome_url_eventprocessing: "placeholder"
+    api_url_eventendpointmanagement: "placeholder"
+    certificate_eventendpointmanagement: "placeholder"
 
   tasks:
     - name: Install local pre-requisites

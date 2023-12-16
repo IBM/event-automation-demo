@@ -1,20 +1,19 @@
 {
-    "id": "demo-event-streams-stockmovement",
     "type": "kafka",
+    "name": "STOCK.MOVEMENT",
     "alias": "STOCK.MOVEMENT",
     "contact": "andre@loosehangers.com",
     "description": "This topic tracks movement to, from, and between warehouses.\n\nEach event tracks the bulk movement of multiple instances of a single product type into a main warehouse.\n\nNOTE: The systems that capture stock movement events will occasionally create duplicate events. It is important that any applications created using this topic are able to perform idempotent processing.",
     "tags": [
         "operations",
-        "logistics"
+        "logistics",
+        "json"
     ],
+    "encoding": "application/json",
     "sampleMessages": [
         "{\n    \"movementid\": \"6f706008-5777-45ab-b4b7-6adff5e5d1de\",\n    \"warehouse\": \"West\",\n    \"product\": \"XXS Blue Low-rise Jeans\",\n    \"quantity\": 380,\n    \"updatetime\": \"2023-05-21 14:23:24.943\"\n}"
     ],
-    "hidden": false,
-    "allowSubscriptions": true,
-    "clusterId": "demo-event-streams",
-    "gatewayGroups": [ "gateway-group" ],
+    "clusterId": "CLUSTERID",
     "topic": {
         "name": "STOCK.MOVEMENT"
     }

@@ -1,0 +1,9 @@
+{
+    "eventSourceId": "EVENTSOURCEID",
+    "alias": "STOCK.MOVEMENT",
+    "name": "Self service",
+    "controls": [],
+    "hidden": false,
+    "allowSubscriptions": true,
+    "gatewayGroups": [ "gateway-group" ]
+}

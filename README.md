@@ -134,6 +134,12 @@ For example:
 ./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000
 ```
 
+> **Warning**:
+>
+> This will delete ALL data stored in Event Endpoint Management (including cluster definitions, topic documentation, subscriptions), and replace it with documentation for the topics included in the tutorial.
+>
+> You should not run this script if you have any data in Event Endpoint Management that you want to keep.
+>
 
 ---
 

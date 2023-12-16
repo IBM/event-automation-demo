@@ -7,7 +7,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '1024288000'
+    retention.bytes: '524288000'
   partitions: 3
   replicas: 3
   topicName: ORDERS.NEW
@@ -23,7 +23,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '1024288000'
+    retention.bytes: '524288000'
   partitions: 3
   replicas: 3
   topicName: CANCELLATIONS
@@ -39,7 +39,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '1024288000'
+    retention.bytes: '524288000'
   partitions: 3
   replicas: 1
   topicName: DOOR.BADGEIN
@@ -55,7 +55,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '1024288000'
+    retention.bytes: '524288000'
   partitions: 3
   replicas: 1
   topicName: STOCK.MOVEMENT
@@ -71,7 +71,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '1024288000'
+    retention.bytes: '524288000'
   partitions: 3
   replicas: 3
   topicName: CUSTOMERS.NEW
@@ -87,8 +87,103 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '1024288000'
+    retention.bytes: '524288000'
   partitions: 3
   replicas: 1
   topicName: SENSOR.READINGS
 
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-orders-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: ORDERS.NEW.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-cancellations-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: CANCELLATIONS.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-badgeevents-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: DOOR.BADGEIN.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-stockmovement-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STOCK.MOVEMENT.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-customers-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: CUSTOMERS.NEW.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-sensorreadings-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: SENSOR.READINGS.AVRO
