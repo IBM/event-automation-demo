@@ -12,3 +12,38 @@ spec:
     key.converter.schemas.enable: false
     value.converter: org.apache.kafka.connect.json.JsonConverter
     value.converter.schemas.enable: false
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-avro
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.sensorreadings: SENSOR.READINGS.AVRO
+    topic.name.orders: ORDERS.NEW.AVRO
+    topic.name.cancellations: CANCELLATIONS.AVRO
+    topic.name.badgeins: DOOR.BADGEIN.AVRO
+    topic.name.stockmovements: STOCK.MOVEMENT.AVRO
+    topic.name.newcustomers: CUSTOMERS.NEW.AVRO
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: {{ schemaregistry_url }}
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy

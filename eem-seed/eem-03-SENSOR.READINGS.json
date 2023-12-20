@@ -1,20 +1,19 @@
 {
-    "id": "demo-event-streams-sensorreadings",
     "type": "kafka",
+    "name": "SENSOR.READINGS",
     "alias": "SENSOR.READINGS",
     "contact": "jenn@loosehangers.com",
-    "description": "Readings from the logistics team's IoT network, capturing internal temperature and humidity data for areas where product is stored.\n\nNote that sensor events can take up to 5 minutes to reach the Kafka topic, so the sensortime value in the message payload should be treated as the canonical timestamp for the event.\n",
+    "description": "Readings from the logistics team's IoT network, capturing internal temperature and humidity data for areas where product is stored.\n\nNote that sensor events can take up to 5 minutes to reach the Kafka topic, so the sensortime value in the message payload should be treated as the canonical timestamp for the event.\n The sensortime timestamp is a string in \"EEE MMM dd HH:mm:ss zzz yyyy\" format.",
     "tags": [
         "operations",
-        "logistics"
+        "logistics",
+        "json"
     ],
+    "encoding": "application/json",
     "sampleMessages": [
         "{\n    \"sensortime\": \"Thu Jun 22 21:34:27 GMT 2023\",\n    \"sensorid\": \"DE-1-19\",\n    \"temperature\": 20.3,\n    \"humidity\": 48\n}"
     ],
-    "hidden": false,
-    "allowSubscriptions": true,
-    "clusterId": "demo-event-streams",
-    "gatewayGroups": [ "gateway-group" ],
+    "clusterId": "CLUSTERID",
     "topic": {
         "name": "SENSOR.READINGS"
     }

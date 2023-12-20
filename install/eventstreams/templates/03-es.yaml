@@ -2,6 +2,8 @@ apiVersion: eventstreams.ibm.com/v1beta2
 kind: EventStreams
 metadata:
   name: my-kafka-cluster
+  annotations:
+    eventstreams.ibm.com/apicurio-registry-version: '>=2.4'
 spec:
   adminApi: {}
   adminUI:
@@ -14,6 +16,7 @@ spec:
         value: {{ welcome_url_eventendpointmanagement }}
       - name: WELCOME_URL_EVENT_PROCESSING
         value: {{ welcome_url_eventprocessing }}
+  apicurioRegistry: {}
   license:
     accept: {{ license_accept }}
     license: L-HRZF-DWHH7A
@@ -27,9 +30,7 @@ spec:
       userOperator: {}
     kafka:
       authorization:
-        authorizerClass: com.ibm.eventstreams.runas.authorizer.RunAsAuthorizer
-        supportsAdminApi: true
-        type: custom
+        type: simple
       config:
         auto.create.topics.enable: true
       listeners:
@@ -39,6 +40,12 @@ spec:
           port: 9095
           tls: true
           type: internal
+        - name: external
+          authentication:
+            type: scram-sha-512
+          port: 9096
+          tls: true
+          type: route
       replicas: 3
       storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}

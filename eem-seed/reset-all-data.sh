@@ -43,6 +43,48 @@ echo "========================================================================="
 echo " Event Automation tutorial setup "
 echo "========================================================================="
 
+# --------------------------------------
+# RESET
+#
+#  clear the EEM storage
+# --------------------------------------
+function reset_eem() {
+    echo " ----------------------------------------------------------------------- "
+    echo " This will CLEAR ALL STORAGE for the my-eem-manager instance "
+    echo "  of Event Endpoint Management in the $NAMESPACE namespace "
+    echo "  and replace it with definitions for the tutorial topics. "
+    echo " ----------------------------------------------------------------------- "
+    read -p "Press Y to continue: " -n 1 -r
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+    fi
+
+    echo "..."
+
+    echo "> Clearing existing storage"
+
+    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/eem
+    oc delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
+    # waiting for replacement pod to be created
+    until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
+        sleep 1
+    done
+    # waiting for replacement pod to become ready
+    oc wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=120s
+}
+
+
+# --------------------------------------
+# Helper function to get the ID returned
+#  by the API when we create new things
+# --------------------------------------
+extract_id() {
+    uuid=$(grep -oE '"id"\s*:\s*"[^"]+"' "$1" | sed 's/"id"\s*:\s*"\([^"]\+\)"/\1/')
+    echo "$uuid" | sed 's/"//g' | awk -F: '{print $2}' | tr -d '[:space:]'
+}
+
+
 
 # --------------------------------------
 # CLUSTER
@@ -64,7 +106,7 @@ cat eem-01-cluster.json | \
     sed "s|ES_NAMESPACE|$NAMESPACE|" | \
     sed "s|ES_CERTIFICATE|$ES_CERTIFICATE|" | \
     sed "s|ES_PASSWORD|$ES_PASSWORD|" > \
-    /tmp/eem-new-cluster.json
+    /tmp/eem-request-new-cluster.json
 
 # submit the cluster definition
 echo "> (2/3) Submitting Event Streams cluster information"
@@ -76,8 +118,8 @@ echo "> (2/3) Submitting Event Streams cluster information"
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -H "Authorization: Bearer $ACCESS_TOKEN" \
-                --data @/tmp/eem-new-cluster.json \
-                --output /dev/null \
+                --data @/tmp/eem-request-new-cluster.json \
+                --output /tmp/eem-response-new-cluster.json \
                 --write-out '%{response_code}' \
                 $EEM_API/eem/clusters)
 
@@ -89,7 +131,17 @@ echo "> (2/3) Submitting Event Streams cluster information"
 
     elif [ "$RESPONSE" == "409" ]
     then
-        echo " Ignoring (cluster already exists)"
+        echo " ----------------------------------------------------------------------- "
+        echo "ERROR: Event Streams cluster already in Event Endpoint Management"
+        echo ""
+
+        reset_eem
+
+        echo ""
+        echo "You can now re-run this script (with a new access token)."
+        echo ""
+
+        exit $RESPONSE
 
     elif [[ "$RESPONSE" != \2* ]]
     then
@@ -101,8 +153,14 @@ echo "> (2/3) Submitting Event Streams cluster information"
     fi
 )
 
+# read the new cluster id into a variable so we can
+#  add topics from this cluster
+CLUSTERID=$(extract_id /tmp/eem-response-new-cluster.json)
+
 # cleanup
-rm /tmp/eem-new-cluster.json
+rm -f /tmp/eem-request-new-cluster.json
+rm -f /tmp/eem-response-new-cluster.json
+
 
 # --------------------------------------
 # TOPICS
@@ -115,23 +173,59 @@ echo "> (3/3) Submitting Kafka topics"
 topics=("CANCELLATIONS" "CUSTOMERS.NEW" "DOOR.BADGEIN" "ORDERS.NEW" "SENSOR.READINGS" "STOCK.MOVEMENT")
 for topic in "${topics[@]}"
 do
+    echo "         $topic"
+
+    # -------------------------
+    # adding topic
+    # -------------------------
+
+    cat eem-03-$topic.json | \
+        sed "s|CLUSTERID|$CLUSTERID|" > \
+        /tmp/eem-request-new-topic.json
+
     RESPONSE=$(curl -X POST -s -k \
                     --dump-header /tmp/eem-api-header \
                     -H 'Accept: application/json' \
                     -H 'Content-Type: application/json' \
                     -H "Authorization: Bearer $ACCESS_TOKEN" \
-                    --data @eem-03-$topic.json \
-                    --output /dev/null \
+                    --data @/tmp/eem-request-new-topic.json \
+                    --output /tmp/eem-response-new-topic.json \
                     --write-out '%{response_code}' \
-                    $EEM_API/eem/catalogs/default/entries)
-    if [ "$RESPONSE" == "409" ]
-    then
-        echo " Ignoring (topic $topic already exists)"
-
-    elif [[ "$RESPONSE" != \2* ]]
+                    $EEM_API/eem/eventsources)
+    if [[ "$RESPONSE" != \2* ]]
     then
         echo " ----------------------------------------------------------------------- "
         echo "ERROR: Failed to submit topic $topic"
+        echo ""
+        cat /tmp/eem-api-header
+        exit $RESPONSE
+    fi
+
+    # read the new topic id into a variable so we can
+    #  add an option to this topic
+    TOPICID=$(extract_id /tmp/eem-response-new-topic.json)
+
+    # -------------------------
+    # publishing topic
+    # -------------------------
+
+    cat eem-03-$topic-option.json | \
+        sed "s|EVENTSOURCEID|$TOPICID|" > \
+        /tmp/eem-request-new-topic-option.json
+
+    RESPONSE=$(curl -X POST -s -k \
+                    --dump-header /tmp/eem-api-header \
+                    -H 'Accept: application/json' \
+                    -H 'Content-Type: application/json' \
+                    -H "Authorization: Bearer $ACCESS_TOKEN" \
+                    --data @/tmp/eem-request-new-topic-option.json \
+                    --output /dev/null \
+                    --write-out '%{response_code}' \
+                    $EEM_API/eem/options)
+    if [[ "$RESPONSE" != \2* ]]
+    then
+        echo " ----------------------------------------------------------------------- "
+        echo "ERROR: Failed to submit topic $topic option"
         echo ""
         cat /tmp/eem-api-header
         exit $RESPONSE
@@ -140,7 +234,10 @@ done
 
 
 # cleanup
-rm /tmp/eem-api-header
+rm -f /tmp/eem-api-header
+rm -f /tmp/eem-request-new-topic.json
+rm -f /tmp/eem-response-new-topic.json
+rm -f /tmp/eem-request-new-topic-option.json
 
 # --------------------------------------
 

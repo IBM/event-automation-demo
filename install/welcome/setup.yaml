@@ -28,6 +28,15 @@
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventendpointmanagement
 
+    - name: Get certificate for Event Endpoint Management
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Secret
+        name: my-eem-manager-ibm-eem-manager-ca
+        namespace: "{{ eventautomation_namespace }}"
+      register: certs_eventendpointmanagement
+
     - name: Get route for Event Processing
       kubernetes.core.k8s_info:
         validate_certs: false
@@ -46,6 +55,8 @@
       vars:
         welcome_url_eventstreams: "{{ info_eventstreams.resources[0].status.adminUiUrl }}"
         welcome_url_eventendpointmanagement: "{{ info_eventendpointmanagement.resources[0].status.endpoints[0].uri }}"
+        api_url_eventendpointmanagement: "{{ info_eventendpointmanagement.resources[0].status.endpoints[2].uri | ansible.builtin.regex_replace('https://', '') }}"
+        certificate_eventendpointmanagement: "{{ certs_eventendpointmanagement.resources[0].data['ca.crt'] | ansible.builtin.b64decode | ansible.builtin.regex_replace('\\n', '\\\\n', multiline=True) }}"
         welcome_url_eventprocessing: "{{ info_eventprocessing.resources[0].status.endpoints[0].uri }}"
 
     - name: Update Event Streams UI

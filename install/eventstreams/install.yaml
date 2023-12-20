@@ -99,7 +99,16 @@
           type: Ready
         wait_timeout: 300
 
-    - name: Start data generator
+    - name: Get API route for schema registry
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: eventstreams.ibm.com/v1beta2
+        kind: EventStreams
+        name: my-kafka-cluster
+        namespace: "{{ eventautomation_namespace }}"
+      register: info_eventstreams
+
+    - name: Start data generators
       kubernetes.core.k8s:
         validate_certs: false
         state: present
@@ -109,6 +118,8 @@
         wait_condition:
           status: true
           type: Ready
+      vars:
+        schemaregistry_url: "{{ info_eventstreams | community.general.json_query('resources[0].status.endpoints[?name==`apicurioregistry`].uri | [0]') }}"
 
     - name: Create credentials for use by Event Processing
       kubernetes.core.k8s:

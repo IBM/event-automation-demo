@@ -1,21 +1,21 @@
 {
-    "id": "demo-event-streams-orders",
     "type": "kafka",
-    "alias": "ORDERS.NEW",
+    "name": "ORDERS",
     "contact": "kevin@loosehangers.com",
-    "description": "Events from the order management system.\n\nAn event will be emitted for every new order that is made.\n\nOrders can only for a single product type. Customers purchasing multiple different types of products will be recorded as separate events.\n\nThe company uses a dynamic pricing algorithm, so the event will include the price of the item at the time of the order. This could be a different price for the same item in a different order on the same day.\n\nNote that these events include PII information about customers so you may wish to redact this if using the stream of events for insecure purposes.\n\nProduct descriptions follow a consistent pattern: They always start with the item size (in capital letters, such as S, M, or XL), followed by a material/colour description (e.g. Stonewashed or Black) followed by a product type (e.g. Bootcut or Straight-leg). These aren't available as separate fields, so you may wish to cut the description string up to identify events for specific types or colours of jeans.",
+    "description": "Events from the order management system.\n\nAn event will be emitted for every new order that is made.\n\nOrders can only include a single product type. Customers purchasing multiple different types of products will be recorded as separate events.\n\nThe company uses a dynamic pricing algorithm, so the event will include the price of the item at the time of the order. This could be a different price for the same item in a different order on the same day.\n\nNote that these events include PII information about customers so you may wish to redact this if using the stream of events for insecure purposes.\n\nProduct descriptions follow a consistent pattern: They always start with the item size (in capital letters, such as S, M, or XL), followed by a material/colour description (e.g. Stonewashed or Black) followed by a product type (e.g. Bootcut or Straight-leg). These aren't available as separate fields, so you may wish to cut the description string up to identify events for specific types or colours of jeans.",
     "tags": [
         "retail",
-        "orders"
+        "orders",
+        "avro"
     ],
-    "sampleMessages": [
-        "{\n    \"id\": \"414a5b7d-1eda-465d-a252-45f97d780132\",\n    \"customer\": \"Ms. Alfredo Walker\",\n    \"customerid\": \"fe9aed20-e873-4a40-b80a-3ef21d18e7d8\",\n    \"description\": \"M Blue Bootcut Jeans\",\n    \"price\": 41.52,\n    \"quantity\": 7,\n    \"region\": \"SA\",\n    \"ordertime\": \"2023-05-21 14:31:24.943\"\n}"
-    ],
-    "hidden": false,
-    "allowSubscriptions": true,
-    "clusterId": "demo-event-streams",
-    "gatewayGroups": [ "gateway-group" ],
+    "encoding": "avro/binary",
+    "sampleMessages": [],
+    "schema": {
+        "type": "avro",
+        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"Order\",\n    \"fields\": [\n        {\n            \"name\": \"id\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"order id\"\n        },\n        {\n            \"name\": \"customer\",\n            \"type\": \"string\",\n            \"doc\": \"Name of the customer who made the order\"\n        },\n        {\n            \"name\": \"customerid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"unique id for the customer who made the order\"\n        },\n        {\n            \"name\": \"description\",\n            \"type\": \"string\",\n            \"doc\": \"Description of the product that was ordered\"\n        },\n        {\n            \"name\": \"price\",\n            \"type\": \"double\",\n            \"doc\": \"Unit price of an individual item at the time of the order\"\n        },\n        {\n            \"name\": \"quantity\",\n            \"type\": \"long\",\n            \"doc\": \"Number of the items that was purchased in the order\"\n        },\n        {\n            \"name\": \"region\",\n            \"type\": \"string\",\n            \"doc\": \"which region the order was made in - will be one of NA, SA, EMEA, APAC, ANZ\"\n        },\n        {\n            \"name\": \"ordertime\",\n            \"type\": \"string\",\n            \"doc\": \"time that the order was made\"\n        }\n    ]\n}"
+    },
+    "clusterId": "CLUSTERID",
     "topic": {
-        "name": "ORDERS.NEW"
+        "name": "ORDERS.NEW.AVRO"
     }
 }

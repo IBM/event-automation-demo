@@ -1,21 +1,21 @@
 {
-    "id": "demo-event-streams-customers",
     "type": "kafka",
-    "alias": "CUSTOMERS.NEW",
+    "name": "CUSTOMERS",
     "contact": "kevin@loosehangers.com",
     "description": "New customer registrations from the customer management system.",
     "tags": [
         "retail",
-        "customers"
+        "customers",
+        "avro"
     ],
-    "sampleMessages": [
-        "{\n    \"customerid\": \"f727464e-9e90-40ac-a7e3-1bbfddb8a698\",\n    \"customername\": \"Connie Upton\",\n    \"registered\": \"2023-05-25 22:38:29.453\"\n}"
-    ],
-    "hidden": false,
-    "allowSubscriptions": true,
-    "clusterId": "demo-event-streams",
-    "gatewayGroups": [ "gateway-group" ],
+    "encoding": "avro/binary",
+    "sampleMessages": [],
+    "schema": {
+        "type": "avro",
+        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"NewCustomer\",\n    \"fields\": [\n        {\n            \"name\": \"customerid\",\n            \"type\": \"string\",\n            \"logicalType\": \"uuid\",\n            \"doc\": \"unique id for the customer\"\n        },\n        {\n            \"name\": \"customername\",\n            \"type\": \"string\",\n            \"doc\": \"full name for the customer, including any titles\"\n        },\n        {\n            \"name\": \"registered\",\n            \"type\": \"string\",\n            \"doc\": \"time that the customer created their account\"\n        }\n    ]\n}"
+    },
+    "clusterId": "CLUSTERID",
     "topic": {
-        "name": "CUSTOMERS.NEW"
+        "name": "CUSTOMERS.NEW.AVRO"
     }
 }

@@ -6,3 +6,30 @@ data:
     WELCOME_URL_EVENT_STREAMS: {{ welcome_url_eventstreams }}
     WELCOME_URL_EVENT_ENDPOINT_MANAGEMENT: {{ welcome_url_eventendpointmanagement }}
     WELCOME_URL_EVENT_PROCESSING: {{ welcome_url_eventprocessing }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-kafka-cluster-ibm-es-discovery-endpoints
+  namespace: event-automation
+data:
+  endpoints.json: |-
+    {
+      "instances": [
+        {
+          "name": "Event Endpoint Management",
+          "type": "event-endpoint-manager",
+          "server": {
+            "host": "{{ api_url_eventendpointmanagement }}",
+            "port": 443,
+            "ssl": true,
+            "certificates": ["{{ certificate_eventendpointmanagement }}"]
+          },
+          "additional-info": {
+            "eem-ui-url": "{{ welcome_url_eventendpointmanagement }}"
+          }
+        }
+      ]
+    }
