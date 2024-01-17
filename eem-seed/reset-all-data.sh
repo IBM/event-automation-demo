@@ -80,8 +80,7 @@ function reset_eem() {
 #  by the API when we create new things
 # --------------------------------------
 extract_id() {
-    uuid=$(grep -oE '"id"\s*:\s*"[^"]+"' "$1" | sed 's/"id"\s*:\s*"\([^"]\+\)"/\1/')
-    echo "$uuid" | sed 's/"//g' | awk -F: '{print $2}' | tr -d '[:space:]'
+    grep -o '"id"\s*:\s*"[^"]*' $1 | grep -o '[^"]*$'
 }
 
 
