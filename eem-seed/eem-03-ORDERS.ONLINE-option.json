@@ -1,6 +1,6 @@
 {
     "eventSourceId": "EVENTSOURCEID",
-    "alias": "ONLINE.ORDERS",
+    "alias": "ORDERS.ONLINE",
     "name": "Self service",
     "controls": [],
     "hidden": false,
