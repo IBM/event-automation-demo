@@ -16,6 +16,6 @@
     },
     "clusterId": "CLUSTERID",
     "topic": {
-        "name": "ONLINE.ORDERS.NEW.AVRO"
+        "name": "ORDERS.ONLINE.AVRO"
     }
 }

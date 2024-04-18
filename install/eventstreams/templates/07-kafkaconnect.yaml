@@ -65,9 +65,7 @@ spec:
       - name: datagen
         artifacts:
           - type: jar
-            # Temporary URL for testing
-            url: https://github.com/rachel-orti/kafka-connect-loosehangerjeans-source/raw/add_tutorial_on_nested_objects/target/kafka-connect-loosehangerjeans-source-0.0.5-jar-with-dependencies.jar
-            #url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.0.5/kafka-connect-loosehangerjeans-source-0.0.5-jar-with-dependencies.jar
+            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.0.5/kafka-connect-loosehangerjeans-source-0.0.5-jar-with-dependencies.jar
       - name: mq-source
         artifacts:
           - type: jar

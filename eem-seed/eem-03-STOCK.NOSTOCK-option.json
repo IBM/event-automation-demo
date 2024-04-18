@@ -1,6 +1,6 @@
 {
     "eventSourceId": "EVENTSOURCEID",
-    "alias": "OUT.OF.STOCK",
+    "alias": "STOCK.NOSTOCK",
     "name": "Self service",
     "controls": [],
     "hidden": false,

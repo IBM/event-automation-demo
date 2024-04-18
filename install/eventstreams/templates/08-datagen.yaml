@@ -39,8 +39,8 @@ spec:
     topic.name.badgeins: DOOR.BADGEIN.AVRO
     topic.name.stockmovements: STOCK.MOVEMENT.AVRO
     topic.name.newcustomers: CUSTOMERS.NEW.AVRO
-    topic.name.onlineorders: ONLINE.ORDERS.NEW.AVRO
-    topic.name.outofstocks: OUT.OF.STOCK.AVRO
+    topic.name.onlineorders: ORDERS.ONLINE.AVRO
+    topic.name.outofstocks: STOCK.NOSTOCK.AVRO
 
     value.converter.apicurio.auth.username: kafka-connect-credentials
     value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}

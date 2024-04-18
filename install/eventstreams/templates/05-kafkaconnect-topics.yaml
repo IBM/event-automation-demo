@@ -106,7 +106,7 @@ spec:
     retention.bytes: '524288000'
   partitions: 3
   replicas: 3
-  topicName: ONLINE.ORDERS.NEW
+  topicName: ORDERS.ONLINE
 
 ---
 
@@ -122,7 +122,7 @@ spec:
     retention.bytes: '524288000'
   partitions: 3
   replicas: 3
-  topicName: OUT.OF.STOCK
+  topicName: STOCK.NOSTOCK
 
 ---
 
@@ -234,7 +234,7 @@ spec:
     retention.bytes: '50000000'
   partitions: 3
   replicas: 1
-  topicName: ONLINE.ORDERS.NEW.AVRO
+  topicName: ORDERS.ONLINE.AVRO
 
 ---
 
@@ -250,4 +250,4 @@ spec:
     retention.bytes: '50000000'
   partitions: 3
   replicas: 1
-  topicName: OUT.OF.STOCK.AVRO
+  topicName: STOCK.NOSTOCK.AVRO

@@ -169,7 +169,7 @@ rm -f /tmp/eem-response-new-cluster.json
 
 echo "> (3/3) Submitting Kafka topics"
 
-topics=("CANCELLATIONS" "CUSTOMERS.NEW" "DOOR.BADGEIN" "ONLINE.ORDERS.NEW" "ORDERS.NEW" "OUT.OF.STOCK" "SENSOR.READINGS" "STOCK.MOVEMENT")
+topics=("CANCELLATIONS" "CUSTOMERS.NEW" "DOOR.BADGEIN" "ORDERS.ONLINE" "ORDERS.NEW" "STOCK.NOSTOCK" "SENSOR.READINGS" "STOCK.MOVEMENT")
 for topic in "${topics[@]}"
 do
     echo "         $topic"

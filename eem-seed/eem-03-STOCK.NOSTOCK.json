@@ -1,6 +1,6 @@
 {
     "type": "kafka",
-    "name": "OUT.OF.STOCK",
+    "name": "STOCK.NOSTOCK",
     "contact": "lynn@loosehangers.com",
     "description": "Events for product stock shortages recorded by the online order management system.\n\nAn event will be emitted for some products after they have been ordered, preventing them to be delivered.\n\nNote that the out-of-stock events include the full product definition (size, material, style, name) whereas the online order events include the product descriptions. You can retrieve the corresponding product description by concatenating the size, material, style and name properties separated by a space character.",
     "tags": [
@@ -16,6 +16,6 @@
     },
     "clusterId": "CLUSTERID",
     "topic": {
-        "name": "OUT.OF.STOCK.AVRO"
+        "name": "STOCK.NOSTOCK.AVRO"
     }
 }
