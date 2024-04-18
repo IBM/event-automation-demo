@@ -97,6 +97,38 @@ spec:
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaTopic
 metadata:
+  name: fake-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '524288000'
+  partitions: 3
+  replicas: 3
+  topicName: ORDERS.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '524288000'
+  partitions: 3
+  replicas: 3
+  topicName: STOCK.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
   name: fake-orders-avro
   labels:
     eventstreams.ibm.com/cluster: my-kafka-cluster
@@ -187,3 +219,35 @@ spec:
   partitions: 3
   replicas: 1
   topicName: SENSOR.READINGS.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-onlineorders-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: ORDERS.ONLINE.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-outofstocks-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STOCK.NOSTOCK.AVRO

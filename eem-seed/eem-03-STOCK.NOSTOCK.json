@@ -1,0 +1,21 @@
+{
+    "type": "kafka",
+    "name": "Out of stock notifications",
+    "contact": "lynn@loosehangers.com",
+    "description": "Events for product stock shortages recorded by the online order management system.\n\nAn event will be emitted for some products after they have been ordered, preventing them to be delivered.\n\nNote that the out-of-stock events include the full product definition (size, material, style, name) whereas the online order events include the product descriptions. You can retrieve the corresponding product description by concatenating the size, material, style and name properties separated by a space character.",
+    "tags": [
+        "retail",
+        "orders",
+        "avro"
+    ],
+    "encoding": "avro/binary",
+    "sampleMessages": [],
+    "schema": {
+        "type": "avro",
+        "content": "{\n  \"namespace\": \"com.loosehangerjeans\",\n  \"type\": \"record\",\n  \"name\": \"OutOfStock\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"doc\": \"Unique id for the out-of-stock event\",\n      \"type\": {\n        \"type\": \"string\",\n        \"logicalType\": \"uuid\"\n      }\n    },\n    {\n      \"name\": \"product\",\n      \"doc\": \"Product that is out-of-stock\",\n      \"type\": {\n        \"type\": \"record\",\n        \"name\": \"product\",\n        \"fields\": [\n          {\n            \"name\": \"size\",\n            \"type\": \"string\",\n            \"doc\": \"Size of the product\"\n          },\n          {\n            \"name\": \"material\",\n            \"type\": \"string\",\n            \"doc\": \"Material of the product\"\n          },\n          {\n            \"name\": \"style\",\n            \"type\": \"string\",\n            \"doc\": \"Style of the product\"\n          },\n          {\n            \"name\": \"name\",\n            \"type\": \"string\",\n            \"doc\": \"Name of the product\"\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"restockingdate\",\n      \"doc\": \"Estimated restocking date for the product\",\n      \"type\": {\n        \"type\": \"int\",\n        \"logicalType\": \"date\"\n      }\n    },\n    {\n      \"name\": \"outofstocktime\",\n      \"doc\": \"Time that the product was out-of-stock\",\n      \"type\": {\n        \"type\": \"long\",\n        \"logicalType\": \"timestamp-millis\"\n      }\n    }\n  ]\n}"
+    },
+    "clusterId": "CLUSTERID",
+    "topic": {
+        "name": "STOCK.NOSTOCK.AVRO"
+    }
+}
