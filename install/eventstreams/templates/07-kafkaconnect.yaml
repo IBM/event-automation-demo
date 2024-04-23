@@ -60,7 +60,7 @@ spec:
   build:
     output:
       type: docker
-      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.4
+      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.5
     plugins:
       - name: datagen
         artifacts:
@@ -69,14 +69,14 @@ spec:
       - name: mq-source
         artifacts:
           - type: jar
-            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v1.3.3/kafka-connect-mq-source-1.3.3-jar-with-dependencies.jar
+            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v1.3.4/kafka-connect-mq-source-1.3.4-jar-with-dependencies.jar
       - artifacts:
           - artifact: apicurio-registry-serdes-avro-serde
             group: io.apicurio
             type: maven
-            version: 2.5.5.Final
+            version: 2.5.10.Final
           - artifact: apicurio-registry-utils-converter
             group: io.apicurio
             type: maven
-            version: 2.5.5.Final
+            version: 2.5.10.Final
         name: apicurio
