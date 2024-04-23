@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: event-automation-truststore-setup
+spec:
+  restartPolicy: Never
+  volumes:
+    - name: event-automation
+      emptyDir: {}
+    - name: event-streams
+      secret:
+        secretName: my-kafka-cluster-cluster-ca-cert
+    - name: event-endpoint-management
+      secret:
+        secretName: my-eem-gateway-ibm-egw-cert
+  containers:
+    - name: setup-truststore
+      image: cp.icr.io/cp/ibm-eventstreams-kafka@sha256:c7458512f16327003b3509e74281268c893a15694a2b5f526413c7e6592cb6d8
+      command: ["/bin/bash", "-c"]
+      args:
+        - keytool -importcert -noprompt -alias eventstreams -file /jobcerts/event-streams/ca.crt -trustcacerts -keystore /jobcerts/event-automation/eventautomation.jks -storepass "eventautomationstore";
+          echo "added Event Streams CA to the truststore";
+          keytool -importcert -noprompt -alias eventendpointmanagement -file /jobcerts/event-endpoint-management/ca.crt -trustcacerts -keystore /jobcerts/event-automation/eventautomation.jks -storepass "eventautomationstore";
+          echo "added Event Endpoint Management CA to the truststore";
+          touch /jobcerts/event-automation/complete;
+          echo "waiting for file to be downloaded";
+          while [[ -f /jobcerts/event-automation/complete ]]; do sleep 2; done;
+      volumeMounts:
+        - name: event-automation
+          mountPath: /jobcerts/event-automation
+          readOnly: false
+        - name: event-streams
+          mountPath: /jobcerts/event-streams
+          readOnly: true
+        - name: event-endpoint-management
+          mountPath: /jobcerts/event-endpoint-management
+          readOnly: true
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault

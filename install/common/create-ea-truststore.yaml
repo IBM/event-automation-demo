@@ -1,0 +1,60 @@
+---
+
+- name: Reset any previous truststore pods
+  kubernetes.core.k8s:
+    validate_certs: false
+    state: absent
+    namespace: "{{ eventautomation_namespace }}"
+    template: "{{ playbook_dir }}/../common/templates/truststore-setup.yaml"
+
+- name: Create pod to generate an Event Automation truststore
+  kubernetes.core.k8s:
+    validate_certs: false
+    state: present
+    namespace: "{{ eventautomation_namespace }}"
+    template: "{{ playbook_dir }}/../common/templates/truststore-setup.yaml"
+    wait: true
+    wait_condition:
+      status: true
+      type: Ready
+    wait_timeout: 120
+
+- name: Wait for truststore to be ready
+  kubernetes.core.k8s_exec:
+    namespace: "{{ eventautomation_namespace }}"
+    pod: event-automation-truststore-setup
+    command: "/bin/bash -c 'while [[ ! -f /jobcerts/event-automation/complete ]]; do sleep 2; done'"
+
+- name: Download the new Event Automation truststore
+  kubernetes.core.k8s_cp:
+    namespace: "{{ eventautomation_namespace }}"
+    pod: event-automation-truststore-setup
+    state: from_pod
+    remote_path: /jobcerts/event-automation/eventautomation.jks
+    local_path: eventautomation.jks
+
+- name: Notify the truststore setup pod to terminate
+  kubernetes.core.k8s_exec:
+    namespace: "{{ eventautomation_namespace }}"
+    pod: event-automation-truststore-setup
+    command: rm /jobcerts/event-automation/complete
+
+- name: Create secret with Event Automation truststore
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      type: Opaque
+      metadata:
+        name: eventautomation-truststore
+        namespace: "{{ eventautomation_namespace }}"
+      data:
+        eventautomation.jks: "{{ lookup('file', 'eventautomation.jks' ) | b64encode }}"
+
+- name: Cleanup truststore pod
+  kubernetes.core.k8s:
+    validate_certs: false
+    state: absent
+    namespace: "{{ eventautomation_namespace }}"
+    template: "{{ playbook_dir }}/../common/templates/truststore-setup.yaml"

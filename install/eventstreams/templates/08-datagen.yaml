@@ -53,6 +53,7 @@ spec:
 
     value.converter.apicurio.registry.url: {{ schemaregistry_url }}
     value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
     value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
 
 ---
@@ -98,3 +99,4 @@ spec:
     value.converter.apicurio.registry.as-confluent: true
     value.converter.apicurio.registry.use-id: contentId
     value.converter.apicurio.registry.headers.enabled: false
+    value.converter.apicurio.registry.dereference-schema: true

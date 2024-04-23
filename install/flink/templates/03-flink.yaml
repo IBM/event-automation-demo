@@ -17,6 +17,9 @@ spec:
     # behaviour
     json.ignore-parse-errors: 'true'
     table.exec.source.idle-timeout: 30 s
+    # use custom truststore to allow jobs to connect to ES and EEM
+    env.java.opts.jobmanager: '-Djavax.net.ssl.trustStore=/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
+    env.java.opts.taskmanager: '-Djavax.net.ssl.trustStore=/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
   jobManager:
     replicas: 1
     resource:
@@ -39,6 +42,14 @@ spec:
           volumeMounts:
             - mountPath: /opt/flink/log
               name: flink-logs
+            - mountPath: /certs
+              name: truststore
       volumes:
         - emptyDir: {}
           name: flink-logs
+        - name: truststore
+          secret:
+            items:
+              - key: eventautomation.jks
+                path: eventautomation.jks
+            secretName: eventautomation-truststore

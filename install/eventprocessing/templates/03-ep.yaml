@@ -18,10 +18,24 @@ spec:
       pod:
         spec:
           containers:
+            - env:
+                - name: JAVA_TOOL_OPTIONS
+                  value: '-Djavax.net.ssl.trustStore=/opt/ibm/sp-backend/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
+              name: backend
+              volumeMounts:
+                - mountPath: /opt/ibm/sp-backend/certs
+                  name: truststore
             - name: ui
               envFrom:
                 - configMapRef:
                     name: event-automation-welcome-urls
+          volumes:
+            - name: truststore
+              secret:
+                items:
+                  - key: eventautomation.jks
+                    path: eventautomation.jks
+                secretName: eventautomation-truststore
   flink:
     endpoint: 'my-flink-rest:8081'
   license:

@@ -31,6 +31,17 @@
       vars:
         namespace: "{{ eventautomation_namespace }}"
 
+    - name: Check if an Event Automation truststore has been prepared
+      kubernetes.core.k8s_info:
+        namespace: "{{ eventautomation_namespace }}"
+        kind: Secret
+        name: eventautomation-truststore
+      register: truststore_setup
+
+    - name: Create truststore if no secret exists
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/create-ea-truststore.yaml"
+      when: truststore_setup.resources | length == 0
+
     - name: Create Event Processing authoring tool
       kubernetes.core.k8s:
         validate_certs: false
