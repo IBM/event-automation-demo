@@ -1,6 +1,6 @@
 {
     "type": "kafka",
-    "name": "STOCK.MOVEMENT",
+    "name": "Stock movement updates",
     "alias": "STOCK.MOVEMENT",
     "contact": "andre@loosehangers.com",
     "description": "This topic tracks movement to, from, and between warehouses.\n\nEach event tracks the bulk movement of multiple instances of a single product type into a main warehouse.\n\nNOTE: The systems that capture stock movement events will occasionally create duplicate events. It is important that any applications created using this topic are able to perform idempotent processing.",

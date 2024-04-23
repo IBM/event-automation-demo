@@ -1,6 +1,6 @@
 {
     "type": "kafka",
-    "name": "DOOR.BADGEIN",
+    "name": "Door badge events",
     "alias": "DOOR.BADGEIN",
     "contact": "andre@loosehangers.com",
     "description": "Records an employee using their id badge to go through a door. This includes entry into the building overall, as well as entry through internal office doors.\n\nBuilding exits do not require use of id badge, so a door badge in event does not imply that the employee will still be in the building.\n\nNote that door events can take up to 3 minutes to reach the Kafka topic, so the badgetime value in the message payload should be treated as the canonical timestamp for the event.\n\nThis delay can be inconsistent, so messages on the topic are often out of sequence as a result.",

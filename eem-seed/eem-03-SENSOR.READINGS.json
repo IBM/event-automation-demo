@@ -1,6 +1,6 @@
 {
     "type": "kafka",
-    "name": "SENSOR.READINGS",
+    "name": "IoT sensor readings",
     "alias": "SENSOR.READINGS",
     "contact": "jenn@loosehangers.com",
     "description": "Readings from the logistics team's IoT network, capturing internal temperature and humidity data for areas where product is stored.\n\nNote that sensor events can take up to 5 minutes to reach the Kafka topic, so the sensortime value in the message payload should be treated as the canonical timestamp for the event.\n The sensortime timestamp is a string in \"EEE MMM dd HH:mm:ss zzz yyyy\" format.",

@@ -1,6 +1,6 @@
 {
     "type": "kafka",
-    "name": "ORDERS",
+    "name": "Orders",
     "contact": "kevin@loosehangers.com",
     "description": "Events from the order management system.\n\nAn event will be emitted for every new order that is made.\n\nOrders can only include a single product type. Customers purchasing multiple different types of products will be recorded as separate events.\n\nThe company uses a dynamic pricing algorithm, so the event will include the price of the item at the time of the order. This could be a different price for the same item in a different order on the same day.\n\nNote that these events include PII information about customers so you may wish to redact this if using the stream of events for insecure purposes.\n\nProduct descriptions follow a consistent pattern: They always start with the item size (in capital letters, such as S, M, or XL), followed by a material/colour description (e.g. Stonewashed or Black) followed by a product type (e.g. Bootcut or Straight-leg). These aren't available as separate fields, so you may wish to cut the description string up to identify events for specific types or colours of jeans.",
     "tags": [

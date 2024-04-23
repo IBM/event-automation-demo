@@ -1,6 +1,6 @@
 {
     "type": "kafka",
-    "name": "CUSTOMERS",
+    "name": "New customer registrations",
     "contact": "kevin@loosehangers.com",
     "description": "New customer registrations from the customer management system.",
     "tags": [
