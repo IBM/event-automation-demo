@@ -5,10 +5,10 @@ metadata:
   annotations:
     com.ibm.mq/write-defaults-spec: 'false'
 spec:
-  version: 9.3.3.0-r1
+  version: 9.3.1.0-r1
   license:
     accept: {{ license_accept }}
-    license: L-YBXJ-ADJNSM
+    license: L-RJON-CD3JKX
     use: NonProduction
   web:
     enabled: true
