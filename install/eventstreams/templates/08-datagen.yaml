@@ -86,6 +86,7 @@ spec:
     topic.name.outofstocks: STOCK.NOSTOCK.REG
 
     timings.ms.badgeins: 600000
+    cancellations.ratio: 0.05
 
     value.converter.apicurio.auth.username: kafka-connect-credentials
     value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}

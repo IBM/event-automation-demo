@@ -5,7 +5,7 @@ metadata:
     namespace: openshift-marketplace
 spec:
     displayName: IBM EEM Catalog
-    image: icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:11.1.4
+    image: icr.io/cpopen/ibm-eventendpointmanagement-operator-catalog:11.1.5
     publisher: IBM
     sourceType: grpc
     updateStrategy:
