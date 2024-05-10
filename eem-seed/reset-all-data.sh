@@ -105,7 +105,7 @@ cat eem-01-cluster.json | \
     sed "s|ES_NAMESPACE|$NAMESPACE|" | \
     sed "s|ES_CERTIFICATE|$ES_CERTIFICATE|" | \
     sed "s|ES_PASSWORD|$ES_PASSWORD|" > \
-    /tmp/eem-request-new-cluster.json
+    eem-request-new-cluster.json
 
 # submit the cluster definition
 echo "> (2/3) Submitting Event Streams cluster information"
@@ -113,12 +113,12 @@ echo "> (2/3) Submitting Event Streams cluster information"
     set +e
 
     RESPONSE=$(curl -X POST -s -k \
-                --dump-header /tmp/eem-api-header \
+                --dump-header eem-api-header \
                 -H 'Accept: application/json' \
                 -H 'Content-Type: application/json' \
                 -H "Authorization: Bearer $ACCESS_TOKEN" \
-                --data @/tmp/eem-request-new-cluster.json \
-                --output /tmp/eem-response-new-cluster.json \
+                --data @eem-request-new-cluster.json \
+                --output eem-response-new-cluster.json \
                 --write-out '%{response_code}' \
                 $EEM_API/eem/clusters)
 
@@ -147,18 +147,18 @@ echo "> (2/3) Submitting Event Streams cluster information"
         echo " ----------------------------------------------------------------------- "
         echo "ERROR: Failed to submit Event Streams cluster information"
         echo ""
-        cat /tmp/eem-api-header
+        cat eem-api-header
         exit $RESPONSE
     fi
 )
 
 # read the new cluster id into a variable so we can
 #  add topics from this cluster
-CLUSTERID=$(extract_id /tmp/eem-response-new-cluster.json)
+CLUSTERID=$(extract_id eem-response-new-cluster.json)
 
 # cleanup
-rm -f /tmp/eem-request-new-cluster.json
-rm -f /tmp/eem-response-new-cluster.json
+rm -f eem-request-new-cluster.json
+rm -f eem-response-new-cluster.json
 
 
 # --------------------------------------
@@ -180,15 +180,15 @@ do
 
     cat eem-03-$topic.json | \
         sed "s|CLUSTERID|$CLUSTERID|" > \
-        /tmp/eem-request-new-topic.json
+        eem-request-new-topic.json
 
     RESPONSE=$(curl -X POST -s -k \
-                    --dump-header /tmp/eem-api-header \
+                    --dump-header eem-api-header \
                     -H 'Accept: application/json' \
                     -H 'Content-Type: application/json' \
                     -H "Authorization: Bearer $ACCESS_TOKEN" \
-                    --data @/tmp/eem-request-new-topic.json \
-                    --output /tmp/eem-response-new-topic.json \
+                    --data @eem-request-new-topic.json \
+                    --output eem-response-new-topic.json \
                     --write-out '%{response_code}' \
                     $EEM_API/eem/eventsources)
     if [[ "$RESPONSE" != \2* ]]
@@ -196,13 +196,13 @@ do
         echo " ----------------------------------------------------------------------- "
         echo "ERROR: Failed to submit topic $topic"
         echo ""
-        cat /tmp/eem-api-header
+        cat eem-api-header
         exit $RESPONSE
     fi
 
     # read the new topic id into a variable so we can
     #  add an option to this topic
-    TOPICID=$(extract_id /tmp/eem-response-new-topic.json)
+    TOPICID=$(extract_id eem-response-new-topic.json)
 
     # -------------------------
     # publishing topic
@@ -210,14 +210,14 @@ do
 
     cat eem-03-$topic-option.json | \
         sed "s|EVENTSOURCEID|$TOPICID|" > \
-        /tmp/eem-request-new-topic-option.json
+        eem-request-new-topic-option.json
 
     RESPONSE=$(curl -X POST -s -k \
-                    --dump-header /tmp/eem-api-header \
+                    --dump-header eem-api-header \
                     -H 'Accept: application/json' \
                     -H 'Content-Type: application/json' \
                     -H "Authorization: Bearer $ACCESS_TOKEN" \
-                    --data @/tmp/eem-request-new-topic-option.json \
+                    --data @eem-request-new-topic-option.json \
                     --output /dev/null \
                     --write-out '%{response_code}' \
                     $EEM_API/eem/options)
@@ -226,17 +226,17 @@ do
         echo " ----------------------------------------------------------------------- "
         echo "ERROR: Failed to submit topic $topic option"
         echo ""
-        cat /tmp/eem-api-header
+        cat eem-api-header
         exit $RESPONSE
     fi
 done
 
 
 # cleanup
-rm -f /tmp/eem-api-header
-rm -f /tmp/eem-request-new-topic.json
-rm -f /tmp/eem-response-new-topic.json
-rm -f /tmp/eem-request-new-topic-option.json
+rm -f eem-api-header
+rm -f eem-request-new-topic.json
+rm -f eem-response-new-topic.json
+rm -f eem-request-new-topic-option.json
 
 # --------------------------------------
 
