@@ -4,6 +4,8 @@ metadata:
   name: event-automation-truststore-setup
 spec:
   restartPolicy: Never
+  imagePullSecrets:
+    - name: ibm-entitlement-key
   volumes:
     - name: event-automation
       emptyDir: {}
