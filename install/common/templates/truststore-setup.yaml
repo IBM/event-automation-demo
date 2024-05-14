@@ -15,7 +15,7 @@ spec:
         secretName: my-eem-gateway-ibm-egw-cert
   containers:
     - name: setup-truststore
-      image: cp.icr.io/cp/ibm-eventstreams-kafka@sha256:c7458512f16327003b3509e74281268c893a15694a2b5f526413c7e6592cb6d8
+      image: cp.icr.io/cp/ibm-eventstreams-kafka:11.3.2
       command: ["/bin/bash", "-c"]
       args:
         - keytool -importcert -noprompt -alias eventstreams -file /jobcerts/event-streams/ca.crt -trustcacerts -keystore /jobcerts/event-automation/eventautomation.jks -storepass "eventautomationstore";
