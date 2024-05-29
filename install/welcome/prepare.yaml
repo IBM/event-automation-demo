@@ -8,6 +8,7 @@
     welcome_url_eventendpointmanagement: "placeholder"
     welcome_url_eventprocessing: "placeholder"
     api_url_eventendpointmanagement: "placeholder"
+    ui_url_eventendpointmanagement: "placeholder"
     certificate_eventendpointmanagement: "placeholder"
 
   tasks:

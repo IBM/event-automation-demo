@@ -17,6 +17,7 @@ spec:
     # behaviour
     json.ignore-parse-errors: 'true'
     table.exec.source.idle-timeout: 30 s
+    restart-strategy.type: 'none'
     # use custom truststore to allow jobs to connect to ES and EEM
     env.java.opts.jobmanager: '-Djavax.net.ssl.trustStore=/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
     env.java.opts.taskmanager: '-Djavax.net.ssl.trustStore=/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'

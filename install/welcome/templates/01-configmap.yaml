@@ -27,7 +27,7 @@ data:
             "certificates": ["{{ certificate_eventendpointmanagement }}"]
           },
           "additional-info": {
-            "eem-ui-url": "{{ api_url_eventendpointmanagement }}"
+            "eem-ui-url": "{{ ui_url_eventendpointmanagement }}"
           }
         }
       ]
