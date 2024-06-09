@@ -4,7 +4,7 @@
   connection: local
   vars:
     eventautomation_namespace: "event-automation"
-    eventstreams_storage_class: "rook-ceph-block"
+    eventstreams_storage_class: "placeholder"
 
   tasks:
     - name: Install local pre-requisites

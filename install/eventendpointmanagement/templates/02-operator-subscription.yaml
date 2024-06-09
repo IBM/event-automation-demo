@@ -6,7 +6,7 @@ metadata:
   labels:
     operators.coreos.com/ibm-eventendpointmanagement.openshift-operators: ''
 spec:
-  channel: v11.1
+  channel: v11.2
   name: ibm-eventendpointmanagement
   source: eem-operator-catalog
   sourceNamespace: openshift-marketplace
