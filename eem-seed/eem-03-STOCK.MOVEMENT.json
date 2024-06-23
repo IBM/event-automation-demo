@@ -13,6 +13,10 @@
     "sampleMessages": [
         "{\n    \"movementid\": \"6f706008-5777-45ab-b4b7-6adff5e5d1de\",\n    \"warehouse\": \"West\",\n    \"product\": \"XXS Blue Low-rise Jeans\",\n    \"quantity\": 380,\n    \"updatetime\": \"2023-05-21 14:23:24.943\"\n}"
     ],
+    "schema": {
+        "type": "json",
+        "content": "{\n    \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n    \"title\": \"StockMovement\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"movementid\": {\n            \"description\": \"Unique identifier for the movement event.\",\n            \"type\": \"string\",\n            \"format\": \"uuid\"\n        },\n        \"warehouse\": {\n            \"description\": \"Code of the warehouse that received the goods.\",\n            \"type\": \"string\",\n            \"enum\": [\"North\", \"South\", \"West\", \"East\", \"Central\"]\n        },\n        \"product\": {\n            \"description\": \"Description of the product that was received.\",\n            \"type\": \"string\"\n        },\n        \"quantity\": {\n            \"description\": \"Number of items that were received.\",\n            \"type\": \"integer\"\n        },\n        \"updatetime\": {\n            \"description\": \"Time that the movement event was recorded.\",\n            \"type\": \"string\",\n            \"pattern\": \"^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{1,3}$\"\n        }\n    },\n    \"required\": [\"movementid\", \"warehouse\", \"product\", \"quantity\", \"updatetime\"],\n    \"additionalProperties\": false\n}"
+    },
     "clusterId": "CLUSTERID",
     "topic": {
         "name": "STOCK.MOVEMENT"
