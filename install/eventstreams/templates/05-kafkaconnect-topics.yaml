@@ -129,6 +129,38 @@ spec:
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaTopic
 metadata:
+  name: fake-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '524288000'
+  partitions: 3
+  replicas: 3
+  topicName: PRODUCT.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '524288000'
+  partitions: 3
+  replicas: 3
+  topicName: PRODUCT.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
   name: fake-orders-avro
   labels:
     eventstreams.ibm.com/cluster: my-kafka-cluster
@@ -257,6 +289,38 @@ spec:
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaTopic
 metadata:
+  name: fake-returnrequests-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: PRODUCT.RETURNS.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-productreviews-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: PRODUCT.REVIEWS.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
   name: fake-orders-reg
   labels:
     eventstreams.ibm.com/cluster: my-kafka-cluster
@@ -379,3 +443,35 @@ spec:
   partitions: 1
   replicas: 1
   topicName: STOCK.NOSTOCK.REG
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-returnrequests-reg
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 1
+  replicas: 1
+  topicName: PRODUCT.RETURNS.REG
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-productreviews-reg
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 1
+  replicas: 1
+  topicName: PRODUCT.REVIEWS.REG

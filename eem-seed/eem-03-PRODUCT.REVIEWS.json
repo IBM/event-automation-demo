@@ -1,0 +1,21 @@
+{
+    "type": "kafka",
+    "name": "Product reviews",
+    "contact": "lynn@loosehangers.com",
+    "description": "Events for product reviews recorded by the product management system.\n\nSome reviews may mention a size issue.\n\nNote that product review events include the short product description like return request events.",
+    "tags": [
+        "retail",
+        "reviews",
+        "avro"
+    ],
+    "encoding": "avro/binary",
+    "sampleMessages": [],
+    "schema": {
+        "type": "avro",
+        "content": "{\n  \"namespace\": \"com.loosehangerjeans\",\n  \"type\": \"record\",\n  \"name\": \"ProductReview\",\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"doc\": \"Unique ID for the product review\",\n      \"type\": {\n        \"type\": \"string\",\n        \"logicalType\": \"uuid\"\n      }\n    },\n    {\n      \"name\": \"product\",\n      \"doc\": \"Short description of the product\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"size\",\n      \"type\": [\n        \"null\",\n        \"string\"\n      ],\n      \"doc\": \"Size of the product\"\n    },\n    {\n      \"name\": \"review\",\n      \"doc\": \"Review for the product\",\n      \"type\": {\n        \"type\": \"record\",\n        \"name\": \"Review\",\n        \"fields\": [\n          {\n            \"name\": \"rating\",\n            \"type\": \"int\",\n            \"doc\": \"Global rating (integer between 1 and 5 included)\"\n          },\n          {\n            \"name\": \"comment\",\n            \"type\": [\n              \"null\",\n              \"string\"\n            ],\n            \"doc\": \"Review comment\"\n          },\n          {\n            \"name\": \"characteristics\",\n            \"doc\": \"Characteristics evaluated in the current review\",\n            \"type\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"record\",\n                \"name\": \"Characteristic\",\n                \"fields\": [\n                  {\n                    \"name\": \"id\",\n                    \"type\": \"string\",\n                    \"doc\": \"ID for the characteristic\"\n                  },\n                  {\n                    \"name\": \"ranking\",\n                    \"type\": [\n                      \"null\",\n                      \"int\"\n                    ],\n                    \"doc\": \"Ranking for the characteristic (integer between 1 and 3 included: 1 for small, short ; 2 for spot on ; 3 for large, long). Can be null if no ranking is provided.\"\n                  }\n                ]\n              }\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"name\": \"reviewtime\",\n      \"doc\": \"Time that the product review was posted (UTC time in ISO 8601 format)\",\n      \"type\": \"string\"\n    }\n  ]\n}"
+    },
+    "clusterId": "CLUSTERID",
+    "topic": {
+        "name": "PRODUCT.REVIEWS.AVRO"
+    }
+}
