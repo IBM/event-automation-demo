@@ -6,7 +6,7 @@ metadata:
   labels:
     operators.coreos.com/ibm-eventstreams.openshift-operators: ''
 spec:
-  channel: v3.3
+  channel: v3.4
   name: ibm-eventstreams
   source: es-operator-catalog
   sourceNamespace: openshift-marketplace
