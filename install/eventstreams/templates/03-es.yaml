@@ -2,8 +2,6 @@ apiVersion: eventstreams.ibm.com/v1beta2
 kind: EventStreams
 metadata:
   name: my-kafka-cluster
-  annotations:
-    eventstreams.ibm.com/apicurio-registry-version: '>=2.4'
 spec:
   adminApi: {}
   adminUI:
