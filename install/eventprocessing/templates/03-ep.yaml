@@ -25,10 +25,24 @@ spec:
               volumeMounts:
                 - mountPath: /opt/ibm/sp-backend/certs
                   name: truststore
+              resources:
+                limits:
+                  cpu: '4'
+                  memory: 4Gi
+                requests:
+                  cpu: '4'
+                  memory: 4Gi
             - name: ui
               envFrom:
                 - configMapRef:
                     name: event-automation-welcome-urls
+              resources:
+                limits:
+                  cpu: '4'
+                  memory: 4Gi
+                requests:
+                  cpu: '4'
+                  memory: 4Gi
           volumes:
             - name: truststore
               secret:

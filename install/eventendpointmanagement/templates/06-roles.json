@@ -11,6 +11,36 @@
             "roles": [
                 "viewer"
             ]
-        }
+        },
+        { "id": "student-01", "roles": [ "viewer" ] },
+        { "id": "student-02", "roles": [ "viewer" ] },
+        { "id": "student-03", "roles": [ "viewer" ] },
+        { "id": "student-04", "roles": [ "viewer" ] },
+        { "id": "student-05", "roles": [ "viewer" ] },
+        { "id": "student-06", "roles": [ "viewer" ] },
+        { "id": "student-07", "roles": [ "viewer" ] },
+        { "id": "student-08", "roles": [ "viewer" ] },
+        { "id": "student-09", "roles": [ "viewer" ] },
+        { "id": "student-10", "roles": [ "viewer" ] },
+        { "id": "student-11", "roles": [ "viewer" ] },
+        { "id": "student-12", "roles": [ "viewer" ] },
+        { "id": "student-13", "roles": [ "viewer" ] },
+        { "id": "student-14", "roles": [ "viewer" ] },
+        { "id": "student-15", "roles": [ "viewer" ] },
+        { "id": "student-16", "roles": [ "viewer" ] },
+        { "id": "student-17", "roles": [ "viewer" ] },
+        { "id": "student-18", "roles": [ "viewer" ] },
+        { "id": "student-19", "roles": [ "viewer" ] },
+        { "id": "student-20", "roles": [ "viewer" ] },
+        { "id": "student-21", "roles": [ "viewer" ] },
+        { "id": "student-22", "roles": [ "viewer" ] },
+        { "id": "student-23", "roles": [ "viewer" ] },
+        { "id": "student-24", "roles": [ "viewer" ] },
+        { "id": "student-25", "roles": [ "viewer" ] },
+        { "id": "student-26", "roles": [ "viewer" ] },
+        { "id": "student-27", "roles": [ "viewer" ] },
+        { "id": "student-28", "roles": [ "viewer" ] },
+        { "id": "student-29", "roles": [ "viewer" ] },
+        { "id": "student-30", "roles": [ "viewer" ] }
     ]
 }

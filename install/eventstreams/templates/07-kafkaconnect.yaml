@@ -56,7 +56,7 @@ spec:
     trustedCertificates:
       - certificate: ca.crt
         secretName: my-kafka-cluster-cluster-ca-cert
-  replicas: 1
+  replicas: 2
   build:
     output:
       type: docker

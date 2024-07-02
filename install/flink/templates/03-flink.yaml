@@ -9,7 +9,7 @@ spec:
     license.accept: '{{ license_accept }}'
     license.use: EventAutomationNonProduction
     # scaling
-    taskmanager.numberOfTaskSlots: '4'
+    taskmanager.numberOfTaskSlots: '10'
     # state and persistence
     state.backend.type: rocksdb
     state.checkpoints.num-retained: '3'
@@ -24,13 +24,13 @@ spec:
   jobManager:
     replicas: 1
     resource:
-      cpu: 0.25
-      memory: 2048m
+      cpu: 2
+      memory: 4096m
   serviceAccount: flink
   taskManager:
     resource:
-      cpu: 1
-      memory: 2048m
+      cpu: 2
+      memory: 4096m
   mode: native
   podTemplate:
     apiVersion: v1
