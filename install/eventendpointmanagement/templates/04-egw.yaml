@@ -11,17 +11,6 @@ spec:
     license: L-HRZF-DWHH7A
     metric: VIRTUAL_PROCESSOR_CORE
     use: EventAutomationNonProduction
-  template:
-    pod:
-      spec:
-        containers:
-          - name: egw
-            resources:
-              requests:
-                cpu: '0.5'
-                memory: 512Mi
-              limits:
-                cpu: '1'
-                memory: 1Gi
+  replicas: 3
   tls:
     caSecretName: my-eem-manager-ibm-eem-manager-ca
