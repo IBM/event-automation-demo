@@ -1,0 +1,4800 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student01-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT01.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student02-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT02.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student03-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT03.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student04-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT04.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student05-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT05.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student06-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT06.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student07-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT07.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student08-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT08.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student09-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT09.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student10-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT10.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student11-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT11.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student12-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT12.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student13-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT13.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student14-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT14.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student15-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT15.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student16-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT16.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student17-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT17.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student18-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT18.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student19-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT19.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student20-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT20.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student21-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT21.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student22-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT22.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student23-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT23.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student24-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT24.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student25-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT25.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student26-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT26.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student27-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT27.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student28-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT28.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student29-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT29.REVIEWS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-orders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.ORDERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-cancellations
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.CANCELS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-badgeevents
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.BADGEIN
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-stockmovement
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.STOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-customers
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.CUSTOMERS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-sensorreadings
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.SENSORS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-onlineorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-outofstocks
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.NOSTOCK
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-returnrequests
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.RETURNS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: student30-productreviews
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: STUDENT30.REVIEWS
+
+---
+
