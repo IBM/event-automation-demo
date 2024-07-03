@@ -1,0 +1,1357 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student01
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT01.ORDERS
+    topic.name.cancellations: STUDENT01.CANCELS
+    topic.name.badgeins: STUDENT01.BADGEIN
+    topic.name.stockmovements: STUDENT01.STOCK
+    topic.name.newcustomers: STUDENT01.CUSTOMERS
+    topic.name.sensorreadings: STUDENT01.SENSORS
+    topic.name.onlineorders: STUDENT01.ONLINE
+    topic.name.outofstocks: STUDENT01.NOSTOCK
+    topic.name.returnrequests: STUDENT01.RETURNS
+    topic.name.productreviews: STUDENT01.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student02
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT02.ORDERS
+    topic.name.cancellations: STUDENT02.CANCELS
+    topic.name.badgeins: STUDENT02.BADGEIN
+    topic.name.stockmovements: STUDENT02.STOCK
+    topic.name.newcustomers: STUDENT02.CUSTOMERS
+    topic.name.sensorreadings: STUDENT02.SENSORS
+    topic.name.onlineorders: STUDENT02.ONLINE
+    topic.name.outofstocks: STUDENT02.NOSTOCK
+    topic.name.returnrequests: STUDENT02.RETURNS
+    topic.name.productreviews: STUDENT02.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student03
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT03.ORDERS
+    topic.name.cancellations: STUDENT03.CANCELS
+    topic.name.badgeins: STUDENT03.BADGEIN
+    topic.name.stockmovements: STUDENT03.STOCK
+    topic.name.newcustomers: STUDENT03.CUSTOMERS
+    topic.name.sensorreadings: STUDENT03.SENSORS
+    topic.name.onlineorders: STUDENT03.ONLINE
+    topic.name.outofstocks: STUDENT03.NOSTOCK
+    topic.name.returnrequests: STUDENT03.RETURNS
+    topic.name.productreviews: STUDENT03.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student04
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT04.ORDERS
+    topic.name.cancellations: STUDENT04.CANCELS
+    topic.name.badgeins: STUDENT04.BADGEIN
+    topic.name.stockmovements: STUDENT04.STOCK
+    topic.name.newcustomers: STUDENT04.CUSTOMERS
+    topic.name.sensorreadings: STUDENT04.SENSORS
+    topic.name.onlineorders: STUDENT04.ONLINE
+    topic.name.outofstocks: STUDENT04.NOSTOCK
+    topic.name.returnrequests: STUDENT04.RETURNS
+    topic.name.productreviews: STUDENT04.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student05
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT05.ORDERS
+    topic.name.cancellations: STUDENT05.CANCELS
+    topic.name.badgeins: STUDENT05.BADGEIN
+    topic.name.stockmovements: STUDENT05.STOCK
+    topic.name.newcustomers: STUDENT05.CUSTOMERS
+    topic.name.sensorreadings: STUDENT05.SENSORS
+    topic.name.onlineorders: STUDENT05.ONLINE
+    topic.name.outofstocks: STUDENT05.NOSTOCK
+    topic.name.returnrequests: STUDENT05.RETURNS
+    topic.name.productreviews: STUDENT05.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student06
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT06.ORDERS
+    topic.name.cancellations: STUDENT06.CANCELS
+    topic.name.badgeins: STUDENT06.BADGEIN
+    topic.name.stockmovements: STUDENT06.STOCK
+    topic.name.newcustomers: STUDENT06.CUSTOMERS
+    topic.name.sensorreadings: STUDENT06.SENSORS
+    topic.name.onlineorders: STUDENT06.ONLINE
+    topic.name.outofstocks: STUDENT06.NOSTOCK
+    topic.name.returnrequests: STUDENT06.RETURNS
+    topic.name.productreviews: STUDENT06.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student07
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT07.ORDERS
+    topic.name.cancellations: STUDENT07.CANCELS
+    topic.name.badgeins: STUDENT07.BADGEIN
+    topic.name.stockmovements: STUDENT07.STOCK
+    topic.name.newcustomers: STUDENT07.CUSTOMERS
+    topic.name.sensorreadings: STUDENT07.SENSORS
+    topic.name.onlineorders: STUDENT07.ONLINE
+    topic.name.outofstocks: STUDENT07.NOSTOCK
+    topic.name.returnrequests: STUDENT07.RETURNS
+    topic.name.productreviews: STUDENT07.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student08
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT08.ORDERS
+    topic.name.cancellations: STUDENT08.CANCELS
+    topic.name.badgeins: STUDENT08.BADGEIN
+    topic.name.stockmovements: STUDENT08.STOCK
+    topic.name.newcustomers: STUDENT08.CUSTOMERS
+    topic.name.sensorreadings: STUDENT08.SENSORS
+    topic.name.onlineorders: STUDENT08.ONLINE
+    topic.name.outofstocks: STUDENT08.NOSTOCK
+    topic.name.returnrequests: STUDENT08.RETURNS
+    topic.name.productreviews: STUDENT08.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student09
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT09.ORDERS
+    topic.name.cancellations: STUDENT09.CANCELS
+    topic.name.badgeins: STUDENT09.BADGEIN
+    topic.name.stockmovements: STUDENT09.STOCK
+    topic.name.newcustomers: STUDENT09.CUSTOMERS
+    topic.name.sensorreadings: STUDENT09.SENSORS
+    topic.name.onlineorders: STUDENT09.ONLINE
+    topic.name.outofstocks: STUDENT09.NOSTOCK
+    topic.name.returnrequests: STUDENT09.RETURNS
+    topic.name.productreviews: STUDENT09.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student10
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT10.ORDERS
+    topic.name.cancellations: STUDENT10.CANCELS
+    topic.name.badgeins: STUDENT10.BADGEIN
+    topic.name.stockmovements: STUDENT10.STOCK
+    topic.name.newcustomers: STUDENT10.CUSTOMERS
+    topic.name.sensorreadings: STUDENT10.SENSORS
+    topic.name.onlineorders: STUDENT10.ONLINE
+    topic.name.outofstocks: STUDENT10.NOSTOCK
+    topic.name.returnrequests: STUDENT10.RETURNS
+    topic.name.productreviews: STUDENT10.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student11
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT11.ORDERS
+    topic.name.cancellations: STUDENT11.CANCELS
+    topic.name.badgeins: STUDENT11.BADGEIN
+    topic.name.stockmovements: STUDENT11.STOCK
+    topic.name.newcustomers: STUDENT11.CUSTOMERS
+    topic.name.sensorreadings: STUDENT11.SENSORS
+    topic.name.onlineorders: STUDENT11.ONLINE
+    topic.name.outofstocks: STUDENT11.NOSTOCK
+    topic.name.returnrequests: STUDENT11.RETURNS
+    topic.name.productreviews: STUDENT11.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student12
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT12.ORDERS
+    topic.name.cancellations: STUDENT12.CANCELS
+    topic.name.badgeins: STUDENT12.BADGEIN
+    topic.name.stockmovements: STUDENT12.STOCK
+    topic.name.newcustomers: STUDENT12.CUSTOMERS
+    topic.name.sensorreadings: STUDENT12.SENSORS
+    topic.name.onlineorders: STUDENT12.ONLINE
+    topic.name.outofstocks: STUDENT12.NOSTOCK
+    topic.name.returnrequests: STUDENT12.RETURNS
+    topic.name.productreviews: STUDENT12.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student13
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT13.ORDERS
+    topic.name.cancellations: STUDENT13.CANCELS
+    topic.name.badgeins: STUDENT13.BADGEIN
+    topic.name.stockmovements: STUDENT13.STOCK
+    topic.name.newcustomers: STUDENT13.CUSTOMERS
+    topic.name.sensorreadings: STUDENT13.SENSORS
+    topic.name.onlineorders: STUDENT13.ONLINE
+    topic.name.outofstocks: STUDENT13.NOSTOCK
+    topic.name.returnrequests: STUDENT13.RETURNS
+    topic.name.productreviews: STUDENT13.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student14
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT14.ORDERS
+    topic.name.cancellations: STUDENT14.CANCELS
+    topic.name.badgeins: STUDENT14.BADGEIN
+    topic.name.stockmovements: STUDENT14.STOCK
+    topic.name.newcustomers: STUDENT14.CUSTOMERS
+    topic.name.sensorreadings: STUDENT14.SENSORS
+    topic.name.onlineorders: STUDENT14.ONLINE
+    topic.name.outofstocks: STUDENT14.NOSTOCK
+    topic.name.returnrequests: STUDENT14.RETURNS
+    topic.name.productreviews: STUDENT14.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student15
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT15.ORDERS
+    topic.name.cancellations: STUDENT15.CANCELS
+    topic.name.badgeins: STUDENT15.BADGEIN
+    topic.name.stockmovements: STUDENT15.STOCK
+    topic.name.newcustomers: STUDENT15.CUSTOMERS
+    topic.name.sensorreadings: STUDENT15.SENSORS
+    topic.name.onlineorders: STUDENT15.ONLINE
+    topic.name.outofstocks: STUDENT15.NOSTOCK
+    topic.name.returnrequests: STUDENT15.RETURNS
+    topic.name.productreviews: STUDENT15.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student16
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT16.ORDERS
+    topic.name.cancellations: STUDENT16.CANCELS
+    topic.name.badgeins: STUDENT16.BADGEIN
+    topic.name.stockmovements: STUDENT16.STOCK
+    topic.name.newcustomers: STUDENT16.CUSTOMERS
+    topic.name.sensorreadings: STUDENT16.SENSORS
+    topic.name.onlineorders: STUDENT16.ONLINE
+    topic.name.outofstocks: STUDENT16.NOSTOCK
+    topic.name.returnrequests: STUDENT16.RETURNS
+    topic.name.productreviews: STUDENT16.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student17
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT17.ORDERS
+    topic.name.cancellations: STUDENT17.CANCELS
+    topic.name.badgeins: STUDENT17.BADGEIN
+    topic.name.stockmovements: STUDENT17.STOCK
+    topic.name.newcustomers: STUDENT17.CUSTOMERS
+    topic.name.sensorreadings: STUDENT17.SENSORS
+    topic.name.onlineorders: STUDENT17.ONLINE
+    topic.name.outofstocks: STUDENT17.NOSTOCK
+    topic.name.returnrequests: STUDENT17.RETURNS
+    topic.name.productreviews: STUDENT17.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student18
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT18.ORDERS
+    topic.name.cancellations: STUDENT18.CANCELS
+    topic.name.badgeins: STUDENT18.BADGEIN
+    topic.name.stockmovements: STUDENT18.STOCK
+    topic.name.newcustomers: STUDENT18.CUSTOMERS
+    topic.name.sensorreadings: STUDENT18.SENSORS
+    topic.name.onlineorders: STUDENT18.ONLINE
+    topic.name.outofstocks: STUDENT18.NOSTOCK
+    topic.name.returnrequests: STUDENT18.RETURNS
+    topic.name.productreviews: STUDENT18.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student19
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT19.ORDERS
+    topic.name.cancellations: STUDENT19.CANCELS
+    topic.name.badgeins: STUDENT19.BADGEIN
+    topic.name.stockmovements: STUDENT19.STOCK
+    topic.name.newcustomers: STUDENT19.CUSTOMERS
+    topic.name.sensorreadings: STUDENT19.SENSORS
+    topic.name.onlineorders: STUDENT19.ONLINE
+    topic.name.outofstocks: STUDENT19.NOSTOCK
+    topic.name.returnrequests: STUDENT19.RETURNS
+    topic.name.productreviews: STUDENT19.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student20
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT20.ORDERS
+    topic.name.cancellations: STUDENT20.CANCELS
+    topic.name.badgeins: STUDENT20.BADGEIN
+    topic.name.stockmovements: STUDENT20.STOCK
+    topic.name.newcustomers: STUDENT20.CUSTOMERS
+    topic.name.sensorreadings: STUDENT20.SENSORS
+    topic.name.onlineorders: STUDENT20.ONLINE
+    topic.name.outofstocks: STUDENT20.NOSTOCK
+    topic.name.returnrequests: STUDENT20.RETURNS
+    topic.name.productreviews: STUDENT20.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student21
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT21.ORDERS
+    topic.name.cancellations: STUDENT21.CANCELS
+    topic.name.badgeins: STUDENT21.BADGEIN
+    topic.name.stockmovements: STUDENT21.STOCK
+    topic.name.newcustomers: STUDENT21.CUSTOMERS
+    topic.name.sensorreadings: STUDENT21.SENSORS
+    topic.name.onlineorders: STUDENT21.ONLINE
+    topic.name.outofstocks: STUDENT21.NOSTOCK
+    topic.name.returnrequests: STUDENT21.RETURNS
+    topic.name.productreviews: STUDENT21.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student22
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT22.ORDERS
+    topic.name.cancellations: STUDENT22.CANCELS
+    topic.name.badgeins: STUDENT22.BADGEIN
+    topic.name.stockmovements: STUDENT22.STOCK
+    topic.name.newcustomers: STUDENT22.CUSTOMERS
+    topic.name.sensorreadings: STUDENT22.SENSORS
+    topic.name.onlineorders: STUDENT22.ONLINE
+    topic.name.outofstocks: STUDENT22.NOSTOCK
+    topic.name.returnrequests: STUDENT22.RETURNS
+    topic.name.productreviews: STUDENT22.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student23
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT23.ORDERS
+    topic.name.cancellations: STUDENT23.CANCELS
+    topic.name.badgeins: STUDENT23.BADGEIN
+    topic.name.stockmovements: STUDENT23.STOCK
+    topic.name.newcustomers: STUDENT23.CUSTOMERS
+    topic.name.sensorreadings: STUDENT23.SENSORS
+    topic.name.onlineorders: STUDENT23.ONLINE
+    topic.name.outofstocks: STUDENT23.NOSTOCK
+    topic.name.returnrequests: STUDENT23.RETURNS
+    topic.name.productreviews: STUDENT23.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student24
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT24.ORDERS
+    topic.name.cancellations: STUDENT24.CANCELS
+    topic.name.badgeins: STUDENT24.BADGEIN
+    topic.name.stockmovements: STUDENT24.STOCK
+    topic.name.newcustomers: STUDENT24.CUSTOMERS
+    topic.name.sensorreadings: STUDENT24.SENSORS
+    topic.name.onlineorders: STUDENT24.ONLINE
+    topic.name.outofstocks: STUDENT24.NOSTOCK
+    topic.name.returnrequests: STUDENT24.RETURNS
+    topic.name.productreviews: STUDENT24.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student25
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT25.ORDERS
+    topic.name.cancellations: STUDENT25.CANCELS
+    topic.name.badgeins: STUDENT25.BADGEIN
+    topic.name.stockmovements: STUDENT25.STOCK
+    topic.name.newcustomers: STUDENT25.CUSTOMERS
+    topic.name.sensorreadings: STUDENT25.SENSORS
+    topic.name.onlineorders: STUDENT25.ONLINE
+    topic.name.outofstocks: STUDENT25.NOSTOCK
+    topic.name.returnrequests: STUDENT25.RETURNS
+    topic.name.productreviews: STUDENT25.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student26
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT26.ORDERS
+    topic.name.cancellations: STUDENT26.CANCELS
+    topic.name.badgeins: STUDENT26.BADGEIN
+    topic.name.stockmovements: STUDENT26.STOCK
+    topic.name.newcustomers: STUDENT26.CUSTOMERS
+    topic.name.sensorreadings: STUDENT26.SENSORS
+    topic.name.onlineorders: STUDENT26.ONLINE
+    topic.name.outofstocks: STUDENT26.NOSTOCK
+    topic.name.returnrequests: STUDENT26.RETURNS
+    topic.name.productreviews: STUDENT26.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student27
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT27.ORDERS
+    topic.name.cancellations: STUDENT27.CANCELS
+    topic.name.badgeins: STUDENT27.BADGEIN
+    topic.name.stockmovements: STUDENT27.STOCK
+    topic.name.newcustomers: STUDENT27.CUSTOMERS
+    topic.name.sensorreadings: STUDENT27.SENSORS
+    topic.name.onlineorders: STUDENT27.ONLINE
+    topic.name.outofstocks: STUDENT27.NOSTOCK
+    topic.name.returnrequests: STUDENT27.RETURNS
+    topic.name.productreviews: STUDENT27.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student28
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT28.ORDERS
+    topic.name.cancellations: STUDENT28.CANCELS
+    topic.name.badgeins: STUDENT28.BADGEIN
+    topic.name.stockmovements: STUDENT28.STOCK
+    topic.name.newcustomers: STUDENT28.CUSTOMERS
+    topic.name.sensorreadings: STUDENT28.SENSORS
+    topic.name.onlineorders: STUDENT28.ONLINE
+    topic.name.outofstocks: STUDENT28.NOSTOCK
+    topic.name.returnrequests: STUDENT28.RETURNS
+    topic.name.productreviews: STUDENT28.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student29
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT29.ORDERS
+    topic.name.cancellations: STUDENT29.CANCELS
+    topic.name.badgeins: STUDENT29.BADGEIN
+    topic.name.stockmovements: STUDENT29.STOCK
+    topic.name.newcustomers: STUDENT29.CUSTOMERS
+    topic.name.sensorreadings: STUDENT29.SENSORS
+    topic.name.onlineorders: STUDENT29.ONLINE
+    topic.name.outofstocks: STUDENT29.NOSTOCK
+    topic.name.returnrequests: STUDENT29.RETURNS
+    topic.name.productreviews: STUDENT29.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+---
+
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnector
+metadata:
+  name: kafka-datagen-student30
+  labels:
+    eventstreams.ibm.com/cluster: kafka-connect-cluster
+spec:
+  class: com.ibm.eventautomation.demos.loosehangerjeans.DatagenSourceConnector
+  tasksMax: 1
+  autoRestart:
+    enabled: true
+    maxRestarts: 20
+  config:
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    key.converter.schemas.enable: false
+    value.converter: io.apicurio.registry.utils.converter.AvroConverter
+    value.converter.schemas.enable: true
+
+    topic.name.orders: STUDENT30.ORDERS
+    topic.name.cancellations: STUDENT30.CANCELS
+    topic.name.badgeins: STUDENT30.BADGEIN
+    topic.name.stockmovements: STUDENT30.STOCK
+    topic.name.newcustomers: STUDENT30.CUSTOMERS
+    topic.name.sensorreadings: STUDENT30.SENSORS
+    topic.name.onlineorders: STUDENT30.ONLINE
+    topic.name.outofstocks: STUDENT30.NOSTOCK
+    topic.name.returnrequests: STUDENT30.RETURNS
+    topic.name.productreviews: STUDENT30.REVIEWS
+
+    timings.ms.badgeins: 60000
+
+    value.converter.apicurio.auth.username: kafka-connect-credentials
+    value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
+
+    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+
+    value.converter.apicurio.registry.url: https://my-kafka-cluster-ibm-es-ac-reg-external-event-automation.apps.ocp.ibm.edu
+    value.converter.apicurio.registry.auto-register: true
+    value.converter.apicurio.registry.dereference-schema: true
+    value.converter.apicurio.registry.global-id: io.apicurio.registry.utils.serde.strategy.GetOrCreateIdStrategy
+
+
+
+
+
+
+
+

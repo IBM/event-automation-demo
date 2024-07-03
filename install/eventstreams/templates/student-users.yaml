@@ -1,0 +1,1228 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student01
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT01
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student01
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student02
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT02
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student02
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student03
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT03
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student03
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student04
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT04
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student04
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student05
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT05
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student05
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student06
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT06
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student06
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student07
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT07
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student07
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student08
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT08
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student08
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student09
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT09
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student09
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student10
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT10
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student10
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student11
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT11
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student11
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student12
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT12
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student12
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student13
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT13
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student13
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student14
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT14
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student14
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student15
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT15
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student15
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student16
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT16
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student16
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student17
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT17
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student17
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student18
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT18
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student18
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student19
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT19
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student19
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student20
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT20
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student20
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student21
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT21
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student21
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student22
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT22
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student22
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student23
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT23
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student23
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student24
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT24
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student24
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student25
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT25
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student25
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student26
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT26
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student26
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student27
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT27
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student27
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student28
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT28
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student28
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student29
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT29
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student29
+          patternType: prefix
+          type: group
+    type: simple
+
+---
+
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: student30
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    acls:
+      - operations:
+          - DescribeConfigs
+        resource:
+          type: cluster
+      - operations:
+          - Read
+          - Write
+          - DescribeConfigs
+        resource:
+          name: STUDENT30
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+      - operations:
+          - Read
+          - Delete
+        resource:
+          name: student30
+          patternType: prefix
+          type: group
+    type: simple
