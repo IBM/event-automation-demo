@@ -23,6 +23,7 @@ spec:
     iam: false
     monitoring: false
   strimziOverrides:
+    kafkaExporter: {}
     entityOperator:
       topicOperator: {}
       userOperator: {}
