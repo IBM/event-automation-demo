@@ -10,6 +10,9 @@
   tasks:
     - name: Install local pre-requisites
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+      tags:
+        - instance
+        - operator
 
     - name: Check for required variables
       ansible.builtin.assert:
@@ -17,6 +20,8 @@
           - license_accept is defined
           - eventautomation_namespace is defined
           - ibm_entitlement_key is defined
+      tags:
+        - operator
 
     - name: Setup operator
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-operator.yaml"
@@ -25,11 +30,15 @@
         catalogsource_template: "{{ playbook_dir }}/templates/01-catalog-source.yaml"
         subscription_name: "ibm-event-endpoint-management"
         subscription_template: "{{ playbook_dir }}/templates/02-operator-subscription.yaml"
+      tags:
+        - operator
 
     - name: Create namespace for Event Automation
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-namespace.yaml"
       vars:
         namespace: "{{ eventautomation_namespace }}"
+      tags:
+        - instance
 
     - name: Create Event Endpoint Management manager
       kubernetes.core.k8s:
@@ -42,6 +51,8 @@
           status: true
           type: Ready
         wait_timeout: 1200
+      tags:
+        - instance
 
     - name: Get route for use by Event Gateway
       kubernetes.core.k8s_info:
@@ -51,6 +62,8 @@
         name: my-eem-manager-ibm-eem-gateway
         namespace: "{{ eventautomation_namespace }}"
       register: egw_route
+      tags:
+        - instance
 
     - name: Create Event Endpoint Management Event Gateway
       vars:
@@ -65,6 +78,8 @@
           status: true
           type: Ready
         wait_timeout: 1200
+      tags:
+        - instance
 
     - name: Add demo users to the auth config
       kubernetes.core.k8s:
@@ -75,6 +90,8 @@
         definition:
           data:
             user-credentials.json: "{{ lookup('template', '{{ playbook_dir }}/templates/05-users.json') | b64encode }}"
+      tags:
+        - instance
 
     - name: Add demo roles to the auth config
       kubernetes.core.k8s:
@@ -85,3 +102,5 @@
         definition:
           data:
             user-mapping.json: "{{ lookup('template', '{{ playbook_dir }}/templates/06-roles.json') | b64encode }}"
+      tags:
+        - instance

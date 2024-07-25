@@ -14,11 +14,15 @@
   tasks:
     - name: Install local pre-requisites
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+      tags:
+        - instance
 
     - name: Create namespace for Event Automation
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-namespace.yaml"
       vars:
         namespace: "{{ eventautomation_namespace }}"
+      tags:
+        - instance
 
     - name: Setup welcome page
       kubernetes.core.k8s:
@@ -26,3 +30,5 @@
         state: present
         namespace: "{{ eventautomation_namespace }}"
         template: "{{ playbook_dir }}/templates/01-configmap.yaml"
+      tags:
+        - instance

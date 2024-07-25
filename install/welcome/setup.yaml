@@ -9,6 +9,9 @@
   tasks:
     - name: Install local pre-requisites
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+      tags:
+        - instance
+        - operator
 
     - name: Get UI route for Event Streams
       kubernetes.core.k8s_info:
@@ -18,6 +21,8 @@
         name: my-kafka-cluster
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventstreams
+      tags:
+        - instance
 
     - name: Get UI route for Event Endpoint Management
       kubernetes.core.k8s_info:
@@ -27,6 +32,8 @@
         name: my-eem-manager
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventendpointmanagement
+      tags:
+        - instance
 
     - name: Get certificate for Event Endpoint Management
       kubernetes.core.k8s_info:
@@ -36,6 +43,8 @@
         name: my-eem-manager-ibm-eem-manager-ca
         namespace: "{{ eventautomation_namespace }}"
       register: certs_eventendpointmanagement
+      tags:
+        - instance
 
     - name: Get route for Event Processing
       kubernetes.core.k8s_info:
@@ -45,6 +54,8 @@
         name: my-event-processing
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventprocessing
+      tags:
+        - instance
 
     - name: Setup welcome page
       kubernetes.core.k8s:
@@ -59,6 +70,8 @@
         ui_url_eventendpointmanagement: "{{ info_eventendpointmanagement.resources[0].status.endpoints[0].uri | ansible.builtin.regex_replace('https://', '') }}"
         certificate_eventendpointmanagement: "{{ certs_eventendpointmanagement.resources[0].data['ca.crt'] | ansible.builtin.b64decode | ansible.builtin.regex_replace('\\n', '\\\\n', multiline=True) }}"
         welcome_url_eventprocessing: "{{ info_eventprocessing.resources[0].status.endpoints[0].uri }}"
+      tags:
+        - instance
 
     - name: Update Event Streams UI
       kubernetes.core.k8s:
@@ -70,6 +83,8 @@
         welcome_url_eventstreams: "{{ info_eventstreams.resources[0].status.adminUiUrl }}"
         welcome_url_eventendpointmanagement: "{{ info_eventendpointmanagement.resources[0].status.endpoints[0].uri }}"
         welcome_url_eventprocessing: "{{ info_eventprocessing.resources[0].status.endpoints[0].uri }}"
+      tags:
+        - instance
 
     - name: Restart Event Endpoint Management
       kubernetes.core.k8s:
@@ -78,6 +93,8 @@
         namespace: "{{ eventautomation_namespace }}"
         kind: Pod
         name: my-eem-manager-ibm-eem-manager-0
+      tags:
+        - instance
 
     - name: Restart Event Processing
       kubernetes.core.k8s:
@@ -86,3 +103,5 @@
         namespace: "{{ eventautomation_namespace }}"
         kind: Pod
         name: my-event-processing-ibm-ep-sts-0
+      tags:
+        - instance

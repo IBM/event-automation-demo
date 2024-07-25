@@ -1,10 +1,11 @@
 ---
-
 - name: Create a catalog source
   kubernetes.core.k8s:
     validate_certs: false
     state: present
     src: "{{ catalogsource_template }}"
+  tags:
+    - operator
 
 - name: Wait for the catalog source to be ready
   kubernetes.core.k8s_info:
@@ -18,12 +19,16 @@
   until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
   retries: 30
   delay: 10
+  tags:
+    - operator
 
 - name: Create an operator subscription
   kubernetes.core.k8s:
     validate_certs: false
     state: present
     src: "{{ subscription_template }}"
+  tags:
+    - operator
 
 - name: Wait for the operator pod to be ready
   kubernetes.core.k8s_info:
@@ -37,3 +42,5 @@
   until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
   retries: 60
   delay: 20
+  tags:
+    - operator

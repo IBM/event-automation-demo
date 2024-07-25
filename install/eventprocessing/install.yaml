@@ -10,6 +10,9 @@
   tasks:
     - name: Install local pre-requisites
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+      tags:
+        - operator
+        - instance
 
     - name: Check for required variables
       ansible.builtin.assert:
@@ -17,6 +20,8 @@
           - license_accept is defined
           - eventautomation_namespace is defined
           - ibm_entitlement_key is defined
+      tags:
+        - operator
 
     - name: Setup operator
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-operator.yaml"
@@ -25,11 +30,16 @@
         catalogsource_template: "{{ playbook_dir }}/templates/01-catalog-source.yaml"
         subscription_name: "ibm-event-processing"
         subscription_template: "{{ playbook_dir }}/templates/02-operator-subscription.yaml"
+      tags:
+        - operator
 
     - name: Create namespace for Event Automation
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-namespace.yaml"
       vars:
         namespace: "{{ eventautomation_namespace }}"
+      tags:
+        - instance
+
 
     - name: Check if an Event Automation truststore has been prepared
       kubernetes.core.k8s_info:
@@ -37,10 +47,14 @@
         kind: Secret
         name: eventautomation-truststore
       register: truststore_setup
+      tags:
+        - instance
 
     - name: Create truststore if no secret exists
       ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/create-ea-truststore.yaml"
       when: truststore_setup.resources | length == 0
+      tags:
+        - instance
 
     - name: Create Event Processing authoring tool
       kubernetes.core.k8s:
@@ -53,6 +67,8 @@
           status: true
           type: Ready
         wait_timeout: 1200
+      tags:
+        - instance
 
     - name: Add demo users to the auth config
       kubernetes.core.k8s:
@@ -63,6 +79,8 @@
         definition:
           data:
             user-credentials.json: "{{ lookup('template', '{{ playbook_dir }}/templates/05-users.json') | b64encode }}"
+      tags:
+        - instance
 
     - name: Add demo roles to the auth config
       kubernetes.core.k8s:
@@ -73,3 +91,5 @@
         definition:
           data:
             user-mapping.json: "{{ lookup('template', '{{ playbook_dir }}/templates/06-roles.json') | b64encode }}"
+      tags:
+        - instance
