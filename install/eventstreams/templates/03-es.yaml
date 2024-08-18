@@ -31,6 +31,8 @@ spec:
         type: simple
       config:
         auto.create.topics.enable: true
+        default.replication.factor: 1
+        min.insync.replicas: 1
       listeners:
         - name: authsslsvc
           authentication:

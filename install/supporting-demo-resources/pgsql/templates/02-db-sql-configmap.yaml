@@ -18,7 +18,7 @@ data:
         INSERT INTO buildings VALUES ( 'G',  'Heartswood Road',    '+1 202-918-7019');
         INSERT INTO buildings VALUES ( 'H',  'Denbigh Crest',      '+1 202-918-1911');
 
-        CREATE TABLE warehouses (warehouseid VARCHAR(7) NOT NULL, location VARCHAR(20) NOT NULL, sqft INTEGER NOT NULL, managerid VARCHAR(10), status INTEGER, PRIMARY KEY (warehouseid) );
+        CREATE TABLE warehouses (warehouseid VARCHAR(7) NOT NULL, location VARCHAR(20) NOT NULL, sqft INTEGER NOT NULL, managerid VARCHAR(12), status INTEGER, PRIMARY KEY (warehouseid) );
 
         INSERT INTO warehouses VALUES ('North',   'Beyghworth', 25000,  '86621106601', 0);
         INSERT INTO warehouses VALUES ('South',   'New Kenroy', 82000,  '13303921130', 0);

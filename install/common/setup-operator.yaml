@@ -44,3 +44,9 @@
   delay: 20
   tags:
     - operator
+
+- name: Wait for operator to start webhooks
+  ansible.builtin.pause:
+    seconds: 30
+  tags:
+    - operator
