@@ -5,7 +5,7 @@ metadata:
 spec:
   flinkConfiguration:
     # license accepts
-    license.license: L-HRZF-DWHH7A
+    license.license: L-KCVZ-JL5CRM
     license.accept: '{{ license_accept }}'
     license.use: EventAutomationNonProduction
     # scaling
