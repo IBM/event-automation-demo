@@ -8,7 +8,7 @@ spec:
   gatewayID: gateway-1
   license:
     accept: {{ license_accept }}
-    license: L-HRZF-DWHH7A
+    license: L-KCVZ-JL5CRM
     metric: VIRTUAL_PROCESSOR_CORE
     use: EventAutomationNonProduction
   template:

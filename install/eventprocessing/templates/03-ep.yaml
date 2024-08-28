@@ -40,5 +40,5 @@ spec:
     endpoint: 'my-flink-rest:8081'
   license:
     accept: true
-    license: L-HRZF-DWHH7A
+    license: L-KCVZ-JL5CRM
     use: EventAutomationNonProduction

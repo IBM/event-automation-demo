@@ -6,7 +6,7 @@ metadata:
   labels:
     operators.coreos.com/ibm-eventprocessing.openshift-operators: ''
 spec:
-  channel: v1.1
+  channel: v1.2
   name: ibm-eventprocessing
   source: ep-operator-catalog
   sourceNamespace: openshift-marketplace
