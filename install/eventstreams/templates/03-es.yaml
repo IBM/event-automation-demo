@@ -17,7 +17,7 @@ spec:
   apicurioRegistry: {}
   license:
     accept: {{ license_accept }}
-    license: L-HRZF-DWHH7A
+    license: L-KCVZ-JL5CRM
     use: EventAutomationNonProduction
   requestIbmServices:
     iam: false

@@ -5,7 +5,7 @@ metadata:
     namespace: openshift-marketplace
 spec:
     displayName: IBM ES Catalog
-    image: icr.io/cpopen/ibm-eventstreams-catalog:v3.4.0
+    image: icr.io/cpopen/ibm-eventstreams-catalog:3.5.0
     publisher: IBM
     sourceType: grpc
     updateStrategy:
