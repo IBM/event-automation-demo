@@ -12,6 +12,7 @@ spec:
     key.converter.schemas.enable: false
     value.converter: org.apache.kafka.connect.json.JsonConverter
     value.converter.schemas.enable: false
+    startup.history.enabled: true
 
 ---
 
@@ -32,6 +33,8 @@ spec:
     key.converter.schemas.enable: false
     value.converter: io.apicurio.registry.utils.converter.AvroConverter
     value.converter.schemas.enable: true
+
+    startup.history.enabled: true
 
     topic.name.sensorreadings: SENSOR.READINGS.AVRO
     topic.name.orders: ORDERS.NEW.AVRO
@@ -77,6 +80,8 @@ spec:
     key.converter.schemas.enable: false
     value.converter: io.apicurio.registry.utils.converter.AvroConverter
     value.converter.schemas.enable: true
+
+    startup.history.enabled: false
 
     topic.name.sensorreadings: SENSOR.READINGS.REG
     topic.name.orders: ORDERS.NEW.REG
