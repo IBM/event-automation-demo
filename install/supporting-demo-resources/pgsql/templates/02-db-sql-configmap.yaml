@@ -10,6 +10,7 @@ data:
         set schema 'public';
 
         CREATE TABLE buildings (buildingid VARCHAR(5) NOT NULL, streetname VARCHAR(100) NOT NULL, securitycontact VARCHAR(30) NOT NULL, PRIMARY KEY (buildingid) );
+        ALTER TABLE buildings REPLICA IDENTITY FULL;
 
         INSERT INTO buildings VALUES ( 'A',  'Warren Spinney',     '+1 202-918-2132');
         INSERT INTO buildings VALUES ( 'B',  'Aigburth Hall Road', '+1 202-918-3488');
@@ -19,6 +20,7 @@ data:
         INSERT INTO buildings VALUES ( 'H',  'Denbigh Crest',      '+1 202-918-1911');
 
         CREATE TABLE warehouses (warehouseid VARCHAR(7) NOT NULL, location VARCHAR(20) NOT NULL, sqft INTEGER NOT NULL, managerid VARCHAR(12), status INTEGER, PRIMARY KEY (warehouseid) );
+        ALTER TABLE warehouses REPLICA IDENTITY FULL;
 
         INSERT INTO warehouses VALUES ('North',   'Beyghworth', 25000,  '86621106601', 0);
         INSERT INTO warehouses VALUES ('South',   'New Kenroy', 82000,  '13303921130', 0);
