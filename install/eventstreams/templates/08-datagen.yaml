@@ -81,7 +81,7 @@ spec:
     value.converter: io.apicurio.registry.utils.converter.AvroConverter
     value.converter.schemas.enable: true
 
-    startup.history.enabled: true
+    startup.history.enabled: false
 
     topic.name.sensorreadings: SENSOR.READINGS.REG
     topic.name.orders: ORDERS.NEW.REG
