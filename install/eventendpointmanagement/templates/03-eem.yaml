@@ -5,7 +5,7 @@ metadata:
 spec:
   license:
     accept: {{ license_accept }}
-    license: L-KCVZ-JL5CRM
+    license: L-AUKS-FKVXVL
     metric: VIRTUAL_PROCESSOR_CORE
     use: EventAutomationNonProduction
   manager:
