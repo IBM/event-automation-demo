@@ -44,7 +44,7 @@ spec:
       metadata:
         annotations:
           cloudpakId: c8b82d189e7545f0892db9ef2731b90d
-          productVersion: 11.5.1
+          productVersion: 11.5.2
           productID: 2a79e49111f44ec3acd89608e56138f5
           cloudpakName: IBM Cloud Pak for Integration
           productChargedContainers: kafka-connect-cluster-connect
@@ -60,7 +60,7 @@ spec:
   build:
     output:
       type: docker
-      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.11
+      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.12
     plugins:
       - name: datagen
         artifacts:
@@ -69,12 +69,12 @@ spec:
           - artifact: apicurio-registry-serdes-avro-serde
             group: io.apicurio
             type: maven
-            version: 2.6.5.Final
+            version: 2.6.6.Final
           - artifact: apicurio-registry-utils-converter
             group: io.apicurio
             type: maven
-            version: 2.6.5.Final
+            version: 2.6.6.Final
       - name: mq-source
         artifacts:
           - type: jar
-            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.2.0/kafka-connect-mq-source-2.2.0-jar-with-dependencies.jar
+            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.3.0/kafka-connect-mq-source-2.3.0-jar-with-dependencies.jar
