@@ -60,12 +60,12 @@ spec:
   build:
     output:
       type: docker
-      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.12
+      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.13
     plugins:
       - name: datagen
         artifacts:
           - type: jar
-            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.1.5/kafka-connect-loosehangerjeans-source-0.1.5-jar-with-dependencies.jar
+            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.2.1/kafka-connect-loosehangerjeans-source-0.2.1-jar-with-dependencies.jar
           - artifact: apicurio-registry-serdes-avro-serde
             group: io.apicurio
             type: maven
