@@ -44,7 +44,7 @@ spec:
       metadata:
         annotations:
           cloudpakId: c8b82d189e7545f0892db9ef2731b90d
-          productVersion: 11.5.2
+          productVersion: 11.6.0
           productID: 2a79e49111f44ec3acd89608e56138f5
           cloudpakName: IBM Cloud Pak for Integration
           productChargedContainers: kafka-connect-cluster-connect
@@ -65,7 +65,7 @@ spec:
       - name: datagen
         artifacts:
           - type: jar
-            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.2.1/kafka-connect-loosehangerjeans-source-0.2.1-jar-with-dependencies.jar
+            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.1.5/kafka-connect-loosehangerjeans-source-0.2.1-jar-with-dependencies.jar
           - artifact: apicurio-registry-serdes-avro-serde
             group: io.apicurio
             type: maven
