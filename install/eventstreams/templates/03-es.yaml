@@ -17,11 +17,8 @@ spec:
   apicurioRegistry: {}
   license:
     accept: {{ license_accept }}
-    license: L-KCVZ-JL5CRM
+    license: L-AUKS-FKVXVL
     use: EventAutomationNonProduction
-  requestIbmServices:
-    iam: false
-    monitoring: false
   strimziOverrides:
     entityOperator:
       topicOperator: {}
