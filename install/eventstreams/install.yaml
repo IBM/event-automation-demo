@@ -116,7 +116,7 @@
         wait_condition:
           status: true
           type: Ready
-        wait_timeout: 300
+        wait_timeout: 1200
       tags:
         - instance
 
