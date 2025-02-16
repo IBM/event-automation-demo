@@ -44,6 +44,12 @@ spec:
           tls: true
           type: route
       replicas: 3
+      metricsConfig:
+        type: jmxPrometheusExporter
+        valueFrom:
+          configMapKeyRef:
+            name: eventstreams-metrics
+            key: kafka-metrics-config.yaml
       storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
         type: persistent-claim

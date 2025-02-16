@@ -1,0 +1,12 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: eventautomation-grafana-view
+subjects:
+  - kind: ServiceAccount
+    name: event-automation-grafana
+    namespace: {{ eventautomation_namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-monitoring-view

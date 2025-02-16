@@ -1,0 +1,25 @@
+
+kind: GrafanaDatasource
+apiVersion: grafana.integreatly.org/v1beta1
+metadata:
+  name: event-automation
+spec:
+  datasource:
+    uid: eventautomation-openshift-prometheus
+    name: OpenShift Prometheus
+    type: prometheus
+    url: 'https://thanos-querier.openshift-monitoring.svc.cluster.local:9091'
+    access: proxy
+    isDefault: true
+    editable: false
+    basicAuth: true
+    jsonData:
+      httpHeaderName1: 'Authorization'
+      timeInterval: 5s
+      tlsSkipVerify: true
+    secureJsonData:
+      httpHeaderValue1: 'Bearer {{ prometheus_bearer_token }}'
+  instanceSelector:
+    matchLabels:
+      dashboards: event-automation
+  resyncPeriod: 5m

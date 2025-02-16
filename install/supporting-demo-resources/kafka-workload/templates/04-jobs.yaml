@@ -1,0 +1,130 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: workload-producer
+spec:
+  template:
+    metadata:
+      labels:
+        app: workload-producer
+    spec:
+      imagePullSecrets:
+        - name: ibm-entitlement-key
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: workload-producer
+      containers:
+        - name: kafka-perf
+          image: cp.icr.io/cp/ibm-eventstreams-kafka:11.5.1
+          command:
+            - "/opt/kafka/bin/kafka-producer-perf-test.sh"
+            - "--topic"
+            - "WORKLOAD"
+            - "--num-records"
+            - "500000000"
+            - "--record-size"
+            - "128"
+            - "--throughput"
+            - "-1"
+            - "--producer.config"
+            - "/config/producer.properties"
+          volumeMounts:
+            - mountPath: /certs/cluster
+              name: cluster-ca
+              readOnly: true
+            - mountPath: /config
+              name: producer-properties
+              readOnly: true
+      volumes:
+        - name: cluster-ca
+          secret:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            - key: ca.p12
+              path: ca.p12
+            - key: ca.password
+              path: ca.password
+            secretName: my-kafka-cluster-cluster-ca-cert
+        - name: producer-properties
+          configMap:
+            name: workload-credentials
+      restartPolicy: Never
+      resources:
+        limits:
+          cpu: 1
+          memory: 1024Mi
+  backoffLimit: 1
+  completions: 3
+  parallelism: 3
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: workload-consumer
+  namespace: event-automation
+spec:
+  template:
+    metadata:
+      labels:
+        app: workload-consumer
+    spec:
+      imagePullSecrets:
+        - name: ibm-entitlement-key
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: workload-consumer
+      containers:
+        - name: kafka-perf
+          image: cp.icr.io/cp/ibm-eventstreams-kafka:11.5.1
+          command:
+            - "/opt/kafka/bin/kafka-consumer-perf-test.sh"
+            - "--topic"
+            - "WORKLOAD"
+            - "--messages"
+            - "500000000"
+            - "--group"
+            - "kafka-workload-test"
+            - "--consumer.config"
+            - "/config/consumer.properties"
+            - "--timeout"
+            - "120000"
+            - "--bootstrap-server"
+            - "my-kafka-cluster-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095"
+          volumeMounts:
+            - mountPath: /certs/cluster
+              name: cluster-ca
+              readOnly: true
+            - mountPath: /config
+              name: consumer-properties
+              readOnly: true
+      volumes:
+        - name: cluster-ca
+          secret:
+            items:
+              - key: ca.crt
+                path: ca.crt
+              - key: ca.p12
+                path: ca.p12
+              - key: ca.password
+                path: ca.password
+            secretName: my-kafka-cluster-cluster-ca-cert
+        - name: consumer-properties
+          configMap:
+            name: workload-credentials
+      restartPolicy: Never
+      resources:
+        limits:
+          cpu: 1
+          memory: 1024Mi
+  backoffLimit: 1
+  completions: 3
+  parallelism: 3
