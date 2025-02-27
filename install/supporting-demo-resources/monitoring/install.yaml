@@ -1,0 +1,140 @@
+---
+- name: Setup monitoring
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "event-automation"
+    dashboards:
+      - es-health
+      - es-performance
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/prerequisites.yaml"
+
+    - name: Enable user workload monitoring
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/00-enable-user-workload-monitoring.yaml"
+
+    - name: Grant Event Streams permission to access metrics
+      changed_when: false
+      ansible.builtin.command:
+        argv:
+          - oc
+          - adm
+          - policy
+          - add-cluster-role-to-user
+          - cluster-monitoring-view
+          - -z
+          - my-kafka-cluster-ibm-es-admapi
+          - -n
+          - "{{ eventautomation_namespace }}"
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Install Grafana Operator
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/01-operator-subscription.yaml"
+
+    - name: Wait for the operator pod to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "app.kubernetes.io/name=grafana-operator"
+        namespace: openshift-operators
+      register: pod_list
+      until: pod_list|json_query('resources[*].status.conditions[1].status')|unique == ["True"]
+      retries: 50
+      delay: 20
+
+    - name: Deploy Grafana instance
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/02-grafana.yaml"
+
+    - name: Define service account for Grafana
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-service-account.yaml"
+
+    - name: Grant permission for viewing metrics to service account
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/04-permissions.yaml"
+      vars:
+        eventautomation_namespace: "{{ eventautomation_namespace }}"
+
+    - name: Create a token that Grafana can use to access Prometheus API
+      register: prometheus_token
+      changed_when: false
+      ansible.builtin.command:
+        argv:
+          - oc
+          - create
+          - token
+          - event-automation-grafana
+          - -n
+          - "{{ eventautomation_namespace }}"
+          - --duration
+          - "31536000s"
+
+    - name: Add the OpenShift Prometheus to Grafana as a data source
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/05-data-source.yaml"
+      vars:
+        prometheus_bearer_token: "{{ prometheus_token.stdout }}"
+
+    - name: Prepare the Grafana dashboard definitions
+      ansible.builtin.copy:
+        dest: "{{ playbook_dir }}/templates/06-dashboard-{{ item }}.yaml"
+        content: |
+          apiVersion: grafana.integreatly.org/v1beta1
+          kind: GrafanaDashboard
+          metadata:
+            name: event-automation-{{ item }}
+          spec:
+            instanceSelector:
+              matchLabels:
+                dashboards: event-automation
+            json: |
+              {{ dashboard_json }}
+      vars:
+        dashboard_json: "{{ lookup('file', 'dashboards/' ~ item ~ '.json') | from_json | to_json }}"
+      loop:
+        "{{ dashboards }}"
+
+    - name: Create the Grafana dashboards
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        src: "{{ playbook_dir }}/templates/06-dashboard-{{ item }}.yaml"
+      loop:
+        "{{ dashboards }}"
+
+    - name: Delete the generated Grafana dashboard definitions
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/templates/06-dashboard-{{ item }}.yaml"
+        state: absent
+      loop:
+        "{{ dashboards }}"

@@ -1,0 +1,75 @@
+---
+- name: Run an Event Streams workload
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "event-automation"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/prerequisites.yaml"
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Create Kafka topic
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/01-topic.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    - name: Define permissions for the credentials to use in workload apps
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/02-user.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+
+    - name: Retrieve truststore password
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Secret
+        name: my-kafka-cluster-cluster-ca-cert
+        namespace: "{{ eventautomation_namespace }}"
+      register: truststore_password_secret
+
+    - name: Retrieve Kafka client password
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Secret
+        name: workload-apps
+        namespace: "{{ eventautomation_namespace }}"
+      register: workload_password_secret
+
+    - name: Create config for Kafka workload clients
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-credentials.yaml"
+      vars:
+        eventautomation_namespace: "{{ eventautomation_namespace }}"
+        kafka_password: "{{ workload_password_secret.resources[0].data['password'] | ansible.builtin.b64decode }}"
+        truststore_password: "{{ truststore_password_secret.resources[0].data['ca.password'] | ansible.builtin.b64decode }}"
+
+    - name: Start the workload apps
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/04-jobs.yaml"
+      vars:
+        eventautomation_namespace: "{{ eventautomation_namespace }}"

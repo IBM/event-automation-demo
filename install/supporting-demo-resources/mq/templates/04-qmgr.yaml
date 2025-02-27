@@ -7,7 +7,7 @@ metadata:
 spec:
   version: 9.3.1.0-r1
   license:
-    accept: {{ license_accept }}
+    accept: true
     license: L-RJON-CD3JKX
     use: NonProduction
   web:
@@ -34,3 +34,5 @@ spec:
           env:
             - name: MQSNOAUT
               value: 'yes'
+            - name: ICC_SHIFT
+              value: '3'

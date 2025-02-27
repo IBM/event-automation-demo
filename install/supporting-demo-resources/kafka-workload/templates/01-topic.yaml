@@ -1,0 +1,14 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: workload-topic
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '2'
+    retention.ms: '604800000'
+    retention.bytes: '20000000000'
+  partitions: 6
+  replicas: 3
+  topicName: WORKLOAD

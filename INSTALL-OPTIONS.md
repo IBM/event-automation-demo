@@ -119,6 +119,35 @@ ansible-playbook \
     install/flink/install.yaml
 ```
 ---
+## Monitoring
+To set up monitoring - including installing Grafana using the Grafana Operator:
+```sh
+ansible-playbook \
+    -e license_accept=true \
+    -e ibm_entitlement_key=YOUR-ENTITLEMENT-KEY \
+    -e eventautomation_namespace=event-automation \
+    install/supporting-demo-resources/monitoring/install.yaml
+```
+---
+## Kafka workload applications
+To run a high-throughput Kafka workload:
+```sh
+ansible-playbook \
+    -e license_accept=true \
+    -e ibm_entitlement_key=YOUR-ENTITLEMENT-KEY \
+    -e eventautomation_namespace=event-automation \
+    install/supporting-demo-resources/kafka-workload/run.yaml
+```
+
+To delete the resources used by the Kafka workload application:
+```sh
+oc delete job        -n event-automation workload-producer
+oc delete job        -n event-automation workload-consumer
+oc delete configmap  -n event-automation workload-credentials
+oc delete kafkauser  -n event-automation workload-apps
+oc delete kafkatopic -n event-automation workload-topic
+```
+---
 ## IBM MQ
 To install an IBM MQ queue manager:
 ```sh
