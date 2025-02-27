@@ -53,16 +53,6 @@
       tags:
         - instance
 
-    - name: Define metrics collection rules for Event Streams
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        namespace: "{{ eventautomation_namespace }}"
-        template: "{{ playbook_dir }}/templates/10-metrics.yaml"
-        wait: false
-      tags:
-        - instance
-
     - name: Create Event Streams cluster
       kubernetes.core.k8s:
         validate_certs: false
