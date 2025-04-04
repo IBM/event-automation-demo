@@ -3,7 +3,7 @@
         {
             "id": "eem-admin",
             "roles": [
-                "author"
+                "author", "admin"
             ]
         },
         {
