@@ -1,0 +1,6 @@
+spec:
+  manager:
+    openTelemetry:
+      endpoint: 'http://opentelemetry-collector:4317'
+      interval: 30000
+      protocol: grpc

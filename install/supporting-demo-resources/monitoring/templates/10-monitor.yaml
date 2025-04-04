@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opentelemetry
+spec:
+  endpoints:
+  - interval: 10s
+    targetPort: 8889
+  - interval: 10s
+    targetPort: 8899
+  namespaceSelector:
+    matchNames:
+    - event-automation
+  selector:
+    matchLabels:
+      operator.opentelemetry.io/collector-service-type: base
+      app.kubernetes.io/name: event-automation

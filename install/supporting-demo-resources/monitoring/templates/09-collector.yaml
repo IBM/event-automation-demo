@@ -1,0 +1,40 @@
+kind: OpenTelemetryCollector
+apiVersion: opentelemetry.io/v1beta1
+metadata:
+  name: opentelemetry
+  labels:
+    app.kubernetes.io/name: event-automation
+spec:
+  config:
+    exporters:
+      prometheus/eemmanager:
+        endpoint: '0.0.0.0:8889'
+        namespace: eemmanager
+      prometheus/eemgateway:
+        endpoint: '0.0.0.0:8899'
+        namespace: eemgateway
+    receivers:
+      otlp/eemmanager:
+        protocols:
+          grpc:
+            endpoint: '0.0.0.0:4317'
+      otlp/eemgateway:
+        protocols:
+          grpc:
+            endpoint: '0.0.0.0:4318'
+    service:
+      pipelines:
+        metrics/eemmanager:
+          exporters:
+            - prometheus/eemmanager
+          receivers:
+            - otlp/eemmanager
+        metrics/eemgateway:
+          exporters:
+            - prometheus/eemgateway
+          receivers:
+            - otlp/eemgateway
+      telemetry:
+        metrics:
+          address: '0.0.0.0:8888'
+  managementState: managed
