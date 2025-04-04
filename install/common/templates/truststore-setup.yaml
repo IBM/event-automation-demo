@@ -24,6 +24,8 @@ spec:
           echo "added Event Streams CA to the truststore";
           keytool -importcert -noprompt -alias eventendpointmanagement -file /jobcerts/event-endpoint-management/ca.crt -trustcacerts -keystore /jobcerts/event-automation/eventautomation.jks -storepass "eventautomationstore";
           echo "added Event Endpoint Management CA to the truststore";
+          keytool -importkeystore -srckeystore /usr/local/openjdk/lib/security/cacerts -srcstorepass changeit -destkeystore /jobcerts/event-automation/eventautomation.jks -deststorepass "eventautomationstore" -noprompt;
+          echo "imported default JVM trusted CA certificates to the truststore";
           touch /jobcerts/event-automation/complete;
           echo "waiting for file to be downloaded";
           while [[ -f /jobcerts/event-automation/complete ]]; do sleep 2; done;
