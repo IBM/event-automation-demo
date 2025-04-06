@@ -405,7 +405,7 @@
             },
             "disableTextWrap": false,
             "editorMode": "builder",
-            "expr": "eemgateway_connected_clients{namespace=\"event-automation\"}",
+            "expr": "sum(eemgateway_connected_clients{namespace=\"event-automation\"})",
             "fullMetaSearch": false,
             "includeNullMetadata": true,
             "instant": false,
@@ -736,6 +736,7 @@
           "type": "prometheus",
           "uid": "eventautomation-openshift-prometheus"
         },
+        "description": "Connection attempts (per second) that were rejected by the Event Gateway",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -853,6 +854,7 @@
           "type": "prometheus",
           "uid": "eventautomation-openshift-prometheus"
         },
+        "description": "A measure of the quota delay applied to Kafka clients attempting to consumer or produce faster than the defined quota",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -949,7 +951,7 @@
         "type": "timeseries"
       }
     ],
-    "refresh": "10s",
+    "refresh": "30s",
     "schemaVersion": 39,
     "tags": [],
     "templating": {
