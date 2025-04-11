@@ -7,8 +7,6 @@
     dashboards:
       - es-health
       - es-performance
-      - eem-health
-      - eem-activity
 
   tasks:
     - name: Install local pre-requisites
@@ -44,9 +42,10 @@
       kubernetes.core.k8s:
         validate_certs: false
         state: present
-        template: "{{ playbook_dir }}/templates/01-grafana-operator-subscription.yaml"
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/01-operator-subscription.yaml"
 
-    - name: Wait for the Grafana operator pod to be ready
+    - name: Wait for the operator pod to be ready
       kubernetes.core.k8s_info:
         validate_certs: false
         api_version: v1
@@ -139,80 +138,3 @@
         state: absent
       loop:
         "{{ dashboards }}"
-
-    - name: Create a namespace for the OpenTelemetry operator
-      kubernetes.core.k8s:
-        name: "openshift-opentelemetry-operator"
-        api_version: v1
-        kind: Namespace
-        state: present
-        validate_certs: false
-
-    - name: Prepare the operator group for the OpenTelemetry operator
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        src: "{{ playbook_dir }}/templates/07-otel-operator-group.yaml"
-
-    - name: Install OpenTelemetry Operator
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        template: "{{ playbook_dir }}/templates/08-otel-operator-subscription.yaml"
-
-    - name: Wait for the OpenTelemetry operator pod to be ready
-      kubernetes.core.k8s_info:
-        validate_certs: false
-        api_version: v1
-        kind: Pod
-        label_selectors:
-          - "app.kubernetes.io/name=opentelemetry-operator"
-        namespace: openshift-opentelemetry-operator
-      register: pod_list
-      until: >-
-        pod_list.resources is defined and
-        pod_list.resources | length > 0 and
-        pod_list.resources[0].status.phase == 'Running' and
-        pod_list | json_query('resources[].status.conditions[?type==`Ready`].status') | flatten | unique == ['True']
-      retries: 50
-      delay: 20
-
-    - name: Wait for OpenTelemetry operator to start webhooks
-      ansible.builtin.pause:
-        seconds: 30
-
-    - name: Start an OpenTelemetry collector
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        namespace: "{{ eventautomation_namespace }}"
-        template: "{{ playbook_dir }}/templates/09-collector.yaml"
-
-    - name: Define a service monitor for OpenTelemetry
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        namespace: "{{ eventautomation_namespace }}"
-        template: "{{ playbook_dir }}/templates/10-monitor.yaml"
-
-    - name: Update EEM manager to enable OpenTelemetry
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        api_version: events.ibm.com/v1beta1
-        kind: EventEndpointManagement
-        name: my-eem-manager
-        namespace: "{{ eventautomation_namespace }}"
-        definition: "{{ lookup('file', playbook_dir + '/templates/11-eem-manager-patch.yaml') | from_yaml }}"
-        merge_type: merge
-
-    - name: Update EEM gateway to enable OpenTelemetry
-      kubernetes.core.k8s:
-        validate_certs: false
-        state: present
-        api_version: events.ibm.com/v1beta1
-        kind: EventGateway
-        name: my-eem-gateway
-        namespace: "{{ eventautomation_namespace }}"
-        definition: "{{ lookup('file', playbook_dir + '/templates/12-eem-gateway-patch.yaml') | from_yaml }}"
-        merge_type: merge

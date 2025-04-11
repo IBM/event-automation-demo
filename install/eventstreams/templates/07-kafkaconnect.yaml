@@ -44,7 +44,7 @@ spec:
       metadata:
         annotations:
           cloudpakId: c8b82d189e7545f0892db9ef2731b90d
-          productVersion: 11.6.1
+          productVersion: 11.7.0
           productID: 2a79e49111f44ec3acd89608e56138f5
           cloudpakName: IBM Cloud Pak for Integration
           productChargedContainers: kafka-connect-cluster-connect

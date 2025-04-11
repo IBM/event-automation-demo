@@ -7,22 +7,6 @@ data:
   kafka-metrics-config.yaml: |
     lowercaseOutputName: true
     rules:
-    # used by the Event Streams web UI ("Messages" panel)
-    - pattern: kafka.server<type=BrokerTopicMetrics, name=(BytesInPerSec|BytesOutPerSec)><>(OneMinuteRate)
-      name: kafka_server_BrokerTopicMetrics_$1__alltopics_$2
-      attrNameSnakeCase: false
-    - pattern: kafka.server<type=BrokerTopicMetrics, name=(BytesInPerSec|BytesOutPerSec)><>(Count)
-      name: kafka_server_BrokerTopicMetrics_$1_$2
-      attrNameSnakeCase: false
-    # used by the Event Streams web UI ("Partitions" panel)
-    - pattern: kafka.server<type=ReplicaManager, name=(\w+)><>(Value)
-      name: kafka_server_ReplicaManager_$1_$2
-      attrNameSnakeCase: false
-    # used by the Event Streams web UI ("Replicas" panel)
-    - pattern: kafka.controller<type=(\w+), name=(\w+)><>(Count|Value|Mean)
-      name: kafka_controller_$1_$2_$3
-      attrNameSnakeCase: false
-    # added for use by Grafana
     - pattern: kafka.server<type=(.+), name=(.+), clientId=(.+), topic=(.+), partition=(.*)><>Value
       name: kafka_server_$1_$2
       type: GAUGE
@@ -30,93 +14,77 @@ data:
        clientId: "$3"
        topic: "$4"
        partition: "$5"
-    # added for use by Grafana
     - pattern: kafka.server<type=(.+), name=(.+), clientId=(.+), brokerHost=(.+), brokerPort=(.+)><>Value
       name: kafka_server_$1_$2
       type: GAUGE
       labels:
        clientId: "$3"
        broker: "$4:$5"
-    # added for use by Grafana
     - pattern: kafka.server<type=(.+), listener=(.+), networkProcessor=(.+)><>(.+)
       name: kafka_server_$1_$4
       type: GAUGE
       labels:
        listener: "$2"
        networkProcessor: "$3"
-    # added for use by Grafana
     - pattern: kafka.controller<type=KafkaController, name=(.+), eventstreams_ibm_com_cluster=(.+), namespace=(.+)><>(.+)
       name: kafka_controller_$1_$4
       type: COUNTER
       labels:
         eventstreams_ibm_com_cluster: "$2"
         namespace: "$3"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)Percent\w*><>Value
       name: kafka_$1_$2_$3_percent
       type: GAUGE
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)Percent\w*, (.+)=(.+)><>Value
       name: kafka_$1_$2_$3_percent
       type: GAUGE
       labels:
         "$4": "$5"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)PerSec\w*, (.+)=(.+), (.+)=(.+)><>Count
       name: kafka_$1_$2_$3_total
       type: COUNTER
       labels:
         "$4": "$5"
         "$6": "$7"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)PerSec\w*, (.+)=(.+)><>Count
       name: kafka_$1_$2_$3_total
       type: COUNTER
       labels:
         "$4": "$5"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)PerSec\w*><>Count
       name: kafka_$1_$2_$3_total
       type: COUNTER
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+), (.+)=(.+), (.+)=(.+)><>Value
       name: kafka_$1_$2_$3
       type: GAUGE
       labels:
         "$4": "$5"
         "$6": "$7"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+), (.+)=(.+)><>Value
       name: kafka_$1_$2_$3
       type: GAUGE
       labels:
         "$4": "$5"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)><>Value
       name: kafka_$1_$2_$3
       type: GAUGE
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+), (.+)=(.+), (.+)=(.+)><>Count
       name: kafka_$1_$2_$3_count
       type: COUNTER
       labels:
         "$4": "$5"
         "$6": "$7"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)Percent\w*><>MeanRate
       name: kafka_$1_$2_$3_percent
       type: GAUGE
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)Percent\w*><>Value
       name: kafka_$1_$2_$3_percent
       type: GAUGE
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)Percent\w*, (.+)=(.+)><>Value
       name: kafka_$1_$2_$3_percent
       type: GAUGE
       labels:
         "$4": "$5"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+), (.+)=(.*), (.+)=(.+)><>(\d+)thPercentile
       name: kafka_$1_$2_$3
       type: GAUGE
@@ -124,24 +92,20 @@ data:
         "$4": "$5"
         "$6": "$7"
         quantile: "0.$8"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+), (.+)=(.+)><>Count
       name: kafka_$1_$2_$3_count
       type: COUNTER
       labels:
         "$4": "$5"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+), (.+)=(.*)><>(\d+)thPercentile
       name: kafka_$1_$2_$3
       type: GAUGE
       labels:
         "$4": "$5"
         quantile: "0.$6"
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)><>Count
       name: kafka_$1_$2_$3_count
       type: COUNTER
-    # added for use by Grafana
     - pattern: kafka.(\w+)<type=(.+), name=(.+)><>(\d+)thPercentile
       name: kafka_$1_$2_$3
       type: GAUGE

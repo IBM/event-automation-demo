@@ -1,5 +1,5 @@
-apiVersion: grafana.integreatly.org/v1beta1
 kind: Grafana
+apiVersion: grafana.integreatly.org/v1beta1
 metadata:
   name: event-automation
   labels:

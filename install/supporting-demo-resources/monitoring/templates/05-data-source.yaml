@@ -1,5 +1,6 @@
-apiVersion: grafana.integreatly.org/v1beta1
+
 kind: GrafanaDatasource
+apiVersion: grafana.integreatly.org/v1beta1
 metadata:
   name: event-automation
 spec:
