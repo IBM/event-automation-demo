@@ -64,7 +64,7 @@ function reset_eem() {
 
     echo "> Clearing existing storage"
 
-    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/eem
+    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/org-eem
     oc delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
     # waiting for replacement pod to be created
     until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
