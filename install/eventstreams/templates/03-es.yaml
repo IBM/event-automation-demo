@@ -43,18 +43,22 @@ spec:
           port: 9096
           tls: true
           type: route
-      replicas: 3
       metricsConfig:
         type: jmxPrometheusExporter
         valueFrom:
           configMapKeyRef:
             name: eventstreams-metrics
             key: kafka-metrics-config.yaml
-      storage:
+    nodePools:
+      - name: kafka
+        replicas: 3
+        roles:
+          - broker
+        storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
-        type: persistent-claim
-        size: 50Gi
-        class: {{ eventstreams_storage_class }}
+          class: rook-ceph-block
+          size: 50Gi
+          type: persistent-claim
 {% else %}
         type: ephemeral
 {% endif %}
