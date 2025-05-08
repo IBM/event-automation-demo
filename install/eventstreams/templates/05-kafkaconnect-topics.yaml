@@ -161,6 +161,38 @@ spec:
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaTopic
 metadata:
+  name: fake-transactions
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '100000000'
+  partitions: 3
+  replicas: 3
+  topicName: TRANSACTIONS
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-abandonedorders
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '100000000'
+  partitions: 3
+  replicas: 3
+  topicName: ORDERS.ABANDONED
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
   name: fake-orders-avro
   labels:
     eventstreams.ibm.com/cluster: my-kafka-cluster
@@ -321,6 +353,38 @@ spec:
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaTopic
 metadata:
+  name: fake-transactions-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: TRANSACTIONS.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-abandonedorders-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: ORDERS.ABANDONED.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
   name: fake-orders-reg
   labels:
     eventstreams.ibm.com/cluster: my-kafka-cluster
@@ -475,3 +539,35 @@ spec:
   partitions: 1
   replicas: 1
   topicName: PRODUCT.REVIEWS.REG
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-transactions-reg
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 1
+  replicas: 1
+  topicName: TRANSACTIONS.REG
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-abandonedorders-reg
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 1
+  replicas: 1
+  topicName: ORDERS.ABANDONED.REG

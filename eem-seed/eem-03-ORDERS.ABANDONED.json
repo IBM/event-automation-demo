@@ -1,0 +1,20 @@
+{
+    "type": "kafka",
+    "name": "Abandoned orders",
+    "contact": "lynn@loosehangers.com",
+    "description": "Events for abandoned orders.\n\nAn event will be emitted for every order that is abandoned. The abandoned time is defined by a string representing a UTC time in ISO 8601 format.\n\nAn order or a shopping cart can include multiple product types. These products are selected by the customer but never checked out.\n\nNote that abandoned shopping cart events may include PII information about customers, such as email addresses. You may wish to redact this information if using the stream of events for insecure purposes.\n\nProduct descriptions in the carts follow a consistent pattern: They always start with the material/colour description (e.g. Stonewashed or Black) followed by a product type (e.g. Bootcut or Straight-leg) and finish with the product name (e.g. Jeans). These are not available as separate fields, so you may wish to parse the description string to identify events for specific types or colours of jeans for example.",
+    "tags": [
+        "retail",
+        "avro"
+    ],
+    "encoding": "avro/binary",
+    "sampleMessages": [],
+    "schema": {
+        "type": "avro",
+        "content": "{\n    \"namespace\": \"com.loosehangerjeans\",\n    \"type\": \"record\",\n    \"name\": \"AbandonedOrder\",\n    \"fields\": [\n        {\n            \"name\": \"cartid\",\n            \"doc\": \"Unique ID for the abandoned order\",\n            \"type\": {\n                \"type\": \"string\",\n                \"logicalType\": \"uuid\"\n            }\n        },\n        {\n            \"name\": \"customer\",\n            \"doc\": \"Customer who abandoned products in the order\",\n            \"type\": {\n                \"type\": \"record\",\n                \"name\": \"Customer\",\n                \"fields\": [\n                    {\n                        \"name\": \"id\",\n                        \"type\": {\n                            \"type\": \"string\",\n                            \"logicalType\": \"uuid\"\n                        },\n                        \"doc\": \"Unique id for the customer\"\n                    },\n                    {\n                        \"name\": \"name\",\n                        \"type\": \"string\",\n                        \"doc\": \"Name of the customer\"\n                    },\n                    {\n                        \"name\": \"emails\",\n                        \"type\": {\n                            \"type\": \"array\",\n                            \"items\": \"string\"\n                        },\n                        \"doc\": \"Emails of the customer\"\n                    }\n                ]\n            }\n        },\n        {\n            \"name\": \"products\",\n            \"doc\": \"Descriptions of the abandoned order products\",\n            \"type\": {\n                \"type\": \"array\",\n                \"items\": \"string\"\n            }\n        },\n        {\n            \"name\": \"abandonedtime\",\n            \"doc\": \"Time at which the shopping cart was determined to be abandoned after a period of inactivity (UTC time in ISO 8601 format).\",\n            \"type\": \"string\"\n        }\n    ]\n}"
+    },
+    "clusterId": "CLUSTERID",
+    "topic": {
+      "name": "ORDERS.ABANDONED.AVRO"
+    }
+}

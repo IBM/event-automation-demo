@@ -1,0 +1,22 @@
+{
+    "type": "kafka",
+    "name": "Transactions",
+    "contact": "kevin@loosehangers.com",
+    "description": "The events contain updates about transaction processing managed by Loosehanger Finance.",
+    "tags": [
+        "transactions",
+        "json"
+    ],
+    "encoding": "application/json",
+    "sampleMessages": [
+        "{\n \t\"id\": \"1\",\n \t\"state\": \"PROCESSING\",\n \t\"amount\": 104.8,\n \t\"timestamp\": \"2025-02-12 13:51:31.253\"\n }"
+    ],
+    "schema": {
+        "type": "json",
+        "content": "{\n    \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n    \"title\": \"Transaction\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"string\",\n            \"description\": \"Unique identifier for the record.\"\n        },\n        \"state\": {\n            \"type\": \"string\",\n            \"description\": \"The state of the transaction\"\n        },\n        \"amount\": {\n            \"type\": \"number\",\n            \"description\": \"The amount of the transaction\"\n        },\n        \"timestamp\": {\n            \"type\": \"string\",\n            \"pattern\": \"^\\\\d{4}-\\\\d{2}-\\\\d{2} \\\\d{2}:\\\\d{2}:\\\\d{2}\\\\.\\\\d{1,3}$\",\n            \"description\": \"Timestamp when transaction was made, formatted as 'YYYY-MM-DD HH:MM:SS.sss'.\"\n        }\n    },\n    \"required\": [\n        \"id\",\n        \"state\",\n        \"amount\",\n        \"timestamp\"\n    ],\n    \"additionalProperties\": false\n}"
+    },
+    "clusterId": "CLUSTERID",
+    "topic": {
+        "name": "TRANSACTIONS"
+    }
+}

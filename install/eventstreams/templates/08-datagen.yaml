@@ -46,6 +46,8 @@ spec:
     topic.name.outofstocks: STOCK.NOSTOCK.AVRO
     topic.name.returnrequests: PRODUCT.RETURNS.AVRO
     topic.name.productreviews: PRODUCT.REVIEWS.AVRO
+    topic.name.transactions: TRANSACTIONS.AVRO
+    topic.name.abandonedorders: ORDERS.ABANDONED.AVRO
 
     timings.ms.badgeins: 60000
 
@@ -93,6 +95,8 @@ spec:
     topic.name.outofstocks: STOCK.NOSTOCK.REG
     topic.name.returnrequests: PRODUCT.RETURNS.REG
     topic.name.productreviews: PRODUCT.REVIEWS.REG
+    topic.name.transactions: TRANSACTIONS.REG
+    topic.name.abandonedorders: ORDERS.ABANDONED.REG
 
     timings.ms.badgeins: 600000
     cancellations.ratio: 0.05
