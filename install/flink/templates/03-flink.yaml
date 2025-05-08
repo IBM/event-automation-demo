@@ -12,8 +12,9 @@ spec:
     taskmanager.numberOfTaskSlots: '4'
     # state and persistence
     state.backend.type: rocksdb
-    state.checkpoints.num-retained: '3'
+    execution.checkpointing.num-retained: '3'
     execution.checkpointing.interval: '5000'
+    execution.checkpointing.incremental: 'true'
     # behaviour
     json.ignore-parse-errors: 'true'
     table.exec.source.idle-timeout: 30 s
