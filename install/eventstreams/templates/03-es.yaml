@@ -56,9 +56,9 @@ spec:
           - broker
         storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
-          class: rook-ceph-block
-          size: 50Gi
           type: persistent-claim
+          size: 50Gi
+          class: {{ eventstreams_storage_class }}
 {% else %}
         type: ephemeral
 {% endif %}
