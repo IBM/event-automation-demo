@@ -60,7 +60,7 @@ spec:
           size: 50Gi
           class: {{ eventstreams_storage_class }}
 {% else %}
-        type: ephemeral
+          type: ephemeral
 {% endif %}
     zookeeper:
       replicas: 3
