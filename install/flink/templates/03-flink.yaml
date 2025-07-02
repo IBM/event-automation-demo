@@ -5,7 +5,7 @@ metadata:
 spec:
   flinkConfiguration:
     # license accepts
-    license.license: L-AUKS-FKVXVL
+    license.license: L-CYBH-K48BZQ
     license.accept: '{{ license_accept }}'
     license.use: EventAutomationNonProduction
     # scaling

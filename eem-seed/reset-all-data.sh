@@ -64,7 +64,7 @@ function reset_eem() {
 
     echo "> Clearing existing storage"
 
-    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/org-eem
+    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/eem
     oc delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
     # waiting for replacement pod to be created
     until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
@@ -169,7 +169,7 @@ rm -f eem-response-new-cluster.json
 
 echo "> (3/3) Submitting Kafka topics"
 
-topics=("CANCELLATIONS" "CUSTOMERS.NEW" "DOOR.BADGEIN" "ORDERS.ONLINE" "ORDERS.NEW" "ORDERS.ABANDONED" "STOCK.NOSTOCK" "SENSOR.READINGS" "STOCK.MOVEMENT" "PRODUCT.RETURNS" "PRODUCT.REVIEWS" "TRANSACTIONS")
+topics=("CANCELLATIONS" "CUSTOMERS.NEW" "DOOR.BADGEIN" "ORDERS.ONLINE" "ORDERS.NEW" "STOCK.NOSTOCK" "SENSOR.READINGS" "STOCK.MOVEMENT" "PRODUCT.RETURNS" "PRODUCT.REVIEWS" "TRANSACTIONS" "ORDERS.ABANDONED")
 for topic in "${topics[@]}"
 do
     echo "         $topic"

@@ -17,7 +17,7 @@ spec:
   apicurioRegistry: {}
   license:
     accept: {{ license_accept }}
-    license: L-AUKS-FKVXVL
+    license: L-CYBH-K48BZQ
     use: EventAutomationNonProduction
   strimziOverrides:
     entityOperator:
@@ -62,14 +62,16 @@ spec:
 {% else %}
           type: ephemeral
 {% endif %}
-    zookeeper:
-      replicas: 3
-      storage:
+      - name: controller
+        replicas: 3
+        roles:
+          - controller
+        storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
-        type: persistent-claim
-        size: 3Gi
-        class: {{ eventstreams_storage_class }}
+          type: persistent-claim
+          size: 3Gi
+          class: {{ eventstreams_storage_class }}
 {% else %}
-        type: ephemeral
+          type: ephemeral
 {% endif %}
   version: latest
