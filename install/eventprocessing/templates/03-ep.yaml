@@ -40,5 +40,5 @@ spec:
     endpoint: 'my-flink-rest:8081'
   license:
     accept: true
-    license: L-AUKS-FKVXVL
+    license: L-CYBH-K48BZQ
     use: EventAutomationNonProduction
