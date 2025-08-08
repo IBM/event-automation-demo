@@ -5,7 +5,7 @@ metadata:
     namespace: openshift-marketplace
 spec:
     displayName: IBM Operator for Apache Flink
-    image: icr.io/cpopen/ibm-eventautomation-flink-operator-catalog:1.4.1
+    image: icr.io/cpopen/ibm-eventautomation-flink-operator-catalog:1.4.2
     publisher: IBM
     sourceType: grpc
     updateStrategy:

@@ -44,7 +44,7 @@ spec:
       metadata:
         annotations:
           cloudpakId: c8b82d189e7545f0892db9ef2731b90d
-          productVersion: 11.8.1
+          productVersion: 12.0.0
           productID: 2a79e49111f44ec3acd89608e56138f5
           cloudpakName: IBM Cloud Pak for Integration
           productChargedContainers: kafka-connect-cluster-connect
@@ -66,14 +66,8 @@ spec:
         artifacts:
           - type: jar
             url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.5.1/kafka-connect-loosehangerjeans-source-0.5.1-jar-with-dependencies.jar
-          - artifact: apicurio-registry-serdes-avro-serde
-            group: io.apicurio
-            type: maven
-            version: 2.6.6.Final
-          - artifact: apicurio-registry-utils-converter
-            group: io.apicurio
-            type: maven
-            version: 2.6.6.Final
+          - type: zip
+            url: 'https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.6.13.Final/apicurio-registry-distro-connect-converter-2.6.13.Final.zip'
       - name: mq-source
         artifacts:
           - type: jar

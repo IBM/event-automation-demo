@@ -19,7 +19,7 @@ spec:
               app: workload-producer
       containers:
         - name: kafka-perf
-          image: cp.icr.io/cp/ibm-eventstreams-kafka:11.7.0
+          image: cp.icr.io/cp/ibm-eventstreams-kafka:12.0.0
           command:
             - "/opt/kafka/bin/kafka-producer-perf-test.sh"
             - "--topic"
@@ -84,7 +84,7 @@ spec:
               app: workload-consumer
       containers:
         - name: kafka-perf
-          image: cp.icr.io/cp/ibm-eventstreams-kafka:11.7.0
+          image: cp.icr.io/cp/ibm-eventstreams-kafka:12.0.0
           command:
             - "/opt/kafka/bin/kafka-consumer-perf-test.sh"
             - "--topic"
