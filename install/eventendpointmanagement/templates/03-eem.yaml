@@ -5,7 +5,7 @@ metadata:
 spec:
   license:
     accept: {{ license_accept }}
-    license: L-AUKS-FKVXVL
+    license: L-CYBH-K48BZQ
     metric: VIRTUAL_PROCESSOR_CORE
     use: EventAutomationNonProduction
   manager:
