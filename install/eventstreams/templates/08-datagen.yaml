@@ -54,10 +54,9 @@ spec:
     value.converter.apicurio.auth.username: kafka-connect-credentials
     value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
 
-    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.location: /mnt/cluster-ca-cert/ca.p12
     value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
-    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
-
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/mnt/cluster-ca-cert:ca.password}
     value.converter.apicurio.registry.url: {{ schemaregistry_url }}
     value.converter.apicurio.registry.auto-register: true
     value.converter.apicurio.registry.dereference-schema: true
@@ -104,9 +103,9 @@ spec:
     value.converter.apicurio.auth.username: kafka-connect-credentials
     value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
 
-    value.converter.apicurio.registry.request.ssl.truststore.location: /opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert/ca.p12
+    value.converter.apicurio.registry.request.ssl.truststore.location: /mnt/cluster-ca-cert/ca.p12
     value.converter.apicurio.registry.request.ssl.truststore.type: PKCS12
-    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/opt/kafka/connect-certs/my-kafka-cluster-cluster-ca-cert:ca.password}
+    value.converter.apicurio.registry.request.ssl.truststore.password: ${file:/mnt/cluster-ca-cert:ca.password}
 
     value.converter.apicurio.registry.url: {{ schemaregistry_url }}
     value.converter.apicurio.registry.auto-register: true
