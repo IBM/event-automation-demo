@@ -39,6 +39,10 @@ spec:
         privileged: false
         readOnlyRootFilesystem: true
         runAsNonRoot: true
+      volumeMounts:
+        - mountPath: /mnt/cluster-ca-cert
+          name: cluster-ca-cert
+          readOnly: true  
     pod:
       imagePullSecrets: []
       metadata:
@@ -52,6 +56,10 @@ spec:
           productName: IBM Event Streams for Non Production
           eventstreams.production.type: CloudPakForIntegrationNonProduction
           productMetric: VIRTUAL_PROCESSOR_CORE
+      volumes:
+        - name: cluster-ca-cert
+          secret:
+            secretName: my-kafka-cluster-cluster-ca-cert    
   tls:
     trustedCertificates:
       - certificate: ca.crt
