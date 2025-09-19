@@ -42,7 +42,7 @@ spec:
       volumeMounts:
         - mountPath: /mnt/cluster-ca-cert
           name: cluster-ca-cert
-          readOnly: true  
+          readOnly: true
     pod:
       imagePullSecrets: []
       metadata:
@@ -59,7 +59,7 @@ spec:
       volumes:
         - name: cluster-ca-cert
           secret:
-            secretName: my-kafka-cluster-cluster-ca-cert    
+            secretName: my-kafka-cluster-cluster-ca-cert
   tls:
     trustedCertificates:
       - certificate: ca.crt
@@ -73,10 +73,10 @@ spec:
       - name: datagen
         artifacts:
           - type: jar
-            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.5.1/kafka-connect-loosehangerjeans-source-0.5.1-jar-with-dependencies.jar
+            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.5.2/kafka-connect-loosehangerjeans-source-0.5.2-jar-with-dependencies.jar
           - type: zip
             url: 'https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.6.13.Final/apicurio-registry-distro-connect-converter-2.6.13.Final.zip'
       - name: mq-source
         artifacts:
           - type: jar
-            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.5.0/kafka-connect-mq-source-2.5.0-jar-with-dependencies.jar
+            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.6.0/kafka-connect-mq-source-2.6.0-jar-with-dependencies.jar
