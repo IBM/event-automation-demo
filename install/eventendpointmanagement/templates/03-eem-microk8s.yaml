@@ -1,0 +1,45 @@
+apiVersion: events.ibm.com/v1beta1
+kind: EventEndpointManagement
+metadata:
+  name: my-eem-manager
+spec:
+  license:
+    accept: {{ license_accept }}
+    license: L-CYBH-K48BZQ
+    metric: VIRTUAL_PROCESSOR_CORE
+    use: EventAutomationNonProduction
+  manager:
+    endpoints:
+      - name: ui
+        host: qs-eem-ui.running.local
+      - name: gateway
+        host: qs-eem-gateway.running.local
+      - name: admin
+        host: qs-eem-admin.running.local
+      - name: server
+        host: eem.qs-eem-server.running.local
+    authConfig:
+      authType: LOCAL
+    storage:
+{% if eventendpointmanagement_storage_class is defined and eventendpointmanagement_storage_class | length %}
+      type: persistent-claim
+      size: 250M
+      storageClassName: {{ eventendpointmanagement_storage_class }}
+{% else %}
+      type: ephemeral
+{% endif %}
+    template:
+      pod:
+        spec:
+          containers:
+            - name: manager
+              envFrom:
+                - configMapRef:
+                    name: event-automation-welcome-urls
+              resources:
+                requests:
+                  cpu: '0.25'
+                  memory: 256Mi
+                limits:
+                  cpu: '0.5'
+                  memory: 512Mi

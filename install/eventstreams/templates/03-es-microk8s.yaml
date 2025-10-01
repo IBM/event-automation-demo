@@ -1,0 +1,120 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: EventStreams
+metadata:
+  name: my-kafka-cluster
+spec:
+  adminApi:
+    endpoints:
+      - name: ingress
+        type: ingress
+        host: my-kafka-cluster-adminapi.running.local
+        class: nginx
+        containerPort: 8001
+  adminUI:
+    authentication:
+      - type: scram-sha-512
+    env:
+      - name: WELCOME_URL_EVENT_STREAMS
+        value: {{ welcome_url_eventstreams }}
+      - name: WELCOME_URL_EVENT_ENDPOINT_MANAGEMENT
+        value: {{ welcome_url_eventendpointmanagement }}
+      - name: WELCOME_URL_EVENT_PROCESSING
+        value: {{ welcome_url_eventprocessing }}
+    endpoints:
+      - name: ingress
+        type: ingress
+        host: my-kafka-cluster-adminui.running.local
+        class: nginx
+        containerPort: 3000
+  apicurioRegistry:
+    endpoints:
+      - name: ingress
+        type: ingress
+        host: apicurioregistry.running.local
+        class: nginx
+        containerPort: 8002
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+      requests:
+        cpu: 200m
+        memory: 256Mi
+  license:
+    accept: {{ license_accept }}
+    license: L-CYBH-K48BZQ
+    use: EventAutomationNonProduction
+  strimziOverrides:
+    entityOperator:
+      topicOperator: {}
+      userOperator: {}
+    kafka:
+      authorization:
+        type: simple
+      config:
+        auto.create.topics.enable: true
+        default.replication.factor: 1
+        min.insync.replicas: 1
+      listeners:
+        - name: authsslsvc
+          authentication:
+            type: scram-sha-512
+          port: 9095
+          tls: true
+          type: internal
+        - name: external
+          authentication:
+            type: scram-sha-512
+          port: 9096
+          tls: true
+          type: ingress
+          class: nginx
+          configuration:
+            bootstrap:
+              host: my-kafka-cluster-bootstrap.running.local
+            brokers:
+            - broker: 3
+              host: my-kafka-cluster-broker-3.running.local
+            - broker: 4
+              host: my-kafka-cluster-broker-4.running.local
+            - broker: 5
+              host: my-kafka-cluster-broker-5.running.local
+      metricsConfig:
+        type: jmxPrometheusExporter
+        valueFrom:
+          configMapKeyRef:
+            name: eventstreams-metrics
+            key: kafka-metrics-config.yaml
+    nodePools:
+      - name: kafka
+        replicas: 3
+        roles:
+          - broker
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 2048Mi
+            cpu: 1000m
+        storage:
+{% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
+          type: persistent-claim
+          size: 50Gi
+          class: {{ eventstreams_storage_class }}
+{% else %}
+          type: ephemeral
+{% endif %}
+      - name: controller
+        replicas: 3
+        roles:
+          - controller
+        storage:
+{% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
+          class: {{ eventstreams_storage_class }}
+          size: 3Gi
+          type: persistent-claim
+{% else %}
+          type: ephemeral
+{% endif %}
+  version: latest

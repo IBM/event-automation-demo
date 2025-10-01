@@ -1,0 +1,66 @@
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaConnect
+metadata:
+  annotations:
+    eventstreams.ibm.com/use-connector-resources: 'true'
+  name: kafka-connect-cluster
+spec:
+  image: {{ kafkaconnect_image }}
+  config:
+    group.id: kafka-connect
+    client.id: kafka-connect-client
+    config.storage.topic: connect-configs
+    offset.storage.topic: connect-offsets
+    status.storage.topic: connect-status
+    config.providers: file
+    config.providers.file.class: org.apache.kafka.common.config.provider.DirectoryConfigProvider
+  bootstrapServers: 'my-kafka-cluster-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095'
+  resources:
+    limits:
+      cpu: 2048m
+      memory: 2Gi
+    requests:
+      cpu: 2048m
+      memory: 2Gi
+  authentication:
+    passwordSecret:
+      password: password
+      secretName: kafka-connect-credentials
+    type: scram-sha-512
+    username: kafka-connect-credentials
+  template:
+    connectContainer:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        privileged: false
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+      volumeMounts:
+        - mountPath: /mnt/cluster-ca-cert
+          name: cluster-ca-cert
+          readOnly: true
+    pod:
+      imagePullSecrets: []
+      metadata:
+        annotations:
+          cloudpakId: c8b82d189e7545f0892db9ef2731b90d
+          productVersion: 12.0.1
+          productID: 2a79e49111f44ec3acd89608e56138f5
+          cloudpakName: IBM Cloud Pak for Integration
+          productChargedContainers: kafka-connect-cluster-connect
+          productCloudpakRatio: '2:1'
+          productName: IBM Event Streams for Non Production
+          eventstreams.production.type: CloudPakForIntegrationNonProduction
+          productMetric: VIRTUAL_PROCESSOR_CORE
+      volumes:
+        - name: cluster-ca-cert
+          secret:
+            secretName: my-kafka-cluster-cluster-ca-cert
+  tls:
+    trustedCertificates:
+      - certificate: ca.crt
+        secretName: my-kafka-cluster-cluster-ca-cert
+  replicas: 1

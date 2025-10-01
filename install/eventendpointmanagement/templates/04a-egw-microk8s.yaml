@@ -1,0 +1,31 @@
+apiVersion: events.ibm.com/v1beta1
+kind: EventGateway
+metadata:
+  name: my-eem-gateway
+spec:
+  license:
+    accept: {{ license_accept }}
+    license: 'L-CYBH-K48BZQ'
+    metric: VIRTUAL_PROCESSOR_CORE
+    use: EventAutomationNonProduction
+  endpoints:
+    - name: gateway
+      host: qs-gateway.running.local
+  managerEndpoint: {{ eem_gateway_ingress}}
+  maxNumKafkaBrokers: 3
+  gatewayGroupName: gateway-group
+  gatewayID: gateway-1
+  tls:
+    caSecretName: my-eem-manager-ibm-eem-manager-ca
+  template:
+    pod:
+      spec:
+        containers:
+          - name: egw
+            resources:
+              requests:
+                cpu: '0.5'
+                memory: 512Mi
+              limits:
+                cpu: '1'
+                memory: 1Gi

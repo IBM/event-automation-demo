@@ -1,0 +1,47 @@
+apiVersion: events.ibm.com/v1beta1
+kind: EventProcessing
+metadata:
+  name: my-event-processing
+spec:
+  license:
+    accept: true
+    license: 'L-CYBH-K48BZQ'
+    use: EventAutomationNonProduction
+  authoring:
+    authConfig:
+      authType: LOCAL
+    storage:
+{% if eventprocessing_storage_class is defined and eventprocessing_storage_class | length %}
+      type: persistent-claim
+      size: 100M
+      storageClassName: {{ eventprocessing_storage_class }}
+{% else %}
+      type: ephemeral
+{% endif %}
+    template:
+      pod:
+        spec:
+          containers:
+            - env:
+                - name: JAVA_TOOL_OPTIONS
+                  value: '-Djavax.net.ssl.trustStore=/opt/ibm/sp-backend/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
+              name: backend
+              volumeMounts:
+                - mountPath: /opt/ibm/sp-backend/certs
+                  name: truststore
+            - name: ui
+              envFrom:
+                - configMapRef:
+                    name: event-automation-welcome-urls
+          volumes:
+            - name: truststore
+              secret:
+                items:
+                  - key: eventautomation.jks
+                    path: eventautomation.jks
+                secretName: eventautomation-truststore
+    endpoints:
+      - name: ui
+        host: my-event-processing.running.local
+  flink:
+    endpoint: 'my-flink-rest:8081'

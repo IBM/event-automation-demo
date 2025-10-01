@@ -1,0 +1,121 @@
+---
+- name: Install Event Processing
+  hosts: localhost
+  connection: local
+  vars:
+    eventautomation_namespace: "{{ undef(hint='Specify the namespace to deploy into') }}"
+    license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
+    ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+
+  tasks:
+    - name: Install local pre-requisites
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/prerequisites.yaml"
+      tags:
+        - instance
+        - operator
+
+    - name: Check for required variables
+      ansible.builtin.assert:
+        that:
+          - license_accept is defined
+          - eventautomation_namespace is defined
+          - ibm_entitlement_key is defined
+      tags:
+        - operator
+
+    - name: Create namespace for Event Automation
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/setup-namespace.yaml"
+      vars:
+        namespace: "{{ eventautomation_namespace }}"
+      tags:
+        - instance
+
+    - name: Check if an Event Automation truststore has been prepared
+      kubernetes.core.k8s_info:
+        namespace: "{{ eventautomation_namespace }}"
+        kind: Secret
+        name: eventautomation-truststore
+      register: truststore_setup
+      tags:
+        - instance
+
+    - name: Create truststore if no secret exists
+      ansible.builtin.include_tasks: "{{ playbook_dir }}/../common/create-ea-truststore.yaml"
+      when: truststore_setup.resources | length == 0
+      tags:
+        - instance
+
+    - name: Add IBM Helm repo
+      kubernetes.core.helm_repository:
+        name: ibm-helm-repo
+        repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
+        force_update: true
+
+    - name: Deploy EP CRD Helm Chart
+      kubernetes.core.helm:
+        name: ep-crd
+        chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
+        chart_ref: ibm-ep-operator-crd
+        chart_version: 1.4.4
+        namespace: "{{ eventautomation_namespace }}"
+
+    - name: Deploy EP Helm Chart
+      kubernetes.core.helm:
+        name: ep
+        chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
+        chart_ref: ibm-ep-operator
+        chart_version: 1.4.4
+        namespace: "{{ eventautomation_namespace }}"
+      when:
+        - (experimental | bool)
+
+    - name: Wait for the controller pod to be ready
+      kubernetes.core.k8s_info:
+        validate_certs: false
+        api_version: v1
+        kind: Pod
+        label_selectors:
+          - "app.kubernetes.io/instance=ibm-ep-operator"
+        namespace: "{{ eventautomation_namespace }}"
+      register: pod_list
+      until: pod_list | json_query('resources[*].status.conditions[?type==`Ready`].status') | unique == [['True']]
+      retries: 50
+      delay: 20
+
+    - name: Create Event Processing authoring tool
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/03-ep-microk8s.yaml"
+        wait: true
+        wait_condition:
+          status: true
+          type: Ready
+        wait_timeout: 1200
+      tags:
+        - instance
+
+    - name: Add demo users to the auth config
+      kubernetes.core.k8s:
+        state: patched
+        kind: Secret
+        name: my-event-processing-ibm-ep-user-credentials
+        namespace: "{{ eventautomation_namespace }}"
+        definition:
+          data:
+            user-credentials.json: "{{ lookup('template', '{{ playbook_dir }}/templates/05-users.json') | b64encode }}"
+      tags:
+        - instance
+
+    - name: Add demo roles to the auth config
+      kubernetes.core.k8s:
+        state: patched
+        kind: Secret
+        name: my-event-processing-ibm-ep-user-roles
+        namespace: "{{ eventautomation_namespace }}"
+        definition:
+          data:
+            user-mapping.json: "{{ lookup('template', '{{ playbook_dir }}/templates/06-roles.json') | b64encode }}"
+      tags:
+        - instance

@@ -24,8 +24,12 @@ if [[ $BASH_SOURCE = */* ]]; then
 fi
 
 # check options provided
-if [ $# -ne 2 ]; then
-    >&2 echo "Usage: reset-all-data.sh <NAMESPACE> <ACCESS_TOKEN>"
+if [[ $# -ne 2 && $# -ne 3 ]]; then
+    >&2 echo "Usage: reset-all-data.sh <NAMESPACE> <ACCESS_TOKEN> <MODE>"
+    >&2 echo ""
+    >&2 echo "NAMESPACE:      the namespace containing the event automation product installations"
+    >&2 echo "ACCESS_TOKEN:   the access token created in Event Endpoint Management (EEM)"
+    >&2 echo "MODE:           (optional) specify \`local\` to indicate a microk8s environment"
     exit 1
 fi
 
@@ -35,9 +39,19 @@ NAMESPACE=$1
 # get the API access token from a command line argument
 ACCESS_TOKEN=$2
 
-# get location of the EEM manager (also useful for checking that oc login has been run)
-EEM_API=$(oc get route -n $NAMESPACE my-eem-manager-ibm-eem-admin -ojsonpath='https://{.spec.host}')
+if [[ $# -eq 3 && "$3" == "local" ]]
+then
+  KUBE_COMMAND="microk8s kubectl"
+  NETWORK_RESOURCE=ingress
+  RESOURCE_HOST_JSON_PATH='https://{.spec.rules[0].host}'
+else
+  KUBE_COMMAND=oc
+  NETWORK_RESOURCE=route
+  RESOURCE_HOST_JSON_PATH='https://{.spec.host}'
+fi
 
+# get location of the EEM manager (also useful for checking that oc login has been run)
+EEM_API=$($KUBE_COMMAND get $NETWORK_RESOURCE -n $NAMESPACE my-eem-manager-ibm-eem-admin -ojsonpath=$RESOURCE_HOST_JSON_PATH)
 
 echo "========================================================================="
 echo " Event Automation tutorial setup "
@@ -64,14 +78,14 @@ function reset_eem() {
 
     echo "> Clearing existing storage"
 
-    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/org-eem
-    oc delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
+    $KUBE_COMMAND exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/org-eem
+    $KUBE_COMMAND delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
     # waiting for replacement pod to be created
-    until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
+    until $KUBE_COMMAND get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
         sleep 1
     done
     # waiting for replacement pod to become ready
-    oc wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=120s
+    $KUBE_COMMAND wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=120s
 }
 
 
@@ -94,11 +108,11 @@ extract_id() {
 echo "> (1/3) Getting Event Streams cluster information"
 
 # get the certificates for the Kafka cluster
-ES_CERTIFICATE=$(oc get eventstreams my-kafka-cluster -n $NAMESPACE -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
+ES_CERTIFICATE=$($KUBE_COMMAND get eventstreams my-kafka-cluster -n $NAMESPACE -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
 ES_CERTIFICATE=${ES_CERTIFICATE//$'\n'/\\\\n}
 
 # get the password for the Kafka cluster
-ES_PASSWORD=$(oc get secret kafka-demo-apps -n $NAMESPACE -ojsonpath='{.data.password}' | base64 -d)
+ES_PASSWORD=$($KUBE_COMMAND get secret kafka-demo-apps -n $NAMESPACE -ojsonpath='{.data.password}' | base64 -d)
 
 # substitute details into the template
 cat eem-01-cluster.json | \
