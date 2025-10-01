@@ -1,0 +1,22 @@
+---
+- name: Install and prepare the IBM Event Automation tutorial environment
+  hosts: localhost
+  connection: local
+
+- name: Prepare welcome page
+  ansible.builtin.import_playbook: welcome/prepare.yaml
+
+- name: Install Event Streams
+  ansible.builtin.import_playbook: eventstreams/install-helm-microk8s.yaml
+
+- name: Install Event Endpoint Management
+  ansible.builtin.import_playbook: eventendpointmanagement/install-helm-microk8s.yaml
+
+- name: Install Apache Flink
+  ansible.builtin.import_playbook: flink/install-helm-microk8s.yaml
+
+- name: Install Event Processing
+  ansible.builtin.import_playbook: eventprocessing/install-helm-microk8s.yaml
+
+- name: Set up welcome page
+  ansible.builtin.import_playbook: welcome/setup.yaml

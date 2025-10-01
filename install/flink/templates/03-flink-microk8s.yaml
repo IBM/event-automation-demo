@@ -1,0 +1,57 @@
+apiVersion: flink.apache.org/v1beta1
+kind: FlinkDeployment
+metadata:
+  name: my-flink
+spec:
+  flinkConfiguration:
+    # license accepts
+    license.license: L-CYBH-K48BZQ
+    license.accept: '{{ license_accept }}'
+    license.use: EventAutomationNonProduction
+    # scaling
+    taskmanager.numberOfTaskSlots: '4'
+    # state and persistence
+    state.backend.type: rocksdb
+    state.checkpoints.num-retained: '3'
+    execution.checkpointing.interval: '5000'
+    execution.checkpointing.incremental: 'true'
+    # behaviour
+    json.ignore-parse-errors: 'true'
+    table.exec.source.idle-timeout: 30 s
+    restart-strategy.type: 'none'
+    # use custom truststore to allow jobs to connect to ES and EEM
+    env.java.opts.jobmanager: '-Djavax.net.ssl.trustStore=/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
+    env.java.opts.taskmanager: '-Djavax.net.ssl.trustStore=/certs/eventautomation.jks -Djavax.net.ssl.trustStorePassword=eventautomationstore'
+  jobManager:
+    replicas: 1
+    resource:
+      cpu: 0.25
+      memory: 2048m
+  serviceAccount: flink
+  taskManager:
+    resource:
+      cpu: 1
+      memory: 2048m
+  mode: native
+  podTemplate:
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-template
+    spec:
+      containers:
+        - name: flink-main-container
+          volumeMounts:
+            - mountPath: /opt/flink/log
+              name: flink-logs
+            - mountPath: /certs
+              name: truststore
+      volumes:
+        - emptyDir: {}
+          name: flink-logs
+        - name: truststore
+          secret:
+            items:
+              - key: eventautomation.jks
+                path: eventautomation.jks
+            secretName: eventautomation-truststore
