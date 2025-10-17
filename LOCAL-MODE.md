@@ -32,7 +32,9 @@ The following instructions were used by the author to install and configure WSL 
 
   - Shutdown wsl with the command `wsl --shutdown`
 
-  - Run the command `restart-service LxssManager` in PowerShell as administrator
+  - For WSL2, run the command `restart-service WslService` in PowerShell as administrator
+
+  - For WSL1, run the command `restart-service LxssManager` in PowerShell as administrator
 
   - Run `wsl -d Ubuntu-22.04`
 
