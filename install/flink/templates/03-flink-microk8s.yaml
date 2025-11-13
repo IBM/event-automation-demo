@@ -25,7 +25,7 @@ spec:
   jobManager:
     replicas: 1
     resource:
-      cpu: 0.25
+      cpu: 0.75
       memory: 2048m
   serviceAccount: flink
   taskManager:
