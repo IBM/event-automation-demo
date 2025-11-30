@@ -1,0 +1,35 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: es-schemas-kafkauser
+type: Opaque
+stringData:
+  password: es-schemas
+  sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="es-schemas" password="es-schemas";
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaUser
+metadata:
+  name: es-schemas
+  labels:
+    app.kubernetes.io/instance: my-kafka-cluster
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: es-schemas-kafkauser
+          key: password
+  authorization:
+    acls:
+      - operations:
+          - Read
+        resource:
+          name: __schema_
+          patternType: prefix
+          type: topic
+    type: simple

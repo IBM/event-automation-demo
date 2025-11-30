@@ -168,3 +168,12 @@
           type: Ready
       tags:
         - instance
+
+    - name: Create credentials for (read-only) schema registry access
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: present
+        namespace: "{{ eventautomation_namespace }}"
+        template: "{{ playbook_dir }}/templates/11-schemaregistry-user.yaml"
+      tags:
+        - instance
