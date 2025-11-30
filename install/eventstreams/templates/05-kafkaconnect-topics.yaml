@@ -7,7 +7,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: ORDERS.NEW
@@ -23,7 +23,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: CANCELLATIONS
@@ -39,7 +39,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 1
   topicName: DOOR.BADGEIN
@@ -55,7 +55,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 1
   topicName: STOCK.MOVEMENT
@@ -71,7 +71,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: CUSTOMERS.NEW
@@ -87,7 +87,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 1
   topicName: SENSOR.READINGS
@@ -103,10 +103,26 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: ORDERS.ONLINE
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-clickstream
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '131072000'
+  partitions: 3
+  replicas: 3
+  topicName: CLICKTRACKING
 
 ---
 
@@ -119,7 +135,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: STOCK.NOSTOCK
@@ -135,7 +151,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: PRODUCT.RETURNS
@@ -151,7 +167,7 @@ metadata:
 spec:
   config:
     min.insync.replicas: '1'
-    retention.bytes: '524288000'
+    retention.bytes: '131072000'
   partitions: 3
   replicas: 3
   topicName: PRODUCT.REVIEWS
@@ -299,6 +315,22 @@ spec:
   partitions: 3
   replicas: 1
   topicName: ORDERS.ONLINE.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-clickstream-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: CLICKTRACKING.AVRO
 
 ---
 
@@ -491,6 +523,22 @@ spec:
   partitions: 1
   replicas: 1
   topicName: ORDERS.ONLINE.REG
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-clickstream-reg
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '131072000'
+  partitions: 1
+  replicas: 1
+  topicName: CLICKTRACKING.REG
 
 ---
 

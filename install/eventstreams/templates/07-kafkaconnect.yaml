@@ -68,12 +68,12 @@ spec:
   build:
     output:
       type: docker
-      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.14
+      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.15
     plugins:
       - name: datagen
         artifacts:
           - type: jar
-            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.5.2/kafka-connect-loosehangerjeans-source-0.5.2-jar-with-dependencies.jar
+            url: https://github.com/IBM/kafka-connect-loosehangerjeans-source/releases/download/0.6.1/kafka-connect-loosehangerjeans-source-0.6.1-jar-with-dependencies.jar
           - type: zip
             url: 'https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.6.13.Final/apicurio-registry-distro-connect-converter-2.6.13.Final.zip'
       - name: mq-source

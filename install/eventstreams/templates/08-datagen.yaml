@@ -43,6 +43,7 @@ spec:
     topic.name.stockmovements: STOCK.MOVEMENT.AVRO
     topic.name.newcustomers: CUSTOMERS.NEW.AVRO
     topic.name.onlineorders: ORDERS.ONLINE.AVRO
+    topic.name.clicktracking: CLICKTRACKING.AVRO
     topic.name.outofstocks: STOCK.NOSTOCK.AVRO
     topic.name.returnrequests: PRODUCT.RETURNS.AVRO
     topic.name.productreviews: PRODUCT.REVIEWS.AVRO
@@ -50,6 +51,8 @@ spec:
     topic.name.abandonedorders: ORDERS.ABANDONED.AVRO
 
     timings.ms.badgeins: 60000
+    timings.ms.onlineorders: 60000
+    onlineorders.sessions.max: 10
 
     value.converter.apicurio.auth.username: kafka-connect-credentials
     value.converter.apicurio.auth.password: ${file:/opt/kafka/connect-password/kafka-connect-credentials:password}
@@ -91,6 +94,7 @@ spec:
     topic.name.stockmovements: STOCK.MOVEMENT.REG
     topic.name.newcustomers: CUSTOMERS.NEW.REG
     topic.name.onlineorders: ORDERS.ONLINE.REG
+    topic.name.clicktracking: CLICKTRACKING.REG
     topic.name.outofstocks: STOCK.NOSTOCK.REG
     topic.name.returnrequests: PRODUCT.RETURNS.REG
     topic.name.productreviews: PRODUCT.REVIEWS.REG
