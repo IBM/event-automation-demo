@@ -2,12 +2,13 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   labels:
-    operators.coreos.com/postgresql.openshift-operators: ''
-  name: postgresql
+    operators.coreos.com/crunchy-postgres-operator.openshift-operators: ''
+  name: crunchy-postgres-operator
   namespace: openshift-operators
 spec:
   channel: v5
   installPlanApproval: Automatic
-  name: postgresql
-  source: community-operators
+  name: crunchy-postgres-operator
+  source: certified-operators
   sourceNamespace: openshift-marketplace
+  startingCSV: postgresoperator.v5.7.1
