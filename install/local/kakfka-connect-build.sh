@@ -24,7 +24,7 @@ mvn package
 cd ..
 git clone https://github.com/IBM/kafka-connect-loosehangerjeans-source.git
 cd kafka-connect-loosehangerjeans-source
-git checkout 0.5.1
+git checkout 0.6.1
 mvn package
 
 cd ..

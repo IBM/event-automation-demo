@@ -41,7 +41,7 @@
         name: eem-crd
         chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
         chart_ref: ibm-eem-operator-crd
-        chart_version: 11.6.4
+        chart_version: 11.7.0
         namespace: "{{ eventautomation_namespace }}"
 
     - name: Deploy EEM Helm Chart
@@ -49,7 +49,7 @@
         name: eem
         chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
         chart_ref: ibm-eem-operator
-        chart_version: 11.6.4
+        chart_version: 11.7.0
         namespace: "{{ eventautomation_namespace }}"
       when:
         - (experimental | bool)

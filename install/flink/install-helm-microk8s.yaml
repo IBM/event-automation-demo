@@ -57,7 +57,7 @@
         name: flink-crd
         chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
         chart_ref: ibm-eventautomation-flink-operator-crd
-        chart_version: 1.4.4
+        chart_version: 1.4.5
         namespace: "{{ eventautomation_namespace }}"
 
     - name: Deploy Flink Helm Chart
@@ -65,7 +65,7 @@
         name: flink
         chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
         chart_ref: ibm-eventautomation-flink-operator
-        chart_version: 1.4.4
+        chart_version: 1.4.5
         namespace: "{{ eventautomation_namespace }}"
       when:
         - (experimental | bool)
