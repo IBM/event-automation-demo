@@ -68,7 +68,7 @@ spec:
   build:
     output:
       type: docker
-      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.15
+      image: image-registry.openshift-image-registry.svc:5000/{{ eventautomation_namespace }}/event-automation-demo:0.0.16
     plugins:
       - name: datagen
         artifacts:
@@ -79,4 +79,4 @@ spec:
       - name: mq-source
         artifacts:
           - type: jar
-            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.6.0/kafka-connect-mq-source-2.6.0-jar-with-dependencies.jar
+            url: https://github.com/ibm-messaging/kafka-connect-mq-source/releases/download/v2.6.0/kafka-connect-mq-source-2.7.0-jar-with-dependencies.jar
