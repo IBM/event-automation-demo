@@ -151,13 +151,14 @@ Helm must be installed and on the PATH, the following commands should install he
         sudo apt-get install helm
         ```
 
-### Maven, Git, Docker and Java 17+
+### Maven, Git, Docker, unzip and Java 17+
 
 You will need the mvn, git and docker commands available to build git repos, download dependencies and build the kafkaconnect image used to pre-populate topics, to install these technologies:
 
   - `sudo apt install maven -y`
   - `sudo apt install git -y`
   - `sudo snap install docker`
+  - `sudo apt install unzip`
 
 You will also need Java 17 or higher
 
@@ -190,13 +191,13 @@ Obtain your IBM entitlement key so that you can access the IBM Event Automation 
   - Build and tag the image, assuming your local microk8s registry is available as localhost:32000 (the default)
 
         ```
-        sudo docker build -t localhost:32000/event-automation:demo -f install/local/Dockerfile .
+        sudo docker build -t localhost:32000/event-automation-demo:0.0.16 -f install/local/Dockerfile .
         ```
 
   - Upload this image to the microk8s registry.  Wherever you push this image will be the value you specify as the kafkaconnect_image on the ansible command to install and setup the environment. Assuming your microk8s registry is the default localhost:32000
 
         ```
-        sudo docker push localhost:32000/event-automation:demo
+        sudo docker push localhost:32000/event-automation-demo:0.0.16
         ```
 
 
@@ -288,7 +289,7 @@ ansible-playbook \
     -e eventendpointmanagement_storage_class=microk8s-hostpath \
     -e eventprocessing_storage_class=microk8s-hostpath \
     -e eventautomation_namespace=event-automation \
-    -e kafkaconnect_image=localhost:32000/event-automation:demo \
+    -e kafkaconnect_image=localhost:32000/event-automation-demo:0.0.16 \
     install/event-automation-local.yaml
 ```
 
@@ -333,7 +334,7 @@ If omitted, ephemeral storage is used.
 
 #### `kafkaconnect_image`
 
-The image built as a pre-requisite step that will populate topics with messages (localhost:32000/event-automation:demo)
+The image built as a pre-requisite step that will populate topics with messages (localhost:32000/event-automation-demo:0.0.16)
 
 #### `experimental`
 

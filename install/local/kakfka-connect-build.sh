@@ -18,7 +18,7 @@ mkdir kafkaconnect
 cd kafkaconnect
 git clone https://github.com/ibm-messaging/kafka-connect-mq-source.git
 cd kafka-connect-mq-source
-git checkout v2.6.0
+git checkout v2.7.0
 mvn package
 
 cd ..
@@ -35,5 +35,9 @@ mkdir plugins/mq-source
 cp kafka-connect-mq-source/target/kafka-connect-mq-source-*-jar-with-dependencies.jar plugins/datagen
 cp kafka-connect-loosehangerjeans-source/target/kafka-connect-loosehangerjeans-source-*-jar-with-dependencies.jar plugins/mq-source
 
-mvn dependency:get -Dartifact=io.apicurio:apicurio-registry-serdes-avro-serde:2.6.6.Final -Dmaven.repo.local=./plugins/datagen
-mvn dependency:get -Dartifact=io.apicurio:apicurio-registry-utils-converter:2.6.6.Final -Dmaven.repo.local=./plugins/datagen
+# mvn dependency:get -Dartifact=io.apicurio:apicurio-registry-serdes-avro-serde:2.6.6.Final -Dmaven.repo.local=./plugins/datagen
+# mvn dependency:get -Dartifact=io.apicurio:apicurio-registry-utils-converter:2.6.6.Final -Dmaven.repo.local=./plugins/datagen
+
+wget  https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.6.13.Final/apicurio-registry-distro-connect-converter-2.6.13.Final.zip -P ./plugins/datagen
+unzip ./plugins/datagen/apicurio-registry-distro-connect-converter-2.6.13.Final.zip -d ./plugins/datagen
+rm ./plugins/datagen/apicurio-registry-distro-connect-converter-2.6.13.Final.zip

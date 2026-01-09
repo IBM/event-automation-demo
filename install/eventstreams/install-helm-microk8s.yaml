@@ -55,7 +55,7 @@
         name: es
         chart_repo_url: "https://raw.githubusercontent.com/IBM/charts/master/repo/ibm-helm"
         chart_ref: ibm-eventstreams-operator
-        chart_version: 12.1.0
+        chart_version: 12.2.0
         namespace: "{{ eventautomation_namespace }}"
       when:
         - (experimental | bool)
