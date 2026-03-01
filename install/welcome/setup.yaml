@@ -86,13 +86,25 @@
       tags:
         - instance
 
-    - name: Restart Event Endpoint Management
+    - name: Restart Event Endpoint Management Manager
       kubernetes.core.k8s:
         validate_certs: false
         state: absent
         namespace: "{{ eventautomation_namespace }}"
         kind: Pod
         name: my-eem-manager-ibm-eem-manager-0
+      tags:
+      - instance
+
+    - name: Restart Event Endpoint Management Gateway
+      kubernetes.core.k8s:
+        validate_certs: false
+        state: absent
+        namespace: "{{ eventautomation_namespace }}"
+        kind: Pod
+        label_selectors:
+          - app.kubernetes.io/component=ibm-egw
+          - app.kubernetes.io/instance=my-eem-gateway
       tags:
         - instance
 
