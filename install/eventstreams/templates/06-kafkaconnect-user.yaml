@@ -11,20 +11,10 @@ spec:
   authorization:
     acls:
       # ---------------------------------------
-      # cluster permissions
-      # ---------------------------------------
-      - operations:
-          # check existing cluster config
-          - DescribeConfigs
-        resource:
-          type: cluster
-      # ---------------------------------------
       # topic permissions
       # ---------------------------------------
       - operations:
-          # check existing topics
-          - DescribeConfigs
-          # create topics (both to produce to, and to use for internal state)
+          # create topics (used for internal state)
           - Create
           # consume from topics (needed to retrieve state from internal topics)
           - Read
@@ -40,7 +30,7 @@ spec:
       - operations:
           - Read
         resource:
-          name: '*'
+          name: kafka-connect
           patternType: literal
           type: group
       # ---------------------------------------
@@ -55,14 +45,4 @@ spec:
           name: __schema_
           patternType: prefix
           type: topic
-      # ---------------------------------------
-      # transaction permissions
-      # ---------------------------------------
-      # create transactions
-      - operations:
-          - Write
-        resource:
-          name: '*'
-          patternType: literal
-          type: transactionalId
     type: simple
