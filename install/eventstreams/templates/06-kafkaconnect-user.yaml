@@ -20,6 +20,9 @@ spec:
           - Read
           # produce to topics (both writing to internal state topics and messages being produced by connectors)
           - Write
+          # describe topics (used to verify config for existing topics)
+          - Describe
+          - DescribeConfigs
         resource:
           name: '*'
           patternType: literal
