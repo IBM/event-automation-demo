@@ -6,11 +6,10 @@ spec:
   flinkConfiguration:
     # license accepts
     license.license: L-CYBH-K48BZQ
-    license.accept: 'true'
+    license.accept: '{{ license_accept }}'
     license.use: EventAutomationNonProduction
     # scaling
     taskmanager.numberOfTaskSlots: '4'
-    slotmanager.number-of-slots.min: '1'
     # state and persistence
     state.backend.type: rocksdb
     execution.checkpointing.num-retained: '3'

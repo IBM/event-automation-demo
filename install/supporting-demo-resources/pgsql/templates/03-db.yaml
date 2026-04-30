@@ -43,10 +43,6 @@ spec:
     databases:
       - pgsqldemo
     options: SUPERUSER
-    password:
-        type: AlphaNumeric
   - name: pgadmin
     databases:
       - pgsqldemo
-    password:
-        type: AlphaNumeric
