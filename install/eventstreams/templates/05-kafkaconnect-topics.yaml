@@ -305,22 +305,6 @@ spec:
 apiVersion: eventstreams.ibm.com/v1beta2
 kind: KafkaTopic
 metadata:
-  name: fake-clickstream-avro
-  labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
-spec:
-  config:
-    min.insync.replicas: '1'
-    retention.bytes: '50000000'
-  partitions: 3
-  replicas: 1
-  topicName: CLICKTRACKING.AVRO
-
----
-
-apiVersion: eventstreams.ibm.com/v1beta2
-kind: KafkaTopic
-metadata:
   name: fake-onlineorders-avro
   labels:
     eventstreams.ibm.com/cluster: my-kafka-cluster
@@ -331,6 +315,22 @@ spec:
   partitions: 3
   replicas: 1
   topicName: ORDERS.ONLINE.AVRO
+
+---
+
+apiVersion: eventstreams.ibm.com/v1beta2
+kind: KafkaTopic
+metadata:
+  name: fake-clickstream-avro
+  labels:
+    eventstreams.ibm.com/cluster: my-kafka-cluster
+spec:
+  config:
+    min.insync.replicas: '1'
+    retention.bytes: '50000000'
+  partitions: 3
+  replicas: 1
+  topicName: CLICKTRACKING.AVRO
 
 ---
 
