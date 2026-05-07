@@ -619,3 +619,4 @@ spec:
   partitions: 1
   replicas: 1
   topicName: ORDERS.ABANDONED.REG
+  
