@@ -4,6 +4,7 @@
   connection: local
   vars:
     eventautomation_namespace: "event-automation"
+    kafka_cluster_name: "my-kafka-cluster"
 
   tasks:
     - name: Install local pre-requisites
@@ -41,7 +42,7 @@
         validate_certs: false
         api_version: v1
         kind: Secret
-        name: my-kafka-cluster-cluster-ca-cert
+        name: "{{ kafka_cluster_name }}-cluster-ca-cert"
         namespace: "{{ eventautomation_namespace }}"
       register: truststore_password_secret
 

@@ -49,7 +49,7 @@ spec:
               path: ca.p12
             - key: ca.password
               path: ca.password
-            secretName: my-kafka-cluster-cluster-ca-cert
+            secretName: {{ kafka_cluster_name }}-cluster-ca-cert
         - name: producer-properties
           configMap:
             name: workload-credentials
@@ -98,7 +98,7 @@ spec:
             - "--timeout"
             - "120000"
             - "--bootstrap-server"
-            - "my-kafka-cluster-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095"
+            - "{{ kafka_cluster_name }}-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095"
           volumeMounts:
             - mountPath: /certs/cluster
               name: cluster-ca
@@ -116,7 +116,7 @@ spec:
                 path: ca.p12
               - key: ca.password
                 path: ca.password
-            secretName: my-kafka-cluster-cluster-ca-cert
+            secretName: {{ kafka_cluster_name }}-cluster-ca-cert
         - name: consumer-properties
           configMap:
             name: workload-credentials
