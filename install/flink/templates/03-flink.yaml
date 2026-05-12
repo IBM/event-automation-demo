@@ -1,7 +1,7 @@
 apiVersion: flink.apache.org/v1beta1
 kind: FlinkDeployment
 metadata:
-  name: my-flink
+  name: {{ flink_instance_name }}
 spec:
   flinkConfiguration:
     # license accepts

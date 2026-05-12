@@ -6,6 +6,7 @@
     eventautomation_namespace: "event-automation"
     license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+    flink_instance_name: "my-flink"
 
   tasks:
     - name: Install local pre-requisites
