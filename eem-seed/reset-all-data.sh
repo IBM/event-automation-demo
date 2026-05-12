@@ -24,9 +24,10 @@ if [[ $BASH_SOURCE = */* ]]; then
 fi
 
 # check options provided
-if [ $# -lt 2 ] || [ $# -gt 3 ]; then
-    >&2 echo "Usage: reset-all-data.sh <NAMESPACE> <ACCESS_TOKEN> [KAFKA_CLUSTER_NAME]"
+if [ $# -lt 2 ] || [ $# -gt 4 ]; then
+    >&2 echo "Usage: reset-all-data.sh <NAMESPACE> <ACCESS_TOKEN> [KAFKA_CLUSTER_NAME] [EEM_MANAGER_NAME]"
     >&2 echo "  KAFKA_CLUSTER_NAME defaults to 'my-kafka-cluster' if not provided"
+    >&2 echo "  EEM_MANAGER_NAME defaults to 'my-eem-manager' if not provided"
     exit 1
 fi
 
@@ -36,8 +37,14 @@ NAMESPACE=$1
 # get the API access token from a command line argument
 ACCESS_TOKEN=$2
 
+# get the Kafka cluster name (use provided value or default)
+KAFKA_CLUSTER_NAME=${3:-my-kafka-cluster}
+
+# get the EEM manager name (use provided value or default)
+EEM_MANAGER_NAME=${4:-my-eem-manager}
+
 # get location of the EEM manager (also useful for checking that oc login has been run)
-EEM_API=$(oc get route -n $NAMESPACE my-eem-manager-ibm-eem-admin -ojsonpath='https://{.spec.host}')
+EEM_API=$(oc get route -n $NAMESPACE ${EEM_MANAGER_NAME}-ibm-eem-admin -ojsonpath='https://{.spec.host}')
 
 
 echo "========================================================================="
@@ -51,7 +58,7 @@ echo "========================================================================="
 # --------------------------------------
 function reset_eem() {
     echo " ----------------------------------------------------------------------- "
-    echo " This will CLEAR ALL STORAGE for the my-eem-manager instance "
+    echo " This will CLEAR ALL STORAGE for the $EEM_MANAGER_NAME instance "
     echo "  of Event Endpoint Management in the $NAMESPACE namespace "
     echo "  and replace it with definitions for the tutorial topics. "
     echo " ----------------------------------------------------------------------- "
@@ -65,14 +72,14 @@ function reset_eem() {
 
     echo "> Clearing existing storage"
 
-    oc exec -it -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 -- rm -rf /opt/storage/org-eem
-    oc delete pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0
+    oc exec -it -n $NAMESPACE ${EEM_MANAGER_NAME}-ibm-eem-manager-0 -- rm -rf /opt/storage/org-eem
+    oc delete pod -n $NAMESPACE ${EEM_MANAGER_NAME}-ibm-eem-manager-0
     # waiting for replacement pod to be created
-    until oc get pod -n $NAMESPACE my-eem-manager-ibm-eem-manager-0 >/dev/null 2>&1; do
+    until oc get pod -n $NAMESPACE ${EEM_MANAGER_NAME}-ibm-eem-manager-0 >/dev/null 2>&1; do
         sleep 1
     done
     # waiting for replacement pod to become ready
-    oc wait -n $NAMESPACE --for=condition=ready pod my-eem-manager-ibm-eem-manager-0 --timeout=120s
+    oc wait -n $NAMESPACE --for=condition=ready pod ${EEM_MANAGER_NAME}-ibm-eem-manager-0 --timeout=120s
 }
 
 

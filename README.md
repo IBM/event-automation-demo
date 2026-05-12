@@ -204,16 +204,20 @@ You need an access token to be able to run the helper script.
 
 To create an access token, visit the **Profile** page in the Event Endpoint Management catalog by clicking on the user icon in the header. For more detailed instructions, see the [Event Endpoint Management documentation](https://ibm.github.io/event-automation/eem/security/api-tokens/#creating-a-token).
 
-`./eem-seed/reset-all-data.sh <eventautomation_namespace> <access_token> [kafka_cluster_name]`
+`./eem-seed/reset-all-data.sh <eventautomation_namespace> <access_token> [kafka_cluster_name] [eem_manager_name]`
 
 For example:
 ```sh
 ./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000
 ```
 
-If you used a custom `eventstreams_instance_name` during installation, provide it as the third parameter:
+If you used custom instance names during installation, provide them as additional parameters:
 ```sh
+# With custom Kafka cluster name only
 ./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000 prod-kafka
+
+# With both custom Kafka cluster and EEM manager names
+./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000 prod-kafka prod-eem-manager
 ```
 
 > **Warning**:

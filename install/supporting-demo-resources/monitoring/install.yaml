@@ -5,6 +5,8 @@
   vars:
     eventautomation_namespace: "event-automation"
     eventstreams_instance_name: "my-kafka-cluster"
+    eventendpointmanagement_manager_name: "my-eem-manager"
+    eventendpointmanagement_gateway_name: "my-eem-gateway"
     dashboards:
       - es-health
       - es-performance
@@ -202,7 +204,7 @@
         state: present
         api_version: events.ibm.com/v1beta1
         kind: EventEndpointManagement
-        name: my-eem-manager
+        name: "{{ eventendpointmanagement_manager_name }}"
         namespace: "{{ eventautomation_namespace }}"
         definition: "{{ lookup('file', playbook_dir + '/templates/11-eem-manager-patch.yaml') | from_yaml }}"
         merge_type: merge
@@ -213,7 +215,7 @@
         state: present
         api_version: events.ibm.com/v1beta1
         kind: EventGateway
-        name: my-eem-gateway
+        name: "{{ eventendpointmanagement_gateway_name }}"
         namespace: "{{ eventautomation_namespace }}"
         definition: "{{ lookup('file', playbook_dir + '/templates/12-eem-gateway-patch.yaml') | from_yaml }}"
         merge_type: merge

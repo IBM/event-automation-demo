@@ -17,6 +17,14 @@ The monitoring setup can be configured using the following variables in [`instal
   - Name of the Event Streams (Kafka) cluster instance
   - Used for granting monitoring permissions to the Event Streams admin API service account
 
+- **`eventendpointmanagement_manager_name`** (default: `"my-eem-manager"`)
+  - Name of the Event Endpoint Management manager instance
+  - Used for configuring OpenTelemetry monitoring on the EEM manager
+
+- **`eventendpointmanagement_gateway_name`** (default: `"my-eem-gateway"`)
+  - Name of the Event Endpoint Management gateway instance
+  - Used for configuring OpenTelemetry monitoring on the EEM gateway
+
 ## Grafana Dashboards
 
 The `dashboards/` directory contains pre-configured Grafana dashboards for monitoring:
@@ -28,12 +36,22 @@ The `dashboards/` directory contains pre-configured Grafana dashboards for monit
 
 ### Important Note About Custom Instance Names
 
-⚠️ **The Grafana dashboard JSON files contain hard-coded references to the default instance name `my-kafka-cluster`.** 
+⚠️ **The Grafana dashboard JSON files contain hard-coded references to the default instance names.**
 
-If you use a custom `eventstreams_instance_name`, you will need to manually update the dashboard JSON files before importing them into Grafana. Use a text editor to find and replace all occurrences of `my-kafka-cluster` with your custom instance name in the following files:
+If you use custom instance names, you will need to manually update the dashboard JSON files before importing them into Grafana:
 
-- `dashboards/es-health.json`
-- `dashboards/es-performance.json`
+**For Event Streams dashboards:**
+- Find and replace `my-kafka-cluster` with your custom `eventstreams_instance_name` in:
+  - `dashboards/es-health.json`
+  - `dashboards/es-performance.json`
+
+**For Event Endpoint Management dashboards:**
+- Find and replace `my-eem-manager` with your custom `eventendpointmanagement_manager_name` in:
+  - `dashboards/eem-health.json`
+  - `dashboards/eem-activity.json`
+- Find and replace `my-eem-gateway` with your custom `eventendpointmanagement_gateway_name` in:
+  - `dashboards/eem-health.json`
+  - `dashboards/eem-activity.json`
 
 Alternatively, you can edit the queries directly in Grafana after importing the dashboards.
 
@@ -46,15 +64,17 @@ ansible-playbook install/supporting-demo-resources/monitoring/install.yaml \
   -e eventautomation_namespace="event-automation"
 ```
 
-### Install with Custom Event Streams Instance Name
+### Install with Custom Instance Names
 
 ```bash
 ansible-playbook install/supporting-demo-resources/monitoring/install.yaml \
   -e eventautomation_namespace="event-automation" \
-  -e eventstreams_instance_name="prod-kafka"
+  -e eventstreams_instance_name="prod-kafka" \
+  -e eventendpointmanagement_manager_name="prod-eem-manager" \
+  -e eventendpointmanagement_gateway_name="prod-eem-gateway"
 ```
 
-**Remember:** If using a custom instance name, update the dashboard JSON files before importing them into Grafana.
+**Remember:** If using custom instance names, update the dashboard JSON files before importing them into Grafana.
 
 ## What This Playbook Does
 
