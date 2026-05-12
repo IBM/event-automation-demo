@@ -1,7 +1,7 @@
 apiVersion: events.ibm.com/v1beta1
 kind: EventGateway
 metadata:
-  name: {{ eem_gateway_name }}
+  name: {{ eventendpointmanagement_gateway_name }}
 spec:
   managerEndpoint: {{ eem_gateway_route }}
   gatewayGroupName: gateway-group
@@ -24,4 +24,4 @@ spec:
                 cpu: '1'
                 memory: 1Gi
   tls:
-    caSecretName: {{ eem_manager_name }}-ibm-eem-manager-ca
+    caSecretName: {{ eventendpointmanagement_manager_name }}-ibm-eem-manager-ca

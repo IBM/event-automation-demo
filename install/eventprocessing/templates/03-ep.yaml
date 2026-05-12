@@ -1,7 +1,7 @@
 apiVersion: events.ibm.com/v1beta1
 kind: EventProcessing
 metadata:
-  name: {{ ep_instance_name }}
+  name: {{ eventprocessing_instance_name }}
 spec:
   authoring:
     authConfig:
@@ -9,7 +9,7 @@ spec:
     storage:
 {% if eventprocessing_storage_class is defined and eventprocessing_storage_class | length %}
       type: persistent-claim
-      size: 100M
+      size: {{ eventprocessing_storage_size }}
       storageClassName: {{ eventprocessing_storage_class }}
 {% else %}
       type: ephemeral

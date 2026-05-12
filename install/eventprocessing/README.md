@@ -19,7 +19,7 @@ The playbook supports the following configurable variables in [`install.yaml`](i
 
 ### Optional Variables
 
-- **`ep_instance_name`** (default: `"my-event-processing"`)
+- **`eventprocessing_instance_name`** (default: `"my-event-processing"`)
   - The name of the Event Processing instance
   - This name is used for:
     - The EventProcessing custom resource
@@ -29,6 +29,11 @@ The playbook supports the following configurable variables in [`install.yaml`](i
 - **`eventprocessing_storage_class`** (optional)
   - Storage class for persistent storage
   - If not provided, ephemeral storage will be used
+
+- **`eventprocessing_storage_size`** (default: `"100M"`)
+  - Storage size for the Event Processing authoring tool
+  - Only used when `eventprocessing_storage_class` is specified
+  - Examples: "100M", "500M", "1Gi"
 
 ## Usage
 
@@ -52,7 +57,7 @@ ansible-playbook install/eventprocessing/install.yaml \
   -e eventautomation_namespace="event-automation" \
   -e license_accept=true \
   -e ibm_entitlement_key="YOUR_KEY_HERE" \
-  -e ep_instance_name="production-event-processing"
+  -e eventprocessing_instance_name="production-event-processing"
 ```
 
 ### With Persistent Storage
@@ -65,6 +70,19 @@ ansible-playbook install/eventprocessing/install.yaml \
   -e license_accept=true \
   -e ibm_entitlement_key="YOUR_KEY_HERE" \
   -e eventprocessing_storage_class="ibmc-block-gold"
+```
+
+### With Custom Storage Size
+
+Customize the storage size (requires storage class to be set):
+
+```bash
+ansible-playbook install/eventprocessing/install.yaml \
+  -e eventautomation_namespace="event-automation" \
+  -e license_accept=true \
+  -e ibm_entitlement_key="YOUR_KEY_HERE" \
+  -e eventprocessing_storage_class="ibmc-block-gold" \
+  -e eventprocessing_storage_size="500M"
 ```
 
 ### Install Only Operator
@@ -109,9 +127,9 @@ ansible-playbook install/eventprocessing/install.yaml \
 
 ### Event Processing Resources
 
-- **EventProcessing**: `<ep_instance_name>` (default: `my-event-processing`)
-- **Secret**: `<ep_instance_name>-ibm-ep-user-credentials` (user authentication)
-- **Secret**: `<ep_instance_name>-ibm-ep-user-roles` (user authorization)
+- **EventProcessing**: `<eventprocessing_instance_name>` (default: `my-event-processing`)
+- **Secret**: `<eventprocessing_instance_name>-ibm-ep-user-credentials` (user authentication)
+- **Secret**: `<eventprocessing_instance_name>-ibm-ep-user-roles` (user authorization)
 - **Secret**: `eventautomation-truststore` (shared truststore for Kafka connectivity)
 
 ## Template Files
@@ -151,7 +169,7 @@ The truststore is configured with:
 
 If you previously used this playbook with the hard-coded `my-event-processing` name, no changes are required. The default value maintains backward compatibility.
 
-To migrate to a different instance name, simply set the `ep_instance_name` variable as shown in the usage examples above.
+To migrate to a different instance name, simply set the `eventprocessing_instance_name` variable as shown in the usage examples above.
 
 ## Accessing the Event Processing UI
 
@@ -159,7 +177,7 @@ After installation, you can access the Event Processing UI through the OpenShift
 
 ```bash
 # Get the route URL
-oc get route <ep_instance_name>-ibm-ep-ui -n <namespace> -o jsonpath='{.spec.host}'
+oc get route <eventprocessing_instance_name>-ibm-ep-ui -n <namespace> -o jsonpath='{.spec.host}'
 
 # Example with defaults
 oc get route my-event-processing-ibm-ep-ui -n event-automation -o jsonpath='{.spec.host}'
