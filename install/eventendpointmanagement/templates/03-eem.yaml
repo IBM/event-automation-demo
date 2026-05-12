@@ -1,7 +1,7 @@
 apiVersion: events.ibm.com/v1beta1
 kind: EventEndpointManagement
 metadata:
-  name: my-eem-manager
+  name: {{ eem_manager_name }}
 spec:
   license:
     accept: {{ license_accept }}
