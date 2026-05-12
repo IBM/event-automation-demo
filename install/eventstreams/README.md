@@ -19,6 +19,11 @@ The playbook supports the following configurable variables in [`install.yaml`](i
 
 ### Optional Variables
 
+- **`eventstreams_instance_name`** (default: `"my-kafka-cluster"`)
+  - Name of the Event Streams (Kafka) cluster instance
+  - This name is used for the EventStreams custom resource and affects generated resource names
+  - Examples: "my-kafka-cluster", "prod-kafka", "dev-eventstreams"
+
 - **`eventstreams_storage_class`** (optional)
   - Storage class for persistent storage
   - If not provided, ephemeral storage will be used
@@ -46,6 +51,18 @@ ansible-playbook install/eventstreams/install.yaml \
   -e ibm_entitlement_key="YOUR_KEY_HERE"
 ```
 
+### With Custom Instance Name
+
+Specify a custom name for the Event Streams cluster:
+
+```bash
+ansible-playbook install/eventstreams/install.yaml \
+  -e eventautomation_namespace="event-automation" \
+  -e license_accept=true \
+  -e ibm_entitlement_key="YOUR_KEY_HERE" \
+  -e eventstreams_instance_name="prod-kafka"
+```
+
 ### With Persistent Storage
 
 Specify a storage class for persistent storage:
@@ -67,6 +84,21 @@ ansible-playbook install/eventstreams/install.yaml \
   -e eventautomation_namespace="event-automation" \
   -e license_accept=true \
   -e ibm_entitlement_key="YOUR_KEY_HERE" \
+  -e eventstreams_storage_class="ibmc-block-gold" \
+  -e eventstreams_broker_storage_size="100Gi" \
+  -e eventstreams_controller_storage_size="5Gi"
+```
+
+### Complete Custom Configuration
+
+Combine all customization options:
+
+```bash
+ansible-playbook install/eventstreams/install.yaml \
+  -e eventautomation_namespace="event-automation" \
+  -e license_accept=true \
+  -e ibm_entitlement_key="YOUR_KEY_HERE" \
+  -e eventstreams_instance_name="prod-kafka" \
   -e eventstreams_storage_class="ibmc-block-gold" \
   -e eventstreams_broker_storage_size="100Gi" \
   -e eventstreams_controller_storage_size="5Gi"
@@ -178,11 +210,14 @@ Event Streams uses two types of storage:
 After installation, you can access the Event Streams UI through the OpenShift route:
 
 ```bash
-# Get the route URL
-oc get route my-kafka-cluster-ibm-es-ui -n <namespace> -o jsonpath='{.spec.host}'
+# Get the route URL (replace <instance-name> with your eventstreams_instance_name)
+oc get route <instance-name>-ibm-es-ui -n <namespace> -o jsonpath='{.spec.host}'
 
-# Example with defaults
+# Example with default instance name and namespace
 oc get route my-kafka-cluster-ibm-es-ui -n event-automation -o jsonpath='{.spec.host}'
+
+# Example with custom instance name
+oc get route prod-kafka-ibm-es-ui -n event-automation -o jsonpath='{.spec.host}'
 ```
 
 ## Bootstrap Server
@@ -190,12 +225,16 @@ oc get route my-kafka-cluster-ibm-es-ui -n event-automation -o jsonpath='{.spec.
 Applications can connect to Kafka using the bootstrap server:
 
 ```
-my-kafka-cluster-kafka-bootstrap.<namespace>.svc:9095
+<instance-name>-kafka-bootstrap.<namespace>.svc:9095
 ```
 
-Example with default namespace:
+Examples:
 ```
+# With default instance name
 my-kafka-cluster-kafka-bootstrap.event-automation.svc:9095
+
+# With custom instance name
+prod-kafka-kafka-bootstrap.event-automation.svc:9095
 ```
 
 ## Prerequisites
@@ -210,13 +249,21 @@ my-kafka-cluster-kafka-bootstrap.event-automation.svc:9095
 ### Check Event Streams Status
 
 ```bash
-kubectl get eventstreams my-kafka-cluster -n <namespace>
+# Replace <instance-name> with your eventstreams_instance_name
+kubectl get eventstreams <instance-name> -n <namespace>
+
+# Example with default instance name
+kubectl get eventstreams my-kafka-cluster -n event-automation
 ```
 
 ### View Kafka Broker Logs
 
 ```bash
-kubectl logs -n <namespace> -l app.kubernetes.io/name=kafka,strimzi.io/cluster=my-kafka-cluster
+# Replace <instance-name> with your eventstreams_instance_name
+kubectl logs -n <namespace> -l app.kubernetes.io/name=kafka,strimzi.io/cluster=<instance-name>
+
+# Example with default instance name
+kubectl logs -n event-automation -l app.kubernetes.io/name=kafka,strimzi.io/cluster=my-kafka-cluster
 ```
 
 ### Check Storage Usage

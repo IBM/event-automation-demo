@@ -6,6 +6,7 @@
     eventautomation_namespace: "{{ undef(hint='Specify the namespace to deploy into') }}"
     license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+    eventstreams_instance_name: "my-kafka-cluster"
     eventstreams_broker_storage_size: "50Gi"
     eventstreams_controller_storage_size: "3Gi"
 
@@ -137,7 +138,7 @@
         validate_certs: false
         api_version: eventstreams.ibm.com/v1beta2
         kind: EventStreams
-        name: my-kafka-cluster
+        name: "{{ eventstreams_instance_name }}"
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventstreams
       tags:
