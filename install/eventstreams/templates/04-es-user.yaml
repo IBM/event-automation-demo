@@ -3,8 +3,8 @@ kind: KafkaUser
 metadata:
   name: es-admin
   labels:
-    app.kubernetes.io/instance: my-kafka-cluster
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    app.kubernetes.io/instance: {{ eventstreams_instance_name }}
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   authentication:
     type: scram-sha-512

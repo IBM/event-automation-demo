@@ -13,7 +13,7 @@ spec:
     status.storage.topic: connect-status
     config.providers: file
     config.providers.file.class: org.apache.kafka.common.config.provider.DirectoryConfigProvider
-  bootstrapServers: 'my-kafka-cluster-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095'
+  bootstrapServers: '{{ eventstreams_instance_name }}-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095'
   resources:
     limits:
       cpu: 2048m
@@ -59,11 +59,11 @@ spec:
       volumes:
         - name: cluster-ca-cert
           secret:
-            secretName: my-kafka-cluster-cluster-ca-cert
+            secretName: {{ eventstreams_instance_name }}-cluster-ca-cert
   tls:
     trustedCertificates:
       - certificate: ca.crt
-        secretName: my-kafka-cluster-cluster-ca-cert
+        secretName: {{ eventstreams_instance_name }}-cluster-ca-cert
   replicas: 1
   build:
     output:

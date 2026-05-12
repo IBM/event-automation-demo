@@ -24,8 +24,9 @@ if [[ $BASH_SOURCE = */* ]]; then
 fi
 
 # check options provided
-if [ $# -ne 2 ]; then
-    >&2 echo "Usage: reset-all-data.sh <NAMESPACE> <ACCESS_TOKEN>"
+if [ $# -lt 2 ] || [ $# -gt 3 ]; then
+    >&2 echo "Usage: reset-all-data.sh <NAMESPACE> <ACCESS_TOKEN> [KAFKA_CLUSTER_NAME]"
+    >&2 echo "  KAFKA_CLUSTER_NAME defaults to 'my-kafka-cluster' if not provided"
     exit 1
 fi
 
@@ -93,8 +94,11 @@ extract_id() {
 
 echo "> (1/3) Getting Event Streams cluster information"
 
+# get the Kafka cluster name (use provided value or default)
+KAFKA_CLUSTER_NAME=${3:-my-kafka-cluster}
+
 # get the certificates for the Kafka cluster
-ES_CERTIFICATE=$(oc get eventstreams my-kafka-cluster -n $NAMESPACE -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
+ES_CERTIFICATE=$(oc get eventstreams $KAFKA_CLUSTER_NAME -n $NAMESPACE -o jsonpath='{.status.kafkaListeners[?(@.name=="authsslsvc")].certificates[0]}')
 ES_CERTIFICATE=${ES_CERTIFICATE//$'\n'/\\\\n}
 
 # get the password for the Kafka cluster
@@ -102,6 +106,7 @@ ES_PASSWORD=$(oc get secret kafka-demo-apps -n $NAMESPACE -ojsonpath='{.data.pas
 
 # substitute details into the template
 cat eem-01-cluster.json | \
+    sed "s|KAFKA_CLUSTER_NAME|$KAFKA_CLUSTER_NAME|" | \
     sed "s|ES_NAMESPACE|$NAMESPACE|" | \
     sed "s|ES_CERTIFICATE|$ES_CERTIFICATE|" | \
     sed "s|ES_PASSWORD|$ES_PASSWORD|" > \

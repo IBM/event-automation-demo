@@ -5,6 +5,10 @@
   vars:
     eventautomation_namespace: "event-automation"
     eventstreams_storage_class: "placeholder"
+    eventstreams_instance_name: "my-kafka-cluster"
+    eventendpointmanagement_manager_name: "my-eem-manager"
+    eventendpointmanagement_gateway_name: "my-eem-gateway"
+    eventprocessing_instance_name: "my-event-processing"
 
   tasks:
     - name: Install local pre-requisites
@@ -18,7 +22,7 @@
         validate_certs: false
         api_version: eventstreams.ibm.com/v1beta2
         kind: EventStreams
-        name: my-kafka-cluster
+        name: "{{ eventstreams_instance_name }}"
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventstreams
       tags:
@@ -29,7 +33,7 @@
         validate_certs: false
         api_version: events.ibm.com/v1beta1
         kind: EventEndpointManagement
-        name: my-eem-manager
+        name: "{{ eventendpointmanagement_manager_name }}"
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventendpointmanagement
       tags:
@@ -40,7 +44,7 @@
         validate_certs: false
         api_version: v1
         kind: Secret
-        name: my-eem-manager-ibm-eem-manager-ca
+        name: "{{ eventendpointmanagement_manager_name }}-ibm-eem-manager-ca"
         namespace: "{{ eventautomation_namespace }}"
       register: certs_eventendpointmanagement
       tags:
@@ -51,7 +55,7 @@
         validate_certs: false
         api_version: events.ibm.com/v1beta1
         kind: EventProcessing
-        name: my-event-processing
+        name: "{{ eventprocessing_instance_name }}"
         namespace: "{{ eventautomation_namespace }}"
       register: info_eventprocessing
       tags:
@@ -92,7 +96,7 @@
         state: absent
         namespace: "{{ eventautomation_namespace }}"
         kind: Pod
-        name: my-eem-manager-ibm-eem-manager-0
+        name: "{{ eventendpointmanagement_manager_name }}-ibm-eem-manager-0"
       tags:
       - instance
 
@@ -104,7 +108,7 @@
         kind: Pod
         label_selectors:
           - app.kubernetes.io/component=ibm-egw
-          - app.kubernetes.io/instance=my-eem-gateway
+          - "app.kubernetes.io/instance={{ eventendpointmanagement_gateway_name }}"
       tags:
         - instance
 
@@ -114,6 +118,6 @@
         state: absent
         namespace: "{{ eventautomation_namespace }}"
         kind: Pod
-        name: my-event-processing-ibm-ep-sts-0
+        name: "{{ eventprocessing_instance_name }}-ibm-ep-sts-0"
       tags:
         - instance

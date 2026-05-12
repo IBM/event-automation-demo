@@ -4,6 +4,7 @@
   connection: local
   vars:
     eventautomation_namespace: "event-automation"
+    eventstreams_instance_name: "my-kafka-cluster"
     dashboards:
       - es-health
       - es-performance
@@ -31,7 +32,7 @@
           - add-cluster-role-to-user
           - cluster-monitoring-view
           - -z
-          - my-kafka-cluster-ibm-es-admapi
+          - "{{ eventstreams_instance_name }}-ibm-es-admapi"
           - -n
           - "{{ eventautomation_namespace }}"
 

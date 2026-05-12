@@ -88,6 +88,16 @@ ansible-playbook \
     -e eventautomation_namespace=event-automation \
     install/eventstreams/install.yaml
 ```
+
+To install Event Streams with a custom instance name:
+```sh
+ansible-playbook \
+    -e license_accept=true \
+    -e ibm_entitlement_key=YOUR-ENTITLEMENT-KEY \
+    -e eventautomation_namespace=event-automation \
+    -e eventstreams_instance_name=prod-kafka \
+    install/eventstreams/install.yaml
+```
 ---
 ## Event Endpoint Management only
 To install Event Endpoint Management only:

@@ -6,6 +6,7 @@
     eventautomation_namespace: "event-automation"
     license_accept: "{{ undef(hint='You need to accept the MQ license to continue') }}"
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+    eventstreams_instance_name: "my-kafka-cluster"
 
   tasks:
     - name: Install local pre-requisites

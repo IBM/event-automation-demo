@@ -3,7 +3,7 @@ kind: KafkaTopic
 metadata:
   name: fake-orders
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -19,7 +19,7 @@ kind: KafkaTopic
 metadata:
   name: fake-cancellations
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -35,7 +35,7 @@ kind: KafkaTopic
 metadata:
   name: fake-badgeevents
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -51,7 +51,7 @@ kind: KafkaTopic
 metadata:
   name: fake-stockmovement
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -67,7 +67,7 @@ kind: KafkaTopic
 metadata:
   name: fake-customers
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -83,7 +83,7 @@ kind: KafkaTopic
 metadata:
   name: fake-sensorreadings
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -99,7 +99,7 @@ kind: KafkaTopic
 metadata:
   name: fake-onlineorders
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -115,7 +115,7 @@ kind: KafkaTopic
 metadata:
   name: fake-clickstream
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -131,7 +131,7 @@ kind: KafkaTopic
 metadata:
   name: fake-outofstocks
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -147,7 +147,7 @@ kind: KafkaTopic
 metadata:
   name: fake-returnrequests
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -163,7 +163,7 @@ kind: KafkaTopic
 metadata:
   name: fake-productreviews
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -179,7 +179,7 @@ kind: KafkaTopic
 metadata:
   name: fake-transactions
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -195,7 +195,7 @@ kind: KafkaTopic
 metadata:
   name: fake-abandonedorders
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -211,7 +211,7 @@ kind: KafkaTopic
 metadata:
   name: fake-orders-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -227,7 +227,7 @@ kind: KafkaTopic
 metadata:
   name: fake-cancellations-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -243,7 +243,7 @@ kind: KafkaTopic
 metadata:
   name: fake-badgeevents-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -259,7 +259,7 @@ kind: KafkaTopic
 metadata:
   name: fake-stockmovement-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -275,7 +275,7 @@ kind: KafkaTopic
 metadata:
   name: fake-customers-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -291,7 +291,7 @@ kind: KafkaTopic
 metadata:
   name: fake-sensorreadings-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -307,7 +307,7 @@ kind: KafkaTopic
 metadata:
   name: fake-onlineorders-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -323,7 +323,7 @@ kind: KafkaTopic
 metadata:
   name: fake-clickstream-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -339,7 +339,7 @@ kind: KafkaTopic
 metadata:
   name: fake-outofstocks-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -355,7 +355,7 @@ kind: KafkaTopic
 metadata:
   name: fake-returnrequests-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -371,7 +371,7 @@ kind: KafkaTopic
 metadata:
   name: fake-productreviews-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -387,7 +387,7 @@ kind: KafkaTopic
 metadata:
   name: fake-transactions-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -403,7 +403,7 @@ kind: KafkaTopic
 metadata:
   name: fake-abandonedorders-avro
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -419,7 +419,7 @@ kind: KafkaTopic
 metadata:
   name: fake-orders-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -435,7 +435,7 @@ kind: KafkaTopic
 metadata:
   name: fake-cancellations-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -451,7 +451,7 @@ kind: KafkaTopic
 metadata:
   name: fake-badgeevents-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -467,7 +467,7 @@ kind: KafkaTopic
 metadata:
   name: fake-stockmovement-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -483,7 +483,7 @@ kind: KafkaTopic
 metadata:
   name: fake-customers-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -499,7 +499,7 @@ kind: KafkaTopic
 metadata:
   name: fake-sensorreadings-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -515,7 +515,7 @@ kind: KafkaTopic
 metadata:
   name: fake-onlineorders-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -531,7 +531,7 @@ kind: KafkaTopic
 metadata:
   name: fake-clickstream-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -547,7 +547,7 @@ kind: KafkaTopic
 metadata:
   name: fake-outofstocks-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -563,7 +563,7 @@ kind: KafkaTopic
 metadata:
   name: fake-returnrequests-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -579,7 +579,7 @@ kind: KafkaTopic
 metadata:
   name: fake-productreviews-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -595,7 +595,7 @@ kind: KafkaTopic
 metadata:
   name: fake-transactions-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
@@ -611,7 +611,7 @@ kind: KafkaTopic
 metadata:
   name: fake-abandonedorders-reg
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   config:
     min.insync.replicas: '1'
