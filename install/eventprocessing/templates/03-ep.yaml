@@ -1,7 +1,7 @@
 apiVersion: events.ibm.com/v1beta1
 kind: EventProcessing
 metadata:
-  name: my-event-processing
+  name: {{ ep_instance_name }}
 spec:
   authoring:
     authConfig:

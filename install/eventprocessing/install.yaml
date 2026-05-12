@@ -6,6 +6,7 @@
     eventautomation_namespace: "{{ undef(hint='Specify the namespace to deploy into') }}"
     license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+    ep_instance_name: "my-event-processing"
 
   tasks:
     - name: Install local pre-requisites
@@ -74,7 +75,7 @@
       kubernetes.core.k8s:
         state: patched
         kind: Secret
-        name: my-event-processing-ibm-ep-user-credentials
+        name: "{{ ep_instance_name }}-ibm-ep-user-credentials"
         namespace: "{{ eventautomation_namespace }}"
         definition:
           data:
@@ -86,7 +87,7 @@
       kubernetes.core.k8s:
         state: patched
         kind: Secret
-        name: my-event-processing-ibm-ep-user-roles
+        name: "{{ ep_instance_name }}-ibm-ep-user-roles"
         namespace: "{{ eventautomation_namespace }}"
         definition:
           data:
