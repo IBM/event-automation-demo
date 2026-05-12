@@ -8,6 +8,7 @@
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
     eventprocessing_instance_name: "my-event-processing"
     eventprocessing_storage_size: "100M"
+    flink_instance_name: "my-flink"
 
   tasks:
     - name: Install local pre-requisites

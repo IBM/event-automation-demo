@@ -37,7 +37,7 @@ spec:
                     path: eventautomation.jks
                 secretName: eventautomation-truststore
   flink:
-    endpoint: 'my-flink-rest:8081'
+    endpoint: '{{ flink_instance_name }}-rest:8081'
   license:
     accept: true
     license: L-CYBH-K48BZQ

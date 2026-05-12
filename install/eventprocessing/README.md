@@ -35,6 +35,11 @@ The playbook supports the following configurable variables in [`install.yaml`](i
   - Only used when `eventprocessing_storage_class` is specified
   - Examples: "100M", "500M", "1Gi"
 
+- **`flink_instance_name`** (default: `"my-flink"`)
+  - The name of the Apache Flink instance to connect to
+  - Event Processing uses this to construct the Flink REST endpoint: `{flink_instance_name}-rest:8081`
+  - Must match the Flink instance name deployed in your cluster
+
 ## Usage
 
 ### Default Configuration

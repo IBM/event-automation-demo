@@ -9,6 +9,7 @@
     eventendpointmanagement_manager_name: "my-eem-manager"
     eventendpointmanagement_gateway_name: "my-eem-gateway"
     eventprocessing_instance_name: "my-event-processing"
+    flink_instance_name: "my-flink"
 
   tasks:
     - name: Install local pre-requisites
