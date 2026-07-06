@@ -6,6 +6,7 @@
     eventautomation_namespace: "{{ undef(hint='Specify the namespace to deploy into') }}"
     license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+    cluster_subdomain: "{{ var_cluster_subdomain | default(lookup('ansible.builtin.env', 'CLUSTER_SUBDOMAIN')) }}"
 
   tasks:
     - name: Install local pre-requisites

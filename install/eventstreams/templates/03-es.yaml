@@ -1,4 +1,4 @@
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: EventStreams
 metadata:
   name: my-kafka-cluster

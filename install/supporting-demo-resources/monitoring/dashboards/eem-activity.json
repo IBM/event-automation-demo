@@ -114,7 +114,7 @@
             "useBackend": false
           }
         ],
-        "title": "Most popular topics (subscriptions)",
+        "title": "Most popular topics (applications)",
         "transformations": [
           {
             "id": "seriesToRows",
@@ -216,7 +216,7 @@
             "useBackend": false
           }
         ],
-        "title": "Topic options with subscribers",
+        "title": "Topic options with applications",
         "type": "stat"
       },
       {

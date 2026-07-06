@@ -1,4 +1,4 @@
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-orders
@@ -14,7 +14,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-cancellations
@@ -30,7 +30,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-badgeevents
@@ -46,7 +46,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-stockmovement
@@ -62,7 +62,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-customers
@@ -78,7 +78,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-sensorreadings
@@ -94,7 +94,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-onlineorders
@@ -110,7 +110,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-clickstream
@@ -126,7 +126,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-outofstocks
@@ -142,7 +142,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-returnrequests
@@ -158,7 +158,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-productreviews
@@ -174,7 +174,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-transactions
@@ -190,7 +190,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-abandonedorders
@@ -206,7 +206,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-orders-avro
@@ -222,7 +222,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-cancellations-avro
@@ -238,7 +238,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-badgeevents-avro
@@ -254,7 +254,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-stockmovement-avro
@@ -270,7 +270,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-customers-avro
@@ -286,7 +286,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-sensorreadings-avro
@@ -302,7 +302,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-onlineorders-avro
@@ -318,7 +318,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-clickstream-avro
@@ -334,7 +334,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-outofstocks-avro
@@ -350,7 +350,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-returnrequests-avro
@@ -366,7 +366,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-productreviews-avro
@@ -382,7 +382,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-transactions-avro
@@ -398,7 +398,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-abandonedorders-avro
@@ -414,7 +414,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-orders-reg
@@ -430,7 +430,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-cancellations-reg
@@ -446,7 +446,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-badgeevents-reg
@@ -462,7 +462,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-stockmovement-reg
@@ -478,7 +478,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-customers-reg
@@ -494,7 +494,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-sensorreadings-reg
@@ -510,7 +510,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-onlineorders-reg
@@ -526,7 +526,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-clickstream-reg
@@ -542,7 +542,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-outofstocks-reg
@@ -558,7 +558,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-returnrequests-reg
@@ -574,7 +574,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-productreviews-reg
@@ -590,7 +590,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-transactions-reg
@@ -606,7 +606,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaTopic
 metadata:
   name: fake-abandonedorders-reg

@@ -21,6 +21,3 @@
 
 - name: Install Event Processing
   ansible.builtin.import_playbook: eventprocessing/install.yaml
-
-- name: Set up welcome page
-  ansible.builtin.import_playbook: welcome/setup.yaml

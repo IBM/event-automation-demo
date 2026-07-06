@@ -16,7 +16,7 @@
     - name: Get UI route for Event Streams
       kubernetes.core.k8s_info:
         validate_certs: false
-        api_version: eventstreams.ibm.com/v1beta2
+        api_version: eventstreams.ibm.com/v1
         kind: EventStreams
         name: my-kafka-cluster
         namespace: "{{ eventautomation_namespace }}"
