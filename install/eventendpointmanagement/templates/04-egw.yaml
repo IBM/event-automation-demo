@@ -7,11 +7,13 @@ metadata:
 spec:
   gatewayGroupName: gateway-group
   gatewayID: gateway-1
+  gatewayContact: sample-contact
   license:
     accept: {{ license_accept }}
     license: L-CYBH-K48BZQ
     metric: VIRTUAL_PROCESSOR_CORE
     use: EventAutomationNonProduction
+  replicas: 1
   listeners:
     - name: gateway
       port: 8092
