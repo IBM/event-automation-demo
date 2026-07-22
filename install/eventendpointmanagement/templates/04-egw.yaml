@@ -3,7 +3,7 @@ kind: EventGateway
 metadata:
   name: {{ eventendpointmanagement_gateway_name }}
   labels:
-    events.ibm.com/manager: {{ eventendpointmanagement_gateway_name }}
+    events.ibm.com/manager: {{ eventendpointmanagement_manager_name }}
 spec:
   gatewayGroupName: gateway-group
   gatewayID: gateway-1
