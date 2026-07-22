@@ -23,7 +23,7 @@ spec:
             host: eem-gateway-1-{{ eventautomation_namespace }}.{{ cluster_subdomain }}
       tls:
         caSecret:
-          secretName:  my-eem-manager-ibm-eem-manager-ca
+          secretName:  {{ eventendpointmanagement_manager_name }}-ibm-eem-manager-ca
   template:
     pod:
       spec:
