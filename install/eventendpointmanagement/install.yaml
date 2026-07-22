@@ -9,6 +9,7 @@
     eventendpointmanagement_manager_name: "my-eem-manager"
     eventendpointmanagement_gateway_name: "my-eem-gateway"
     eventendpointmanagement_manager_storage_size: "250M"
+    cluster_subdomain: "{{ var_cluster_subdomain | default(lookup('ansible.builtin.env', 'CLUSTER_SUBDOMAIN')) }}"
 
   tasks:
     - name: Install local pre-requisites

@@ -2,8 +2,9 @@ apiVersion: events.ibm.com/v1beta1
 kind: EventGateway
 metadata:
   name: {{ eventendpointmanagement_gateway_name }}
+  labels:
+    events.ibm.com/manager: {{ eventendpointmanagement_gateway_name }}
 spec:
-  managerEndpoint: {{ eem_gateway_route }}
   gatewayGroupName: gateway-group
   gatewayID: gateway-1
   license:
@@ -11,6 +12,18 @@ spec:
     license: L-CYBH-K48BZQ
     metric: VIRTUAL_PROCESSOR_CORE
     use: EventAutomationNonProduction
+  listeners:
+    - name: gateway
+      port: 8092
+      groups:
+        - name: gateway-group
+          type: EXPLICIT
+          maxNumKafkaBrokers: 20
+          endpoint:
+            host: eem-gateway-1-{{ eventautomation_namespace }}.{{ cluster_subdomain }}
+      tls:
+        caSecret:
+          secretName:  my-eem-manager-ibm-eem-manager-ca
   template:
     pod:
       spec:
@@ -23,5 +36,3 @@ spec:
               limits:
                 cpu: '1'
                 memory: 1Gi
-  tls:
-    caSecretName: {{ eventendpointmanagement_manager_name }}-ibm-eem-manager-ca

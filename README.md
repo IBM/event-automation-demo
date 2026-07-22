@@ -222,7 +222,7 @@ If you used custom instance names during installation, provide them as additiona
 
 > **Warning**:
 >
-> This will delete ALL data stored in Event Endpoint Management (including cluster definitions, topic documentation, subscriptions), and replace it with documentation for the topics included in the tutorial.
+> This will delete ALL data stored in Event Endpoint Management (including cluster definitions, topic documentation, applications), and replace it with documentation for the topics included in the tutorial.
 >
 > You should not run this script if you have any data in Event Endpoint Management that you want to keep.
 >

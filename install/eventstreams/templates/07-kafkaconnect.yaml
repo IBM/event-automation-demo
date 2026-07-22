@@ -1,16 +1,16 @@
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaConnect
 metadata:
   annotations:
     eventstreams.ibm.com/use-connector-resources: 'true'
   name: kafka-connect-cluster
 spec:
+  groupId: kafka-connect
+  configStorageTopic: connect-configs
+  offsetStorageTopic: connect-offsets
+  statusStorageTopic: connect-status
   config:
-    group.id: kafka-connect
     client.id: kafka-connect-client
-    config.storage.topic: connect-configs
-    offset.storage.topic: connect-offsets
-    status.storage.topic: connect-status
     config.providers: file
     config.providers.file.class: org.apache.kafka.common.config.provider.DirectoryConfigProvider
   bootstrapServers: '{{ eventstreams_instance_name }}-kafka-bootstrap.{{ eventautomation_namespace }}.svc:9095'
@@ -48,7 +48,7 @@ spec:
       metadata:
         annotations:
           cloudpakId: c8b82d189e7545f0892db9ef2731b90d
-          productVersion: 12.3.1
+          productVersion: 13.0.0
           productID: 2a79e49111f44ec3acd89608e56138f5
           cloudpakName: IBM Cloud Pak for Integration
           productChargedContainers: kafka-connect-cluster-connect

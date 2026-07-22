@@ -1,4 +1,4 @@
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaConnector
 metadata:
   name: kafka-datagen
@@ -16,7 +16,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaConnector
 metadata:
   name: kafka-datagen-avro
@@ -67,7 +67,7 @@ spec:
 
 ---
 
-apiVersion: eventstreams.ibm.com/v1beta2
+apiVersion: eventstreams.ibm.com/v1
 kind: KafkaConnector
 metadata:
   name: kafka-datagen-reg
