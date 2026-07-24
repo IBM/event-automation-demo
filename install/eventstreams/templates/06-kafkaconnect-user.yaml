@@ -3,7 +3,7 @@ kind: KafkaUser
 metadata:
   name: kafka-connect-credentials
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ eventstreams_instance_name }}
 spec:
   authentication:
     # generate username/password for this user

@@ -1,7 +1,7 @@
 apiVersion: events.ibm.com/v1beta1
 kind: EventProcessing
 metadata:
-  name: my-event-processing
+  name: {{ eventprocessing_instance_name }}
 spec:
   authoring:
     authConfig:
@@ -9,7 +9,7 @@ spec:
     storage:
 {% if eventprocessing_storage_class is defined and eventprocessing_storage_class | length %}
       type: persistent-claim
-      size: 100M
+      size: {{ eventprocessing_storage_size }}
       storageClassName: {{ eventprocessing_storage_class }}
 {% else %}
       type: ephemeral
@@ -37,7 +37,7 @@ spec:
                     path: eventautomation.jks
                 secretName: eventautomation-truststore
   flink:
-    endpoint: 'my-flink-rest:8081'
+    endpoint: '{{ flink_instance_name }}-rest:8081'
   license:
     accept: true
     license: L-CYBH-K48BZQ

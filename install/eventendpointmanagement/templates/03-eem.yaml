@@ -1,7 +1,7 @@
 apiVersion: events.ibm.com/v1beta1
 kind: EventEndpointManagement
 metadata:
-  name: my-eem-manager
+  name: {{ eventendpointmanagement_manager_name }}
 spec:
   license:
     accept: {{ license_accept }}
@@ -14,7 +14,7 @@ spec:
     storage:
 {% if eventendpointmanagement_storage_class is defined and eventendpointmanagement_storage_class | length %}
       type: persistent-claim
-      size: 250M
+      size: {{ eventendpointmanagement_manager_storage_size }}
       storageClassName: {{ eventendpointmanagement_storage_class }}
 {% else %}
       type: ephemeral

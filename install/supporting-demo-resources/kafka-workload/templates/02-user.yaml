@@ -3,7 +3,7 @@ kind: KafkaUser
 metadata:
   name: workload-apps
   labels:
-    eventstreams.ibm.com/cluster: my-kafka-cluster
+    eventstreams.ibm.com/cluster: {{ kafka_cluster_name }}
 spec:
   authentication:
     type: scram-sha-512

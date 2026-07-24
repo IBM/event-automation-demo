@@ -12,7 +12,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: my-kafka-cluster-ibm-es-discovery-endpoints
+  name: {{ eventstreams_instance_name }}-ibm-es-discovery-endpoints
 data:
   endpoints.json: |-
     {

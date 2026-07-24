@@ -2,7 +2,7 @@
     "name": "Event Streams",
     "bootstrapServers": [
         {
-            "host": "my-kafka-cluster-kafka-bootstrap.ES_NAMESPACE.svc",
+            "host": "KAFKA_CLUSTER_NAME-kafka-bootstrap.ES_NAMESPACE.svc",
             "port": 9095,
             "ssl": true,
             "certificates": [

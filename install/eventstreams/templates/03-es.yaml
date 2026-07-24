@@ -1,7 +1,7 @@
 apiVersion: eventstreams.ibm.com/v1
 kind: EventStreams
 metadata:
-  name: my-kafka-cluster
+  name: {{ eventstreams_instance_name }}
 spec:
   adminApi: {}
   adminUI:
@@ -57,7 +57,7 @@ spec:
         storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
           type: persistent-claim
-          size: 50Gi
+          size: {{ eventstreams_broker_storage_size }}
           class: {{ eventstreams_storage_class }}
 {% else %}
           type: ephemeral
@@ -69,7 +69,7 @@ spec:
         storage:
 {% if eventstreams_storage_class is defined and eventstreams_storage_class | length %}
           type: persistent-claim
-          size: 3Gi
+          size: {{ eventstreams_controller_storage_size }}
           class: {{ eventstreams_storage_class }}
 {% else %}
           type: ephemeral

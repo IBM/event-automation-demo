@@ -6,6 +6,9 @@
     eventautomation_namespace: "{{ undef(hint='Specify the namespace to deploy into') }}"
     license_accept: "{{ undef(hint='You need to accept the Event Automation license to continue') }}"
     ibm_entitlement_key: "{{ undef(hint='Provide an Entitled Registry key') }}"
+    eventendpointmanagement_manager_name: "my-eem-manager"
+    eventendpointmanagement_gateway_name: "my-eem-gateway"
+    eventendpointmanagement_manager_storage_size: "250M"
     cluster_subdomain: "{{ var_cluster_subdomain | default(lookup('ansible.builtin.env', 'CLUSTER_SUBDOMAIN')) }}"
 
   tasks:
@@ -60,7 +63,7 @@
         validate_certs: false
         api_version: route.openshift.io/v1
         kind: Route
-        name: my-eem-manager-ibm-eem-gateway
+        name: "{{ eventendpointmanagement_manager_name }}-ibm-eem-gateway"
         namespace: "{{ eventautomation_namespace }}"
       register: egw_route
       tags:
@@ -86,7 +89,7 @@
       kubernetes.core.k8s:
         state: patched
         kind: Secret
-        name: my-eem-manager-ibm-eem-user-credentials
+        name: "{{ eventendpointmanagement_manager_name }}-ibm-eem-user-credentials"
         namespace: "{{ eventautomation_namespace }}"
         definition:
           data:
@@ -98,7 +101,7 @@
       kubernetes.core.k8s:
         state: patched
         kind: Secret
-        name: my-eem-manager-ibm-eem-user-roles
+        name: "{{ eventendpointmanagement_manager_name }}-ibm-eem-user-roles"
         namespace: "{{ eventautomation_namespace }}"
         definition:
           data:

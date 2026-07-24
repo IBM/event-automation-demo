@@ -75,11 +75,29 @@ Set this to the key you created in the [IBM Container software library](https://
 
 Namespace to deploy the Event Automation components into.
 
+#### `eventstreams_instance_name`
+
+Name for the Event Streams (Kafka) cluster instance.
+
+If omitted, defaults to `my-kafka-cluster`.
+
 #### `eventstreams_storage_class`
 
 Storage class to use for persistent storage for Kafka brokers and ZooKeeper nodes from Event Streams.
 
 If omitted, ephemeral storage is used.
+
+#### `eventendpointmanagement_manager_name`
+
+Name for the Event Endpoint Management manager instance.
+
+If omitted, defaults to `my-eem-manager`.
+
+#### `eventendpointmanagement_gateway_name`
+
+Name for the Event Endpoint Management gateway instance.
+
+If omitted, defaults to `my-eem-gateway`.
 
 #### `eventendpointmanagement_storage_class`
 
@@ -87,11 +105,47 @@ Storage class to use for the Event Endpoint Management manager.
 
 If omitted, ephemeral storage is used.
 
+#### `eventendpointmanagement_manager_storage_size`
+
+Storage size for the Event Endpoint Management manager.
+
+If omitted, defaults to `250M`. Only used when `eventendpointmanagement_storage_class` is specified.
+
+#### `eventprocessing_instance_name`
+
+Name for the Event Processing instance.
+
+If omitted, defaults to `my-event-processing`.
+
 #### `eventprocessing_storage_class`
 
 Storage class to use for the Event Processing authoring environment.
 
 If omitted, ephemeral storage is used.
+
+#### `eventprocessing_storage_size`
+
+Storage size for the Event Processing authoring environment.
+
+If omitted, defaults to `100M`. Only used when `eventprocessing_storage_class` is specified.
+
+#### `eventstreams_broker_storage_size`
+
+Storage size for each Event Streams Kafka broker.
+
+If omitted, defaults to `50Gi`. Only used when `eventstreams_storage_class` is specified.
+
+#### `eventstreams_controller_storage_size`
+
+Storage size for each Event Streams Kafka controller.
+
+If omitted, defaults to `3Gi`. Only used when `eventstreams_storage_class` is specified.
+
+#### `flink_instance_name`
+
+Name for the Apache Flink instance.
+
+If omitted, defaults to `my-flink`.
 
 ### Example
 
@@ -105,6 +159,29 @@ ansible-playbook \
     -e eventstreams_storage_class=ibmc-block-gold \
     -e eventendpointmanagement_storage_class=ibmc-block-bronze \
     -e eventprocessing_storage_class=ibmc-block-bronze \
+    -e eventautomation_namespace=event-automation \
+    install/event-automation.yaml
+```
+
+### Example with custom instance names and storage sizes
+
+```sh
+ansible-playbook \
+    -e license_accept=true \
+    -e ibm_entitlement_key=YOUR-KEY-HERE \
+    -e install_certmgr=true \
+    -e eventstreams_instance_name=prod-kafka \
+    -e eventstreams_storage_class=ibmc-block-gold \
+    -e eventstreams_broker_storage_size=100Gi \
+    -e eventstreams_controller_storage_size=5Gi \
+    -e eventendpointmanagement_manager_name=prod-eem-manager \
+    -e eventendpointmanagement_gateway_name=prod-eem-gateway \
+    -e eventendpointmanagement_storage_class=ibmc-block-bronze \
+    -e eventendpointmanagement_manager_storage_size=1Gi \
+    -e eventprocessing_instance_name=prod-event-processing \
+    -e eventprocessing_storage_class=ibmc-block-bronze \
+    -e eventprocessing_storage_size=500M \
+    -e flink_instance_name=prod-flink \
     -e eventautomation_namespace=event-automation \
     install/event-automation.yaml
 ```
@@ -127,11 +204,20 @@ You need an access token to be able to run the helper script.
 
 To create an access token, visit the **Profile** page in the Event Endpoint Management catalog by clicking on the user icon in the header. For more detailed instructions, see the [Event Endpoint Management documentation](https://ibm.github.io/event-automation/eem/security/api-tokens/#creating-a-token).
 
-`./eem-seed/reset-all-data.sh <eventautomation_namespace>  <access_token>`
+`./eem-seed/reset-all-data.sh <eventautomation_namespace> <access_token> [kafka_cluster_name] [eem_manager_name]`
 
 For example:
 ```sh
 ./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000
+```
+
+If you used custom instance names during installation, provide them as additional parameters:
+```sh
+# With custom Kafka cluster name only
+./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000 prod-kafka
+
+# With both custom Kafka cluster and EEM manager names
+./eem-seed/reset-all-data.sh event-automation 00000000-0000-0000-0000-000000000000 prod-kafka prod-eem-manager
 ```
 
 > **Warning**:

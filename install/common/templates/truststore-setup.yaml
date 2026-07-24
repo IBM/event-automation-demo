@@ -11,10 +11,10 @@ spec:
       emptyDir: {}
     - name: event-streams
       secret:
-        secretName: my-kafka-cluster-cluster-ca-cert
+        secretName: {{ eventstreams_instance_name }}-cluster-ca-cert
     - name: event-endpoint-management
       secret:
-        secretName: my-eem-gateway-ibm-egw-cert
+        secretName: {{ eventendpointmanagement_gateway_name }}-ibm-egw-cert
   containers:
     - name: setup-truststore
       image: cp.icr.io/cp/ibm-eventstreams-kafka:12.3.1
