@@ -5,6 +5,7 @@ metadata:
     eventstreams.ibm.com/use-connector-resources: 'true'
   name: kafka-connect-cluster
 spec:
+  # Required fields for v1 API at spec level
   groupId: kafka-connect
   configStorageTopic: connect-configs
   offsetStorageTopic: connect-offsets
@@ -48,7 +49,7 @@ spec:
       metadata:
         annotations:
           cloudpakId: c8b82d189e7545f0892db9ef2731b90d
-          productVersion: 13.0.0
+          productVersion: 13.0.3
           productID: 2a79e49111f44ec3acd89608e56138f5
           cloudpakName: IBM Cloud Pak for Integration
           productChargedContainers: kafka-connect-cluster-connect
